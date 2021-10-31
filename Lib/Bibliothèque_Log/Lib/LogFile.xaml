@@ -113,30 +113,16 @@
               <OutArgument x:TypeArguments="x:String">[PathFolder]</OutArgument>
             </ui:GetRobotAsset.Value>
           </ui:GetRobotAsset>
-          <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim JsonObjet As New JObject()&#xD;&#xA;JsonObjet.Add(&quot;ProjectCode&quot;,ProjectCode)&#xD;&#xA;JsonObjet.Add(&quot;Processus&quot;,Processus)&#xD;&#xA;JsonObjet.Add(&quot;Env&quot;,Env)&#xD;&#xA;JsonObjet.Add(&quot;Description&quot;,Description)&#xD;&#xA;JsonObjet.Add(&quot;Niveau&quot;,Niveau)&#xD;&#xA;JsonObjet.Add(&quot;Sevérité&quot;,Severite)&#xD;&#xA;Dim DateTimeLog As DateTime = Now()&#xD;&#xA;JsonObjet.Add(&quot;DateTime&quot;,DateTimeLog.ToString(&quot;o&quot;))&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;PathFolder+=&quot;\&quot;+ProjectCode+&quot;\&quot;+Processus&#xD;&#xA;If Not Directory.Exists(PathFolder) Then&#xD;&#xA;&#x9;Directory.CreateDirectory(PathFolder)&#xD;&#xA;End If &#xD;&#xA;&#xD;&#xA;Dim PathFile = PathFolder+&quot;\&quot;+DateTimeLog.ToString(&quot;yyyy-MM-dd&quot;)+&quot;.log&quot;&#xD;&#xA;Dim Messages As New List(Of String)&#xD;&#xA;Messages.Add(DateTimeLog.ToString(&quot;o&quot;)+JsonObjet.ToString().Replace(vbCrLf,&quot;&quot;))&#xD;&#xA;File.AppendAllLines(PathFile,Messages)&#xD;&#xA;" DisplayName="Invoke code" sap:VirtualizedContainerService.HintSize="444,164" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
+          <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim JsonObjet As New JObject()&#xD;&#xA;JsonObjet.Add(&quot;ProjectCode&quot;,ProjectCode)&#xD;&#xA;JsonObjet.Add(&quot;Processus&quot;,Processus)&#xD;&#xA;JsonObjet.Add(&quot;Env&quot;,Env)&#xD;&#xA;JsonObjet.Add(&quot;Description&quot;,Description)&#xD;&#xA;JsonObjet.Add(&quot;Niveau&quot;,Niveau)&#xD;&#xA;JsonObjet.Add(&quot;Sevérité&quot;,Severite)&#xD;&#xA;Dim DateTimeLog As DateTime = Now()&#xD;&#xA;JsonObjet.Add(&quot;DateTime&quot;,DateTimeLog.ToString(&quot;o&quot;))&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;PathFolder+=&quot;\&quot;+ProjectCode+&quot;\&quot;+Processus&#xD;&#xA;If Not Directory.Exists(PathFolder) Then&#xD;&#xA;&#x9;Directory.CreateDirectory(PathFolder)&#xD;&#xA;End If &#xD;&#xA;&#xD;&#xA;Dim PathFile = PathFolder+&quot;\&quot;+DateTimeLog.ToString(&quot;yyyy-MM-dd&quot;)+&quot;.log&quot;&#xD;&#xA;Dim Messages As New List(Of String)&#xD;&#xA;Messages.Add(DateTimeLog.ToString(&quot;o&quot;)+&quot; &quot;+Severite+ &quot; &quot;+JsonObjet.ToString().Replace(vbCrLf,&quot;&quot;))&#xD;&#xA;File.AppendAllLines(PathFile,Messages)&#xD;&#xA;" DisplayName="Invoke code" sap:VirtualizedContainerService.HintSize="444,164" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
             <ui:InvokeCode.Arguments>
               <OutArgument x:TypeArguments="x:String" x:Key="LogLine" />
-              <InArgument x:TypeArguments="x:String" x:Key="ProjectCode">
-                <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_ProjetCode" />
-              </InArgument>
-              <InArgument x:TypeArguments="x:String" x:Key="Description">
-                <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Description" />
-              </InArgument>
-              <InArgument x:TypeArguments="x:String" x:Key="Env">
-                <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Env" />
-              </InArgument>
-              <InArgument x:TypeArguments="x:String" x:Key="Processus">
-                <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Processus" />
-              </InArgument>
-              <InArgument x:TypeArguments="x:String" x:Key="Niveau">
-                <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Niveau" />
-              </InArgument>
-              <InArgument x:TypeArguments="x:String" x:Key="Severite">
-                <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Severite" />
-              </InArgument>
-              <InArgument x:TypeArguments="x:String" x:Key="PathFolder">
-                <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="PathFolder" />
-              </InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="ProjectCode">[in_ProjetCode]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="Description">[in_Description]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="Env">[in_Env]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="Processus">[in_Processus]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="Niveau">[in_Niveau]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="Severite">[in_Severite]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="PathFolder">[PathFolder]</InArgument>
             </ui:InvokeCode.Arguments>
           </ui:InvokeCode>
         </Sequence>
