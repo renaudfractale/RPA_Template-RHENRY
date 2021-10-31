@@ -1,0 +1,259 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Get_Assets" mva:VisualBasic.Settings="{x:Null}" sap:VirtualizedContainerService.HintSize="1208,1646" sap2010:WorkflowViewState.IdRef="Get_Assets_1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:ss="clr-namespace:System.Security;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="64">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Activities.DynamicUpdate</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>Newtonsoft.Json</x:String>
+      <x:String>Newtonsoft.Json.Linq</x:String>
+      <x:String>System.Dynamic</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Collections.Specialized</x:String>
+      <x:String>System.Net</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="17">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>Newtonsoft.Json</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="Get_Assets" sap:VirtualizedContainerService.HintSize="516,1581" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="Folder" />
+      <Variable x:TypeArguments="s:String[]" Name="ListeAssets" />
+      <Variable x:TypeArguments="s:String[]" Name="ListeCredentials" />
+      <Variable x:TypeArguments="njl:JObject" Name="JsonObj" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <Assign sap:VirtualizedContainerService.HintSize="474,60" sap2010:WorkflowViewState.IdRef="Assign_1">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[Folder]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">Config</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign sap:VirtualizedContainerService.HintSize="474,60" sap2010:WorkflowViewState.IdRef="Assign_2">
+      <Assign.To>
+        <OutArgument x:TypeArguments="njl:JObject">[JsonObj]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="njl:JObject">[new Newtonsoft.Json.Linq.JObject()]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <Assign sap:VirtualizedContainerService.HintSize="474,60" sap2010:WorkflowViewState.IdRef="Assign_4">
+      <Assign.To>
+        <OutArgument x:TypeArguments="s:String[]">[ListeAssets]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="s:String[]">[{"Email_Port","Email_ServeurSMTP","LogDB_NOSQL_Actif","LogDB_NOSQL_URL", "LogTxt_Actif","LogTxt_PathFolderBase","Orchestrator_AccountLogicalName","Orchestrator_client_id","Orchestrator_refresh_token","Orchestrator_TenantName"}]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each Assets" sap:VirtualizedContainerService.HintSize="474,51" sap2010:WorkflowViewState.IdRef="ForEach`1_2" Values="[ListeAssets]">
+      <ui:ForEach.Body>
+        <ActivityAction x:TypeArguments="x:String">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:String" Name="item" />
+          </ActivityAction.Argument>
+          <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="524,660" sap2010:WorkflowViewState.IdRef="TryCatch_1">
+            <TryCatch.Try>
+              <Sequence sap:VirtualizedContainerService.HintSize="486,433" sap2010:WorkflowViewState.IdRef="Sequence_3">
+                <Sequence.Variables>
+                  <Variable x:TypeArguments="x:String" Name="Value" />
+                </Sequence.Variables>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="[item]" DisplayName="Get Asset" FolderPath="[Folder]" sap:VirtualizedContainerService.HintSize="444,137" sap2010:WorkflowViewState.IdRef="GetRobotAsset_4">
+                  <ui:GetRobotAsset.Value>
+                    <OutArgument x:TypeArguments="x:String">[Value]</OutArgument>
+                  </ui:GetRobotAsset.Value>
+                </ui:GetRobotAsset>
+                <ui:InvokeCode ContinueOnError="{x:Null}" Code="JsonObj.Add(Asset,Value)" DisplayName="Invoke code" sap:VirtualizedContainerService.HintSize="444,164" sap2010:WorkflowViewState.IdRef="InvokeCode_2">
+                  <ui:InvokeCode.Arguments>
+                    <InOutArgument x:TypeArguments="njl:JObject" x:Key="JsonObj">
+                      <mva:VisualBasicReference x:TypeArguments="njl:JObject" ExpressionText="JsonObj" />
+                    </InOutArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="Asset">
+                      <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="item" />
+                    </InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="Value">
+                      <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="Value.Trim" />
+                    </InArgument>
+                  </ui:InvokeCode.Arguments>
+                </ui:InvokeCode>
+              </Sequence>
+            </TryCatch.Try>
+            <TryCatch.Catches>
+              <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="490,21" sap2010:WorkflowViewState.IdRef="Catch`1_1">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ActivityAction x:TypeArguments="s:Exception">
+                  <ActivityAction.Argument>
+                    <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                  </ActivityAction.Argument>
+                  <ui:InvokeCode ContinueOnError="{x:Null}" Code="JsonObj.Add(Asset,&quot;&quot;)" DisplayName="Invoke code" sap:VirtualizedContainerService.HintSize="334,164" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
+                    <ui:InvokeCode.Arguments>
+                      <InOutArgument x:TypeArguments="njl:JObject" x:Key="JsonObj">
+                        <mva:VisualBasicReference x:TypeArguments="njl:JObject" ExpressionText="JsonObj" />
+                      </InOutArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="Asset">
+                        <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="item" />
+                      </InArgument>
+                    </ui:InvokeCode.Arguments>
+                  </ui:InvokeCode>
+                </ActivityAction>
+              </Catch>
+            </TryCatch.Catches>
+          </TryCatch>
+        </ActivityAction>
+      </ui:ForEach.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:ForEach>
+    <Assign sap:VirtualizedContainerService.HintSize="474,60" sap2010:WorkflowViewState.IdRef="Assign_3">
+      <Assign.To>
+        <OutArgument x:TypeArguments="s:String[]">[ListeCredentials]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="s:String[]">[{"Email_CredentialSMTP","LogDB_NOSQL_Credential"}]</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each Credentials" sap:VirtualizedContainerService.HintSize="474,826" sap2010:WorkflowViewState.IdRef="ForEach`1_3" Values="[ListeCredentials]">
+      <ui:ForEach.Body>
+        <ActivityAction x:TypeArguments="x:String">
+          <ActivityAction.Argument>
+            <DelegateInArgument x:TypeArguments="x:String" Name="item" />
+          </ActivityAction.Argument>
+          <TryCatch DisplayName="Try Catch" sap:VirtualizedContainerService.HintSize="438,702" sap2010:WorkflowViewState.IdRef="TryCatch_2">
+            <TryCatch.Try>
+              <Sequence sap:VirtualizedContainerService.HintSize="376,475" sap2010:WorkflowViewState.IdRef="Sequence_4">
+                <Sequence.Variables>
+                  <Variable x:TypeArguments="ss:SecureString" Name="PwdSecure" />
+                  <Variable x:TypeArguments="x:String" Name="Login" />
+                  <Variable x:TypeArguments="x:String" Name="Pwd" />
+                </Sequence.Variables>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ui:GetRobotCredential TimeoutMS="{x:Null}" AssetName="[item]" DisplayName="Get Credential" FolderPath="[Folder]" sap:VirtualizedContainerService.HintSize="334,79" sap2010:WorkflowViewState.IdRef="GetRobotCredential_2" Password="[PwdSecure]" Username="[Login]" />
+                <Assign sap:VirtualizedContainerService.HintSize="334,60" sap2010:WorkflowViewState.IdRef="Assign_5">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[Pwd]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">[New System.Net.NetworkCredential(String.Empty, PwdSecure).Password]</InArgument>
+                  </Assign.Value>
+                </Assign>
+                <ui:InvokeCode ContinueOnError="{x:Null}" Code="JsonObj.Add(Asset+&quot;_Login&quot;,Login)&#xD;&#xA;JsonObj.Add(Asset+&quot;_Pwd&quot;,Pwd)" DisplayName="Invoke code" sap:VirtualizedContainerService.HintSize="334,164" sap2010:WorkflowViewState.IdRef="InvokeCode_3">
+                  <ui:InvokeCode.Arguments>
+                    <InOutArgument x:TypeArguments="njl:JObject" x:Key="JsonObj">
+                      <mva:VisualBasicReference x:TypeArguments="njl:JObject" ExpressionText="JsonObj" />
+                    </InOutArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="Asset">
+                      <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="item" />
+                    </InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="Pwd">
+                      <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="Pwd" />
+                    </InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="Login">
+                      <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="Login" />
+                    </InArgument>
+                  </ui:InvokeCode.Arguments>
+                </ui:InvokeCode>
+              </Sequence>
+            </TryCatch.Try>
+            <TryCatch.Catches>
+              <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="404,21" sap2010:WorkflowViewState.IdRef="Catch`1_2">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                    <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+                <ActivityAction x:TypeArguments="s:Exception">
+                  <ActivityAction.Argument>
+                    <DelegateInArgument x:TypeArguments="s:Exception" Name="exception" />
+                  </ActivityAction.Argument>
+                  <ui:InvokeCode ContinueOnError="{x:Null}" Code="JsonObj.Add(Asset+&quot;_Login&quot;,&quot;&quot;)&#xD;&#xA;JsonObj.Add(Asset+&quot;_Pwd&quot;,&quot;&quot;)" DisplayName="Invoke code" sap:VirtualizedContainerService.HintSize="334,164" sap2010:WorkflowViewState.IdRef="InvokeCode_4">
+                    <ui:InvokeCode.Arguments>
+                      <InOutArgument x:TypeArguments="njl:JObject" x:Key="JsonObj">
+                        <mva:VisualBasicReference x:TypeArguments="njl:JObject" ExpressionText="JsonObj" />
+                      </InOutArgument>
+                      <InArgument x:TypeArguments="x:String" x:Key="Asset">
+                        <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="item" />
+                      </InArgument>
+                    </ui:InvokeCode.Arguments>
+                  </ui:InvokeCode>
+                </ActivityAction>
+              </Catch>
+            </TryCatch.Catches>
+          </TryCatch>
+        </ActivityAction>
+      </ui:ForEach.Body>
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+    </ui:ForEach>
+    <ui:WriteTextFile DisplayName="Write Text File" FileName="html\js\data.js" sap:VirtualizedContainerService.HintSize="474,132" sap2010:WorkflowViewState.IdRef="WriteTextFile_1" Text="[&quot;var data = &quot;+JsonObj.ToString]" />
+  </Sequence>
+</Activity>

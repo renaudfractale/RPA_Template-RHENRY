@@ -7,3 +7,5 @@
 .entities/
 .local/
 .settings/
+
+node_modules/

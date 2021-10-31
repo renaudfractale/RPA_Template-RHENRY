@@ -1,13 +1,13 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="InitiAllSettings" this:InitiAllSettings.in_ConfigFile="Data\Config.xlsx" this:InitiAllSettings.in_ConfigSheets="[{&quot;Settings&quot;,&quot;Constants&quot;}]" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="InitiAllSettings" this:InitiAllSettings.in_ConfigFile="Data\Config.xlsx" this:InitiAllSettings.in_ConfigSheets="[{&quot;DEV&quot;,&quot;Constants&quot;}]" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:b="clr-namespace:Bibliothèque_Log;assembly=Bibliothèque_Log" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property sap2010:Annotation.AnnotationText="Path to the configuration file that defines settings, constants and assets." Name="in_ConfigFile" Type="InArgument(x:String)" />
     <x:Property sap2010:Annotation.AnnotationText="Names of the sheets corresponding to settings and constants in the configuration file." Name="in_ConfigSheets" Type="InArgument(s:String[])" />
-    <x:Property sap2010:Annotation.AnnotationText="Dictionary structure to store configuration data of the process (settings, constants and assets)." Name="out_Config" Type="OutArgument(scg:Dictionary(x:String, x:Object))" />
+    <x:Property sap2010:Annotation.AnnotationText="Dictionary structure to store configuration data of the process (settings, constants and assets)." Name="io_Config" Type="InOutArgument(scg:Dictionary(x:String, scg:Dictionary(x:String, x:Object)))" />
   </x:Members>
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>882,2606</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1208,2274</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>GetAllSettings_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -37,6 +37,11 @@
       <x:String>System.Runtime.Serialization</x:String>
       <x:String>System.Collections.ObjectModel</x:String>
       <x:String>System.Activities.DynamicUpdate</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>Bibliothèque_Log</x:String>
+      <x:String>MongoDB.Bson</x:String>
+      <x:String>MongoDB.Driver</x:String>
+      <x:String>Newtonsoft.Json.Linq</x:String>
     </sco:Collection>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
@@ -70,31 +75,30 @@
       <AssemblyReference>System.Memory</AssemblyReference>
       <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
       <AssemblyReference>UiPath.OCR.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
+      <AssemblyReference>Bibliothèque_Log</AssemblyReference>
+      <AssemblyReference>MongoDB.Bson</AssemblyReference>
+      <AssemblyReference>MongoDB.Driver</AssemblyReference>
+      <AssemblyReference>MongoDB.Driver.Core</AssemblyReference>
+      <AssemblyReference>Newtonsoft.Json</AssemblyReference>
     </sco:Collection>
   </TextExpression.ReferencesForImplementation>
-  <Sequence sap2010:Annotation.AnnotationText="Initialize, populate and output a configuration Dictionary to be used throughout the project. &#xA;Settings and constants are read from the local configuration file, and assets are fetched from Orchestrator. &#xA;Asset values overwrite settings and constant values if they are defined with the same name." DisplayName="Initialize All Settings" sap:VirtualizedContainerService.HintSize="680,2441" sap2010:WorkflowViewState.IdRef="Sequence_2">
+  <Sequence sap2010:Annotation.AnnotationText="Initialize, populate and output a configuration Dictionary to be used throughout the project. &#xA;Settings and constants are read from the local configuration file, and assets are fetched from Orchestrator. &#xA;Asset values overwrite settings and constant values if they are defined with the same name." DisplayName="Initialize All Settings" sap:VirtualizedContainerService.HintSize="680,2209" sap2010:WorkflowViewState.IdRef="Sequence_2">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:LogMessage DisplayName="Log Message (Initialize All Settings)" sap:VirtualizedContainerService.HintSize="638,91" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Trace" Message="[&quot;Initializing settings...&quot;]" />
-    <Assign DisplayName="Assing out_Config (initialization)" sap:VirtualizedContainerService.HintSize="638,60" sap2010:WorkflowViewState.IdRef="Assign_1">
-      <Assign.To>
-        <OutArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)">[out_Config]</OutArgument>
-      </Assign.To>
-      <Assign.Value>
-        <InArgument x:TypeArguments="scg:Dictionary(x:String, x:Object)">[New Dictionary(of String, Object)]</InArgument>
-      </Assign.Value>
-    </Assign>
-    <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For each configuration sheet" sap:VirtualizedContainerService.HintSize="638,815" sap2010:WorkflowViewState.IdRef="ForEach`1_3" Values="[in_ConfigSheets]">
+    <b:LogG_Trace sap:VirtualizedContainerService.HintSize="638,22" sap2010:WorkflowViewState.IdRef="LogG_Trace_1" in_Config="[io_Config]" in_Description="Initializing settings..." in_Niveau="Init Config" />
+    <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For each configuration sheet" sap:VirtualizedContainerService.HintSize="638,814" sap2010:WorkflowViewState.IdRef="ForEach`1_3" Values="[in_ConfigSheets]">
       <ui:ForEach.Body>
         <ActivityAction x:TypeArguments="x:String">
           <ActivityAction.Argument>
             <DelegateInArgument x:TypeArguments="x:String" Name="Sheet" />
           </ActivityAction.Argument>
-          <Sequence sap2010:Annotation.AnnotationText="Read settings and constants from the configuration file and add them to the Config dictionary." DisplayName="Get local settings and constants" sap:VirtualizedContainerService.HintSize="560,691" sap2010:WorkflowViewState.IdRef="Sequence_5">
+          <Sequence sap2010:Annotation.AnnotationText="Read settings and constants from the configuration file and add them to the Config dictionary." DisplayName="Get local settings and constants" sap:VirtualizedContainerService.HintSize="560,690" sap2010:WorkflowViewState.IdRef="Sequence_5">
             <Sequence.Variables>
               <Variable x:TypeArguments="sd:DataTable" Name="dt_SettingsAndConstants" />
             </Sequence.Variables>
@@ -106,13 +110,13 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
             <ui:ReadRange Range="{x:Null}" AddHeaders="True" DataTable="[Dt_SettingsAndConstants]" DisplayName="Read range (Settings and Constants sheets)" sap:VirtualizedContainerService.HintSize="518,87" sap2010:WorkflowViewState.IdRef="ReadRange_2" SheetName="[Sheet]" WorkbookPath="[in_ConfigFile]" />
-            <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[Dt_SettingsAndConstants]" DisplayName="For each configuration row" sap:VirtualizedContainerService.HintSize="518,441" sap2010:WorkflowViewState.IdRef="ForEachRow_2">
+            <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[Dt_SettingsAndConstants]" DisplayName="For each configuration row" sap:VirtualizedContainerService.HintSize="518,440" sap2010:WorkflowViewState.IdRef="ForEachRow_2">
               <ui:ForEachRow.Body>
                 <ActivityAction x:TypeArguments="sd:DataRow">
                   <ActivityAction.Argument>
                     <DelegateInArgument x:TypeArguments="sd:DataRow" Name="Row" />
                   </ActivityAction.Argument>
-                  <If sap2010:Annotation.AnnotationText="Read non-empty rows in the sheet." Condition="[Not String.IsNullOrWhiteSpace(row(&quot;Name&quot;).ToString.Trim)]" DisplayName="If configuration row is not empty" sap:VirtualizedContainerService.HintSize="484,268" sap2010:WorkflowViewState.IdRef="If_1">
+                  <If sap2010:Annotation.AnnotationText="Read non-empty rows in the sheet." Condition="[Not String.IsNullOrWhiteSpace(row(&quot;Name&quot;).ToString.Trim) AndAlso Not String.IsNullOrWhiteSpace(row(&quot;Rubrique&quot;).ToString.Trim) AndAlso Not String.IsNullOrWhiteSpace(row(&quot;Value&quot;).ToString.Trim)]" DisplayName="If configuration row is not empty" sap:VirtualizedContainerService.HintSize="484,320" sap2010:WorkflowViewState.IdRef="If_1">
                     <sap:WorkflowViewStateService.ViewState>
                       <scg:Dictionary x:TypeArguments="x:String, x:Object">
                         <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
@@ -121,14 +125,22 @@
                       </scg:Dictionary>
                     </sap:WorkflowViewStateService.ViewState>
                     <If.Then>
-                      <Assign DisplayName="Add Config key/value pair" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_15">
-                        <Assign.To>
-                          <OutArgument x:TypeArguments="x:Object">[out_Config(Row("Name").ToString.Trim)]</OutArgument>
-                        </Assign.To>
-                        <Assign.Value>
-                          <InArgument x:TypeArguments="x:Object">[Row("Value")]</InArgument>
-                        </Assign.Value>
-                      </Assign>
+                      <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke SetConfig workflow" sap:VirtualizedContainerService.HintSize="334,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Framework\Lib\SetConfigFromExcel.xaml">
+                        <ui:InvokeWorkflowFile.Arguments>
+                          <InArgument x:TypeArguments="x:String" x:Key="in_Rubrique">
+                            <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="Row(&quot;Rubrique&quot;).ToString" />
+                          </InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="in_Name">
+                            <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="Row(&quot;Name&quot;).ToString" />
+                          </InArgument>
+                          <InArgument x:TypeArguments="x:String" x:Key="in_Value">
+                            <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="Row(&quot;Value&quot;).ToString" />
+                          </InArgument>
+                          <InOutArgument x:TypeArguments="scg:Dictionary(x:String, scg:Dictionary(x:String, x:Object))" x:Key="io_Config">
+                            <mva:VisualBasicReference x:TypeArguments="scg:Dictionary(x:String, scg:Dictionary(x:String, x:Object))" ExpressionText="io_Config" />
+                          </InOutArgument>
+                        </ui:InvokeWorkflowFile.Arguments>
+                      </ui:InvokeWorkflowFile>
                     </If.Then>
                   </If>
                 </ActivityAction>
@@ -144,7 +156,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
     </ui:ForEach>
-    <TryCatch DisplayName="Try initializing assets" sap:VirtualizedContainerService.HintSize="638,1206" sap2010:WorkflowViewState.IdRef="TryCatch_2">
+    <TryCatch DisplayName="Try initializing assets" sap:VirtualizedContainerService.HintSize="638,1144" sap2010:WorkflowViewState.IdRef="TryCatch_2">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -152,7 +164,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <TryCatch.Try>
-        <Sequence sap2010:Annotation.AnnotationText="Get from Orchestrator the values of assets listed in the Assets sheet." DisplayName="Get Orchestrator assets" sap:VirtualizedContainerService.HintSize="600,979" sap2010:WorkflowViewState.IdRef="Sequence_6">
+        <Sequence sap2010:Annotation.AnnotationText="Get from Orchestrator the values of assets listed in the Assets sheet." DisplayName="Get Orchestrator assets" sap:VirtualizedContainerService.HintSize="598,917" sap2010:WorkflowViewState.IdRef="Sequence_6">
           <Sequence.Variables>
             <Variable x:TypeArguments="sd:DataTable" Name="dt_Assets" />
           </Sequence.Variables>
@@ -163,14 +175,14 @@
               <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <ui:ReadRange Range="{x:Null}" AddHeaders="True" DataTable="[dt_Assets]" DisplayName="Read range (Assets sheet)" sap:VirtualizedContainerService.HintSize="558,87" sap2010:WorkflowViewState.IdRef="ReadRange_3" SheetName="Assets" WorkbookPath="[in_ConfigFile]" />
-          <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[dt_Assets]" DisplayName="For each asset row" sap:VirtualizedContainerService.HintSize="558,729" sap2010:WorkflowViewState.IdRef="ForEachRow_3">
+          <ui:ReadRange Range="{x:Null}" AddHeaders="True" DataTable="[dt_Assets]" DisplayName="Read range (Assets sheet)" sap:VirtualizedContainerService.HintSize="556,87" sap2010:WorkflowViewState.IdRef="ReadRange_3" SheetName="Assets" WorkbookPath="[in_ConfigFile]" />
+          <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[dt_Assets]" DisplayName="For each asset row" sap:VirtualizedContainerService.HintSize="556,667" sap2010:WorkflowViewState.IdRef="ForEachRow_3">
             <ui:ForEachRow.Body>
               <ActivityAction x:TypeArguments="sd:DataRow">
                 <ActivityAction.Argument>
                   <DelegateInArgument x:TypeArguments="sd:DataRow" Name="Row" />
                 </ActivityAction.Argument>
-                <TryCatch DisplayName="Try retrieving asset from Orchestrator" sap:VirtualizedContainerService.HintSize="524,556" sap2010:WorkflowViewState.IdRef="TryCatch_3">
+                <TryCatch DisplayName="Try retrieving asset from Orchestrator" sap:VirtualizedContainerService.HintSize="522,547" sap2010:WorkflowViewState.IdRef="TryCatch_3">
                   <sap:WorkflowViewStateService.ViewState>
                     <scg:Dictionary x:TypeArguments="x:String, x:Object">
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -178,32 +190,42 @@
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
                   <TryCatch.Try>
-                    <Sequence DisplayName="Get asset from Orchestrator" sap:VirtualizedContainerService.HintSize="486,329" sap2010:WorkflowViewState.IdRef="Sequence_11">
-                      <Sequence.Variables>
-                        <Variable x:TypeArguments="ui:GenericValue" Name="AssetValue" />
-                      </Sequence.Variables>
+                    <If sap2010:Annotation.AnnotationText="Read non-empty rows in the sheet." Condition="[Not String.IsNullOrWhiteSpace(row(&quot;Name&quot;).ToString.Trim) AndAlso Not String.IsNullOrWhiteSpace(row(&quot;Rubrique&quot;).ToString.Trim) AndAlso Not String.IsNullOrWhiteSpace(row(&quot;Asset&quot;).ToString.Trim) AndAlso Not String.IsNullOrWhiteSpace(row(&quot;Type&quot;).ToString.Trim) AndAlso Not String.IsNullOrWhiteSpace(row(&quot;OrchestratorAssetFolder&quot;).ToString.Trim)]" DisplayName="If configuration row is not empty" sap:VirtualizedContainerService.HintSize="484,320" sap2010:WorkflowViewState.IdRef="If_6">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
-                      <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="[row(&quot;Asset&quot;).ToString]" DisplayName="Get Orchestrator asset" FolderPath="[row(&quot;OrchestratorAssetFolder&quot;).ToString]" sap:VirtualizedContainerService.HintSize="444,137" sap2010:WorkflowViewState.IdRef="GetRobotAsset_5">
-                        <ui:GetRobotAsset.Value>
-                          <OutArgument x:TypeArguments="ui:GenericValue">[AssetValue]</OutArgument>
-                        </ui:GetRobotAsset.Value>
-                      </ui:GetRobotAsset>
-                      <Assign DisplayName="Assign asset value in Config" sap:VirtualizedContainerService.HintSize="444,60" sap2010:WorkflowViewState.IdRef="Assign_23">
-                        <Assign.To>
-                          <OutArgument x:TypeArguments="x:Object">[out_Config(row("Name").ToString)]</OutArgument>
-                        </Assign.To>
-                        <Assign.Value>
-                          <InArgument x:TypeArguments="x:Object">[AssetValue]</InArgument>
-                        </Assign.Value>
-                      </Assign>
-                    </Sequence>
+                      <If.Then>
+                        <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke SetConfig workflow" sap:VirtualizedContainerService.HintSize="334,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Framework\Lib\SetConfigFromAsset.xaml">
+                          <ui:InvokeWorkflowFile.Arguments>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_Name">
+                              <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="Row(&quot;Name&quot;).ToString" />
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_Rubrique">
+                              <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="Row(&quot;Rubrique&quot;).ToString" />
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_Asset">
+                              <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="Row(&quot;Asset&quot;).ToString" />
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_Type">
+                              <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="Row(&quot;Type&quot;).ToString" />
+                            </InArgument>
+                            <InArgument x:TypeArguments="x:String" x:Key="in_OrchestratorAssetFolder">
+                              <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="Row(&quot;OrchestratorAssetFolder&quot;).ToString" />
+                            </InArgument>
+                            <InOutArgument x:TypeArguments="scg:Dictionary(x:String, scg:Dictionary(x:String, x:Object))" x:Key="io_Config">
+                              <mva:VisualBasicReference x:TypeArguments="scg:Dictionary(x:String, scg:Dictionary(x:String, x:Object))" ExpressionText="io_Config" />
+                            </InOutArgument>
+                          </ui:InvokeWorkflowFile.Arguments>
+                        </ui:InvokeWorkflowFile>
+                      </If.Then>
+                    </If>
                   </TryCatch.Try>
                   <TryCatch.Catches>
-                    <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="490,21" sap2010:WorkflowViewState.IdRef="Catch`1_3">
+                    <Catch x:TypeArguments="s:Exception" sap:VirtualizedContainerService.HintSize="488,21" sap2010:WorkflowViewState.IdRef="Catch`1_3">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <x:Boolean x:Key="IsExpanded">False</x:Boolean>
@@ -214,7 +236,7 @@
                         <ActivityAction.Argument>
                           <DelegateInArgument x:TypeArguments="s:Exception" Name="Exception" />
                         </ActivityAction.Argument>
-                        <If sap2010:Annotation.AnnotationText="Logs a message and throw exception in case the asset is specified in the Config file, but it could not be loaded from Orchestrator." Condition="[Not String.IsNullOrWhiteSpace(Row(&quot;Name&quot;).ToString.Trim)]" DisplayName="If asset name is specified, but it cannot be retrieved" sap:VirtualizedContainerService.HintSize="484,279" sap2010:WorkflowViewState.IdRef="If_5">
+                        <If sap2010:Annotation.AnnotationText="Logs a message and throw exception in case the asset is specified in the Config file, but it could not be loaded from Orchestrator." Condition="[Not String.IsNullOrWhiteSpace(Row(&quot;Name&quot;).ToString.Trim)]" DisplayName="If asset name is specified, but it cannot be retrieved" sap:VirtualizedContainerService.HintSize="484,268" sap2010:WorkflowViewState.IdRef="If_5">
                           <sap:WorkflowViewStateService.ViewState>
                             <scg:Dictionary x:TypeArguments="x:String, x:Object">
                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>

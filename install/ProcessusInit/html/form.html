@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+ <head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>UiPath KYC Solution</title>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <script type="text/javascript" src="js/data.js"></script>
+  </head>
+
+  <body >
+    <p>Paramètres du l'API Uipath pour manipuler l'Orchestrateur</p>
+    Orchestrator AccountLogicalName:<br>
+          <input type="text" id="Orchestrator_AccountLogicalName" placeholder="MyCompany"><br>
+          Orchestrator client_id:<br>
+          <input type="text" id="Orchestrator_client_id" placeholder="8DEv1AMNXczW3y4U15LL********"><br>
+          Orchestrator User ID:<br>
+          <input type="text" id="Orchestrator_refresh_token" placeholder="do1NlepBIoggGBkaYM9CRxTJbdB-e2rUYal9apgIW2X4l"><br>
+          Orchestrator TenantName:<br>
+          <input type="text" id="Orchestrator_TenantName" placeholder="DefaultTenant"><br>
+          <p>Paramètres SMTP de l'email d'erreur et récapitulatif</p>
+          CredentialSMTP Login:<br>
+                <input type="text" id="Email_CredentialSMTP_Login" placeholder="my@company.com"><br>
+                CredentialSMTP Pwd:<br>
+                <input type="text" id="Email_CredentialSMTP_Pwd" placeholder="PassWord"><br>
+                SMTP Port:<br>
+                <input type="text" id="Email_Port" placeholder="564"><br>
+                SMTP  Serveur:<br>
+                <input type="text" id="Email_ServeurSMTP" placeholder="smpt.company.com"><br>
+      
+          <p>Paramètres du stockage des logs dans MongoDB</p>
+  <div class="switch">
+    <label>
+      Off
+      <input type="checkbox" id="LogDB_NOSQL_Actif" onchange="ShowParamMongo()" checked>
+      <span class="lever"></span>
+      On
+    </label>
+  </div>
+  <div id="ParamMongo">
+    Credential Login:<br>
+    <input type="text" id="LogDB_NOSQL_Credential_Login"><br>
+    Credential Pwd:<br>
+    <input type="text" id="LogDB_NOSQL_Credential_Pwd"><br>
+    URL:<br>
+    <input type="text" id="LogDB_NOSQL_URL"><br>
+    
+  </div>
+  <p>Paramètres du stockage des logs dans des fichiers externes à Uipath</p>
+  <div class="switch">
+    <label>
+      Off
+      <input type="checkbox" id="LogTxt_Actif" onchange="ShowParamFile()" checked>
+      <span class="lever"></span>
+      On
+    </label>
+  </div>
+  <div id="ParamFile">
+    PathFolderBase:<br>
+    <input type="text" id="LogTxt_PathFolderBase"><br>    
+  </div>
+          <button onclick="SubmitValues()">Submit</button>
+
+
+          <script type="text/javascript" defer>
+          function SubmitValues(){
+            let value = {}
+
+            let mongo = {}
+            mongo.Actif = document.getElementById("LogDB_NOSQL_Actif").checked;
+            mongo.CredentialLogin = document.getElementById("LogDB_NOSQL_Credential_Login").value;
+            mongo.CredentialPwdn = document.getElementById("LogDB_NOSQL_Credential_Pwd").value;
+            mongo.Url = document.getElementById("LogDB_NOSQL_URL").value;
+            value.mongo = mongo
+            
+            let file = {}
+            file.Actif = document.getElementById("LogTxt_Actif").checked;
+            file.PathFolderBase = document.getElementById("LogTxt_PathFolderBase").value;
+            value.file = file
+
+            let orchestrateur = {}
+            orchestrateur.AccountLogicalName = document.getElementById("Orchestrator_AccountLogicalName").value;
+            orchestrateur.client_id = document.getElementById("Orchestrator_client_id").value;
+            orchestrateur.refresh_token = document.getElementById("Orchestrator_refresh_token").value;
+            orchestrateur.TenantName = document.getElementById("Orchestrator_TenantName").value;
+            value.orchestrateur = orchestrateur
+
+            let smtp = {}
+            smtp.CredentialSMTP_Login = document.getElementById("Email_CredentialSMTP_Login").value;
+            smtp.CredentialSMTP_Pwd = document.getElementById("Email_CredentialSMTP_Pwd").value;
+            smtp.SMTP_Port = document.getElementById("Email_Port").value;
+            smtp.SMTP_Serveur = document.getElementById("Email_ServeurSMTP").value;
+            value.smtp = smtp
+
+            window.external.setResult(JSON.stringify(value, undefined,5));
+            return true;
+          }
+          function ShowParamMongo(){
+              let value =  document.getElementById("LogDB_NOSQL_Actif").checked;
+              if(value == true){
+                document.getElementById("ParamMongo").style.display="block"
+              } else {
+                document.getElementById("ParamMongo").style.display="none"
+              }
+          }
+          document.getElementById("LogDB_NOSQL_Actif").checked=true
+          ShowParamMongo()
+          function ShowParamFile(){
+              let value =  document.getElementById("LogTxt_Actif").checked;
+              if(value == true){
+                document.getElementById("ParamFile").style.display="block"
+              } else {
+                document.getElementById("ParamFile").style.display="none"
+              }
+          }
+          document.getElementById("LogTxt_Actif").checked=true
+          ShowParamFile()
+
+          function Init(){
+              console.log( data)
+                let attributes = Object.keys(data)
+                for (let index = 0; index < attributes.length; index++) {
+                    const attribute = attributes[index];
+                    console.log(attribute)
+                    document.getElementById(attribute).value = data[attribute]
+                }
+          }
+          Init()
+          </script>
+  </body>
+  </html>
