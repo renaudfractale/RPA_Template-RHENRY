@@ -1,0 +1,152 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Main" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:ss="clr-namespace:System.Security;assembly=mscorlib" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_ProjetCode" Type="InArgument(x:String)" />
+    <x:Property Name="in_Description" Type="InArgument(x:String)" />
+    <x:Property Name="in_Env" Type="InArgument(x:String)" />
+    <x:Property Name="in_Processus" Type="InArgument(x:String)" />
+    <x:Property Name="in_Niveau" Type="InArgument(x:String)" />
+    <x:Property Name="in_Severite" Type="InArgument(x:String)" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>1208,1355</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>ActivityBuilder_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="30">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Activities.DynamicUpdate</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>MongoDB.Driver</x:String>
+      <x:String>MongoDB.Bson</x:String>
+      <x:String>System.Net</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="18">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>MongoDB.Driver.Core</AssemblyReference>
+      <AssemblyReference>MongoDB.Driver</AssemblyReference>
+      <AssemblyReference>MongoDB.Bson</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence sap:VirtualizedContainerService.HintSize="606,1290" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="LogDB_NOSQL_URL" />
+      <Variable x:TypeArguments="x:String" Name="Folder" />
+      <Variable x:TypeArguments="x:String" Name="LogDB_NOSQL_Credential_Login" />
+      <Variable x:TypeArguments="ss:SecureString" Name="LogDB_NOSQL_Credential_PwsSecure" />
+      <Variable x:TypeArguments="x:String" Name="StringConnection" />
+      <Variable x:TypeArguments="x:String" Name="LogDB_Actif" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <Assign DisplayName="Assign Folder Orchestrateur" sap:VirtualizedContainerService.HintSize="564,60" sap2010:WorkflowViewState.IdRef="Assign_1">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[Folder]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">Config</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="LogDB_NOSQL_Actif" DisplayName="Get Asset" FolderPath="[Folder]" sap:VirtualizedContainerService.HintSize="564,137" sap2010:WorkflowViewState.IdRef="GetRobotAsset_1">
+      <ui:GetRobotAsset.Value>
+        <OutArgument x:TypeArguments="x:String">[LogDB_Actif]</OutArgument>
+      </ui:GetRobotAsset.Value>
+    </ui:GetRobotAsset>
+    <If Condition="[LogDB_Actif.Equals(&quot;True&quot;)]" sap:VirtualizedContainerService.HintSize="564,921" sap2010:WorkflowViewState.IdRef="If_1">
+      <If.Then>
+        <Sequence sap:VirtualizedContainerService.HintSize="528,744" sap2010:WorkflowViewState.IdRef="Sequence_4">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Sequence sap:VirtualizedContainerService.HintSize="486,348" sap2010:WorkflowViewState.IdRef="Sequence_3">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+            <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="LogDB_NOSQL_URL" DisplayName="Get Asset" FolderPath="[Folder]" sap:VirtualizedContainerService.HintSize="444,137" sap2010:WorkflowViewState.IdRef="GetRobotAsset_2">
+              <ui:GetRobotAsset.Value>
+                <OutArgument x:TypeArguments="x:String">[LogDB_NOSQL_URL]</OutArgument>
+              </ui:GetRobotAsset.Value>
+            </ui:GetRobotAsset>
+            <ui:GetRobotCredential TimeoutMS="{x:Null}" AssetName="LogDB_NOSQL_Credential" DisplayName="Get Credential" FolderPath="[Folder]" sap:VirtualizedContainerService.HintSize="444,79" sap2010:WorkflowViewState.IdRef="GetRobotCredential_1" Password="[LogDB_NOSQL_Credential_PwsSecure]" Username="[LogDB_NOSQL_Credential_Login]" />
+          </Sequence>
+          <Assign sap:VirtualizedContainerService.HintSize="486,60" sap2010:WorkflowViewState.IdRef="Assign_3">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:String">[StringConnection]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:String">["mongodb+srv://"+LogDB_NOSQL_Credential_Login+":"+(New System.Net.NetworkCredential(String.Empty, LogDB_NOSQL_Credential_PwsSecure).Password)+"@"+LogDB_NOSQL_URL]</InArgument>
+            </Assign.Value>
+          </Assign>
+          <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim client As MongoDB.Driver.MongoClient = New MongoClient(StringConnection)&#xA;Dim db As MongoDB.Driver.IMongoDatabase = client.GetDatabase(&quot;Logs&quot;)&#xA;&#xA;Dim collection  As IMongoCollection(Of MongoDB.Bson.BsonDocument)= db.GetCollection(Of MongoDB.Bson.BsonDocument)(Projet)&#xA;&#xA;Dim doc As MongoDB.Bson.BsonDocument = New MongoDB.Bson.BsonDocument() _&#xA;                             .Add(&quot;DateTime&quot;, DateTimeLog) _&#xA;                            .Add(&quot;Date&quot;, DateTimeLog.ToString(&quot;yyyy-MM-dd&quot;)) _&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;.Add(&quot;Time&quot;, DateTimeLog.ToString(&quot;HH-mm-ss.fff&quot;)) _&#xA;                            .Add(&quot;Description&quot;, Description) _&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;.Add(&quot;Projet&quot;, Projet) _&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;.Add(&quot;Env&quot;, Env) _&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;.Add(&quot;Processus&quot;, Processus) _&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;.Add(&quot;Niveau&quot;, Niveau) &#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;&#xA;&#xA;&#xA;&#xA;collection.InsertOne(doc)" DisplayName="Invoke code" sap:VirtualizedContainerService.HintSize="486,164" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
+            <ui:InvokeCode.Arguments>
+              <InArgument x:TypeArguments="x:String" x:Key="Projet">[in_ProjetCode]</InArgument>
+              <InArgument x:TypeArguments="s:DateTime" x:Key="DateTimeLog">[Now]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="Description">[in_Description]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="Env">[in_Env]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="Processus">[in_Processus]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="Niveau">[in_Niveau]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="StringConnection">[StringConnection]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="Severite">[in_Severite]</InArgument>
+            </ui:InvokeCode.Arguments>
+          </ui:InvokeCode>
+        </Sequence>
+      </If.Then>
+      <If.Else>
+        <Sequence sap2010:WorkflowViewState.IdRef="Sequence_2">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+        </Sequence>
+      </If.Else>
+    </If>
+  </Sequence>
+</Activity>

@@ -1,0 +1,155 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="LogFile" this:LogFile.in_ProjetCode="RPA0000" this:LogFile.in_Description="in_Description" this:LogFile.in_Env="Env" this:LogFile.in_Processus="Processus" this:LogFile.in_Niveau="Niveau" this:LogFile.in_Severite="Sévérité" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_ProjetCode" Type="InArgument(x:String)" />
+    <x:Property Name="in_Description" Type="InArgument(x:String)" />
+    <x:Property Name="in_Env" Type="InArgument(x:String)" />
+    <x:Property Name="in_Processus" Type="InArgument(x:String)" />
+    <x:Property Name="in_Niveau" Type="InArgument(x:String)" />
+    <x:Property Name="in_Severite" Type="InArgument(x:String)" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>1208,1044</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>LogFile_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="32">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>Newtonsoft.Json.Linq</x:String>
+      <x:String>Newtonsoft.Json</x:String>
+      <x:String>System.Dynamic</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Collections.Specialized</x:String>
+      <x:String>UiPath.Web.Activities</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>System.Activities.DynamicUpdate</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="22">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Runtime.InteropServices.RuntimeInformation</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>Newtonsoft.Json</AssemblyReference>
+      <AssemblyReference>UiPath.Web.Activities</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="LogFile" sap:VirtualizedContainerService.HintSize="564,979" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="PathFilke" />
+      <Variable x:TypeArguments="njl:JObject" Name="Json" />
+      <Variable x:TypeArguments="x:String" Name="PathFolder" />
+      <Variable x:TypeArguments="x:String" Name="LogTxt_Actif" />
+      <Variable x:TypeArguments="x:String" Name="Folder" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <Assign DisplayName="Assign Folder Orchestrateur" sap:VirtualizedContainerService.HintSize="522,60" sap2010:WorkflowViewState.IdRef="Assign_3">
+      <Assign.To>
+        <OutArgument x:TypeArguments="x:String">[Folder]</OutArgument>
+      </Assign.To>
+      <Assign.Value>
+        <InArgument x:TypeArguments="x:String">Config</InArgument>
+      </Assign.Value>
+    </Assign>
+    <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="LogTxt_Actif" DisplayName="Get Asset" FolderPath="[Folder]" sap:VirtualizedContainerService.HintSize="522,137" sap2010:WorkflowViewState.IdRef="GetRobotAsset_2">
+      <ui:GetRobotAsset.Value>
+        <OutArgument x:TypeArguments="x:String">[LogTxt_Actif]</OutArgument>
+      </ui:GetRobotAsset.Value>
+    </ui:GetRobotAsset>
+    <If Condition="[LogTxt_Actif.Equals(&quot;True&quot;)]" sap:VirtualizedContainerService.HintSize="522,610" sap2010:WorkflowViewState.IdRef="If_1">
+      <If.Then>
+        <Sequence DisplayName="Sequence - Write Log Txt" sap:VirtualizedContainerService.HintSize="486,433" sap2010:WorkflowViewState.IdRef="Sequence_4">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="LogTxt_PathFolderBase" DisplayName="Get Asset" FolderPath="[Folder]" sap:VirtualizedContainerService.HintSize="444,137" sap2010:WorkflowViewState.IdRef="GetRobotAsset_1">
+            <ui:GetRobotAsset.Value>
+              <OutArgument x:TypeArguments="x:String">[PathFolder]</OutArgument>
+            </ui:GetRobotAsset.Value>
+          </ui:GetRobotAsset>
+          <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim JsonObjet As New JObject()&#xD;&#xA;JsonObjet.Add(&quot;ProjectCode&quot;,ProjectCode)&#xD;&#xA;JsonObjet.Add(&quot;Processus&quot;,Processus)&#xD;&#xA;JsonObjet.Add(&quot;Env&quot;,Env)&#xD;&#xA;JsonObjet.Add(&quot;Description&quot;,Description)&#xD;&#xA;JsonObjet.Add(&quot;Niveau&quot;,Niveau)&#xD;&#xA;JsonObjet.Add(&quot;Sevérité&quot;,Severite)&#xD;&#xA;Dim DateTimeLog As DateTime = Now()&#xD;&#xA;JsonObjet.Add(&quot;DateTime&quot;,DateTimeLog.ToString(&quot;o&quot;))&#xD;&#xA;&#xD;&#xA;&#xD;&#xA;PathFolder+=&quot;\&quot;+ProjectCode+&quot;\&quot;+Processus&#xD;&#xA;If Not Directory.Exists(PathFolder) Then&#xD;&#xA;&#x9;Directory.CreateDirectory(PathFolder)&#xD;&#xA;End If &#xD;&#xA;&#xD;&#xA;Dim PathFile = PathFolder+&quot;\&quot;+DateTimeLog.ToString(&quot;yyyy-MM-dd&quot;)+&quot;.log&quot;&#xD;&#xA;Dim Messages As New List(Of String)&#xD;&#xA;Messages.Add(DateTimeLog.ToString(&quot;o&quot;)+JsonObjet.ToString().Replace(vbCrLf,&quot;&quot;))&#xD;&#xA;File.AppendAllLines(PathFile,Messages)&#xD;&#xA;" DisplayName="Invoke code" sap:VirtualizedContainerService.HintSize="444,164" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
+            <ui:InvokeCode.Arguments>
+              <OutArgument x:TypeArguments="x:String" x:Key="LogLine" />
+              <InArgument x:TypeArguments="x:String" x:Key="ProjectCode">
+                <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_ProjetCode" />
+              </InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="Description">
+                <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Description" />
+              </InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="Env">
+                <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Env" />
+              </InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="Processus">
+                <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Processus" />
+              </InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="Niveau">
+                <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Niveau" />
+              </InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="Severite">
+                <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Severite" />
+              </InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="PathFolder">
+                <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="PathFolder" />
+              </InArgument>
+            </ui:InvokeCode.Arguments>
+          </ui:InvokeCode>
+        </Sequence>
+      </If.Then>
+      <If.Else>
+        <Sequence sap2010:WorkflowViewState.IdRef="Sequence_3">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+        </Sequence>
+      </If.Else>
+    </If>
+  </Sequence>
+</Activity>
