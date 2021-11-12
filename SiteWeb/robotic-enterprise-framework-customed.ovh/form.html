@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <title>Robotic Enterprise Framework Customed</title>
+
+  <!-- CSS  -->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+  <link rel="shortcut icon" type="image/png" href="./img/logo.png"/>
+</head>
+<body>
+  
+  <nav class="light-blue lighten-1" role="navigation">
+    <div class="nav-wrapper container"><img src="/img/logo.png" height="60px" style="padding: 5px;">
+      <ul class="right hide-on-med-and-down">
+        <li><a href="/index.html">Home</a></li>
+        <li><a href="/info.html">Informations</a></li>
+        <li><a href="/form.html">form</a></li>
+        <li><a href="/about.html">About Dev</a></li>
+      </ul>
+
+      <ul id="nav-mobile" class="sidenav">
+        <li><a href="/index.html">Home</a></li>
+        <li><a href="/info.html">Informations</a></li>
+        <li><a href="/form.html">form</a></li>
+        <li><a href="/about.html">About Dev</a></li>
+      </ul>
+      <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+    </div>
+  </nav>
+ 
+    <div class="container">
+    <div class="section">
+      <div id="app">
+        <!--<h1 v-show="ok">Bonjour !</h1>-->
+        <div v-show="state===0">
+          <div class="row">
+              <div class="row">
+                <div class="input-field col s6">
+                  <input placeholder="" v-model="orchestrator.accountLogicalName" type="text">
+                  <label for="first_name">Account Logical Name</label>
+                </div>
+                <div class="input-field col s6">
+                  <input placeholder="" v-model="orchestrator.clientId" type="text">
+                  <label for="disabled">Client Id</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s6">
+                  <input placeholder="" v-model="orchestrator.userId" type="text">
+                  <label for="first_name">User Id</label>
+                </div>
+                <div class="input-field col s6">
+                  <input placeholder="" v-model="orchestrator.tenantName" type="text">
+                  <label for="disabled">TenantName</label>
+                </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <h5> https://cloud.uipath.com/{{ orchestrator.accountLogicalName }}/{{ orchestrator.tenantName }} </h5>
+                  </div>
+              </div>
+              <div class="row">
+                <div class="input-field col s12">
+                  <button class="btn-large waves-effect waves-light orange" @click="checkOrchestrator"> Validation</button>
+                  <h5> {{ orchestrator.txt }}</h5>
+                </div>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br><br>
+  </div>
+
+  <footer class="page-footer orange">
+    <div class="footer-copyright">
+      <div class="container">
+      Made by <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+      </div>
+    </div>
+  </footer>
+
+
+
+
+  <!--  Scripts-->
+  <script src="https://unpkg.com/vue@next"></script>
+  <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+  <script src="js/materialize.js"></script>
+  <script src="js/init.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
