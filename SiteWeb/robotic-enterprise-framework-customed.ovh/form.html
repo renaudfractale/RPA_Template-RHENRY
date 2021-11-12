@@ -37,7 +37,6 @@
       <div id="app">
         <!--<h1 v-show="ok">Bonjour !</h1>-->
         <div v-show="state===0">
-          <div class="row">
               <div class="row">
                 <div class="input-field col s6">
                   <input placeholder="" v-model="orchestrator.accountLogicalName" type="text">
@@ -50,8 +49,8 @@
               </div>
               <div class="row">
                 <div class="input-field col s6">
-                  <input placeholder="" v-model="orchestrator.userId" type="text">
-                  <label for="first_name">User Id</label>
+                  <input placeholder="" v-model="orchestrator.userKey" type="text">
+                  <label for="first_name">User Key / Refresh Token</label>
                 </div>
                 <div class="input-field col s6">
                   <input placeholder="" v-model="orchestrator.tenantName" type="text">
@@ -61,16 +60,24 @@
               <div class="row">
                 <div class="input-field col s12">
                   <h5> https://cloud.uipath.com/{{ orchestrator.accountLogicalName }}/{{ orchestrator.tenantName }} </h5>
+                  <p> token : {{ orchestrator.token }} </p>
                   </div>
               </div>
               <div class="row">
-                <div class="input-field col s12">
+                <div class="input-field col s6">
+
                   <button class="btn-large waves-effect waves-light orange" @click="checkOrchestrator"> Validation</button>
-                  <h5> {{ orchestrator.txt }}</h5>
+                  <h5> {{ orchestrator.txtGetToken }}</h5>
+                  <p> {{ orchestrator.txtGetTokenError }} </p>
+                  <h5> {{ orchestrator.txtGetFolders }}</h5>
+                  <p> {{ orchestrator.txtGetFoldersError }} </p>
+                </div>
+                <div class="input-field col s6" v-show="orchestrator.ApiOk===true">
+                  <button class="btn-large waves-effect waves-light orange" @click="NextState"> Next State</button>
                 </div>
               </div>
-          </div>
         </div>
+        <div v-show="state===1">aaaa</div>
       </div>
     </div>
     <br><br>
@@ -92,6 +99,8 @@
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="js/materialize.js"></script>
   <script src="js/init.js"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="main.js"></script>
+
 </body>
 </html>
