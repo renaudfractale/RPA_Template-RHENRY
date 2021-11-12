@@ -94,39 +94,6 @@ const app = Vue.createApp({
               this.orchestrator.txtGetTokenError= result
               this.orchestrator.txtGetToken+= "Fail"
             }
-
-
-
-         
-
-/*var data1 = JSON.stringify({
-            "grant_type": "refresh_token",
-            "client_id": this.orchestrator.clientId,
-            "refresh_token": this.orchestrator.userKey
-          });
-            
-            var config = {
-              method: 'post',
-              url: 'https://account.uipath.com/oauth/token',
-              headers: { 
-                "Access-Control-Allow-Origin": "*" ,
-                'X-UIPATH-TenantName': 'DefaultTenant', 
-                'Content-Type': 'application/json',
-                
-              },
-              data : data1,
-              mode : 'no-cors',
-            };
-            
-            axios(config)
-            .then(function (response) {
-              console.log(JSON.stringify(response.data));
-            })
-            .catch(function (error) {
-              console.log(error);
-            });
-
-            */
               }
             },
           })
