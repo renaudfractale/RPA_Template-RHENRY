@@ -2,7 +2,7 @@
 const app = Vue.createApp({
     data() {
       return {
-       state : 0,
+       state : 2,
        orchestrator :{
         accountLogicalName :"",
         clientId :"",
@@ -14,15 +14,66 @@ const app = Vue.createApp({
         txtGetFoldersError :"",
         token : "",
         ApiOk : false
-       }
+       },
+       SMTP :{
+         login: "",
+         pwd : "",
+         port : 0,
+         serveur : ""
+       },
+       NOSQL : {
+        used : true ,
+        login: "",
+        pwd : "",
+        URL : "",
+       },
+       Logs:{
+        used : true ,
+        path : "",
+       },
+       Env_tempName : "",
+       Env_tempDescription : "",
+       envs : [
+         {name : "DEV", about : "Test Unitaire"},
+         {name : "UAT", about : "Test Integration"},
+         {name : "PROD", about : "Programme stable"},
+      ]
       }
     },
   
     methods: {
+      AddEnv(event){
+        if(this.Env_tempName.length!=0 && this.Env_tempDescription.length!=0)
+        {
+          let isexist = false
+          this.envs.forEach(element => {
+            if(element.name.toLowerCase() == this.Env_tempName.toLowerCase()){
+              isexist=true;
+            }
+          });
+          if(isexist==false){
+            this.envs.push({
+              name : this.Env_tempName.toUpperCase(),
+              about : this.Env_tempDescription
+            })
+          }
+        }
+      },
+      RemoveEnv(index){
+        this.envs.splice(index,1);
+      },
+      ChipAdd(event){
+        alert(event)
+      },
+      ChipDelete(event){
+        alert(event)
+      },
       NextState(event) {
         this.state+=1
       },
-
+      PreviousState(event){
+        this.state-=1
+      },
       async checkOrchestrator(event) {
         this.orchestrator.token= ""
         this.orchestrator.txtGetFolders= ""

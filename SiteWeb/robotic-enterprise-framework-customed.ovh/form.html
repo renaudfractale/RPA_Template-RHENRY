@@ -40,21 +40,21 @@
               <div class="row">
                 <div class="input-field col s6">
                   <input placeholder="" v-model="orchestrator.accountLogicalName" type="text">
-                  <label for="first_name">Account Logical Name</label>
+                  <label for="AccountLogicalName">Account Logical Name</label>
                 </div>
                 <div class="input-field col s6">
                   <input placeholder="" v-model="orchestrator.clientId" type="text">
-                  <label for="disabled">Client Id</label>
+                  <label for="ClientId">Client Id</label>
                 </div>
               </div>
               <div class="row">
                 <div class="input-field col s6">
                   <input placeholder="" v-model="orchestrator.userKey" type="text">
-                  <label for="first_name">User Key / Refresh Token</label>
+                  <label for="UserKey_RefreshToken">User Key / Refresh Token</label>
                 </div>
                 <div class="input-field col s6">
                   <input placeholder="" v-model="orchestrator.tenantName" type="text">
-                  <label for="disabled">TenantName</label>
+                  <label for="TenantName">TenantName</label>
                 </div>
               </div>
               <div class="row">
@@ -66,7 +66,7 @@
               <div class="row">
                 <div class="input-field col s6">
 
-                  <button class="btn-large waves-effect waves-light orange" @click="checkOrchestrator"> Validation</button>
+                  <button class="btn-large waves-effect waves-light orange" @click="checkOrchestrator"> Test</button>
                   <h5> {{ orchestrator.txtGetToken }}</h5>
                   <p> {{ orchestrator.txtGetTokenError }} </p>
                   <h5> {{ orchestrator.txtGetFolders }}</h5>
@@ -77,7 +77,107 @@
                 </div>
               </div>
         </div>
-        <div v-show="state===1">aaaa</div>
+        <div v-show="state===1">
+          <h5 class="center"> SMTP settings for error email and summary email </h5>
+          <div class="row">
+            <div class="input-field col s6">
+              <input placeholder="" v-model="SMTP.login" type="text">
+              <label for="UsernameSMTP">Username</label>
+            </div>
+            <div class="input-field col s6">
+              <input placeholder="" v-model="SMTP.pwd" type="password">
+              <label for="PassWordSMTP">PassWord</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s6">
+              <input placeholder="" v-model="SMTP.port" type="number">
+              <label for="PortSMTP">Port</label>
+            </div>
+            <div class="input-field col s6">
+              <input placeholder="" v-model="SMTP.serveur" type="text">
+              <label for="ServeurSMTP">Serveur</label>
+            </div>
+          </div>
+
+          <h5 class="center"> Settings for log storage in MongoDB </h5>
+          <div class="switch">
+            <label>
+              Off
+              <input type="checkbox" v-model="NOSQL.used">
+              <span class="lever"></span>
+              On
+            </label>
+          </div>
+        <div v-show="NOSQL.used">
+          <div class="row">
+            <div class="input-field col s6">
+              <input placeholder="" v-model="NOSQL.login" type="text">
+              <label for="UsernameNOSQL">Username</label>
+            </div>
+            <div class="input-field col s6">
+              <input placeholder="" v-model="NOSQL.pwd" type="password">
+              <label for="PassWordNOSQL">PassWord</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input placeholder="" v-model="NOSQL.URL" type="text">
+              <label for="UrlNOSQL">URL</label>
+            </div>
+          </div>
+        </div>
+        <h5 class="center"> Settings for storing logs in files external to Uipath </h5>
+        <div class="switch">
+          <label>
+            Off
+            <input type="checkbox" v-model="Logs.used">
+            <span class="lever"></span>
+            On
+          </label>
+        </div>
+      <div v-show="Logs.used">
+        <div class="row">
+          <div class="input-field col s12">
+            <input placeholder="" v-model="Logs.path" type="text">
+            <label for="UrlNOSQL">URL</label>
+          </div>
+        </div>
+      </div>
+        </div>
+
+        <div v-show="state===2">
+          <h5 class="center"> List of Env in Uipath </h5>
+          <div class="row">
+            <div class="input-field col s6">
+              <input placeholder="" v-model="Env_tempName" type="text">
+              <label for="PortSMTP">Name Env</label>
+            </div>
+            <div class="input-field col s6">
+              <input placeholder="" v-model="Env_tempDescription" type="text">
+              <label for="ServeurSMTP">Description Env</label>
+            </div>
+          </div>
+          <button class="btn-large waves-effect waves-light orange center" @click="AddEnv"> Add Env</button>
+          <ul class="collection" >
+            <li class="collection-item" v-for="(env, index) in envs" :key="index" > <button class="btn-large waves-effect waves-light orange center" @click="RemoveEnv(index)"> -</button> {{ env.name }} : {{ env.about }} </li>
+          </ul>
+
+        </div>
+        <div class="row">
+          <div class="input-field col s6">
+            <div v-show="state>0">
+              <button class="btn-large waves-effect waves-light orange center" @click="PreviousState"> Previous State</button>
+            </div>
+          </div>
+          <div class="input-field col s6">
+            <div v-show="state!=5">
+              <button class="btn-large waves-effect waves-light orange" @click="NextState"> Next State</button>
+            </div>
+          </div>
+        </div>
+
+
       </div>
     </div>
     <br><br>
@@ -101,6 +201,17 @@
   <script src="js/init.js"></script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script src="main.js"></script>
-
+  <script>
+    $('.chips').chips();
+    $('.chips-initial').chips({
+    data: [{
+      tag: 'DEV',
+    }, {
+      tag: 'UAT',
+    }, {
+      tag: 'PROD',
+    }],
+  });
+ </script>
 </body>
 </html>
