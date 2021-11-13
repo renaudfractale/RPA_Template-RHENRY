@@ -1,18 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0" />
   <title>Robotic Enterprise Framework Customed</title>
 
   <!-- CSS  -->
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
-  <link rel="shortcut icon" type="image/png" href="./img/logo.png"/>
+  <link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection" />
+  <link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection" />
+  <link rel="shortcut icon" type="image/png" href="./img/logo.png" />
 </head>
+
 <body>
-  
+
   <nav class="light-blue lighten-1" role="navigation">
     <div class="nav-wrapper container"><img src="/img/logo.png" height="60px" style="padding: 5px;">
       <ul class="right hide-on-med-and-down">
@@ -31,51 +33,51 @@
       <a href="#" data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
     </div>
   </nav>
- 
-    <div class="container">
+
+  <div class="container">
     <div class="section">
       <div id="app">
         <!--<h1 v-show="ok">Bonjour !</h1>-->
         <div v-show="state===0">
-              <div class="row">
-                <div class="input-field col s6">
-                  <input placeholder="" v-model="orchestrator.accountLogicalName" type="text">
-                  <label for="AccountLogicalName">Account Logical Name</label>
-                </div>
-                <div class="input-field col s6">
-                  <input placeholder="" v-model="orchestrator.clientId" type="text">
-                  <label for="ClientId">Client Id</label>
-                </div>
-              </div>
-              <div class="row">
-                <div class="input-field col s6">
-                  <input placeholder="" v-model="orchestrator.userKey" type="text">
-                  <label for="UserKey_RefreshToken">User Key / Refresh Token</label>
-                </div>
-                <div class="input-field col s6">
-                  <input placeholder="" v-model="orchestrator.tenantName" type="text">
-                  <label for="TenantName">TenantName</label>
-                </div>
-              </div>
-              <div class="row">
-                <div class="input-field col s12">
-                  <h5> https://cloud.uipath.com/{{ orchestrator.accountLogicalName }}/{{ orchestrator.tenantName }} </h5>
-                  <p> token : {{ orchestrator.token }} </p>
-                  </div>
-              </div>
-              <div class="row">
-                <div class="input-field col s6">
+          <div class="row">
+            <div class="input-field col s6">
+              <input placeholder="" v-model="orchestrator.accountLogicalName" type="text">
+              <label for="AccountLogicalName">Account Logical Name</label>
+            </div>
+            <div class="input-field col s6">
+              <input placeholder="" v-model="orchestrator.clientId" type="text">
+              <label for="ClientId">Client Id</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s6">
+              <input placeholder="" v-model="orchestrator.userKey" type="text">
+              <label for="UserKey_RefreshToken">User Key / Refresh Token</label>
+            </div>
+            <div class="input-field col s6">
+              <input placeholder="" v-model="orchestrator.tenantName" type="text">
+              <label for="TenantName">TenantName</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <h5> https://cloud.uipath.com/{{ orchestrator.accountLogicalName }}/{{ orchestrator.tenantName }} </h5>
+              <p> token : {{ orchestrator.token }} </p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s6">
 
-                  <button class="btn-large waves-effect waves-light orange" @click="checkOrchestrator"> Test</button>
-                  <h5> {{ orchestrator.txtGetToken }}</h5>
-                  <p> {{ orchestrator.txtGetTokenError }} </p>
-                  <h5> {{ orchestrator.txtGetFolders }}</h5>
-                  <p> {{ orchestrator.txtGetFoldersError }} </p>
-                </div>
-                <div class="input-field col s6" v-show="orchestrator.ApiOk===true">
-                  <button class="btn-large waves-effect waves-light orange" @click="NextState"> Next State</button>
-                </div>
-              </div>
+              <button class="btn-large waves-effect waves-light orange" @click="checkOrchestrator"> Test</button>
+              <h5> {{ orchestrator.txtGetToken }}</h5>
+              <p> {{ orchestrator.txtGetTokenError }} </p>
+              <h5> {{ orchestrator.txtGetFolders }}</h5>
+              <p> {{ orchestrator.txtGetFoldersError }} </p>
+            </div>
+            <div class="input-field col s6" v-show="orchestrator.ApiOk===true">
+              <button class="btn-large waves-effect waves-light orange" @click="NextState"> Next State</button>
+            </div>
+          </div>
         </div>
         <div v-show="state===1">
           <h5 class="center"> SMTP settings for error email and summary email </h5>
@@ -109,41 +111,41 @@
               On
             </label>
           </div>
-        <div v-show="NOSQL.used">
-          <div class="row">
-            <div class="input-field col s6">
-              <input placeholder="" v-model="NOSQL.login" type="text">
-              <label for="UsernameNOSQL">Username</label>
+          <div v-show="NOSQL.used">
+            <div class="row">
+              <div class="input-field col s6">
+                <input placeholder="" v-model="NOSQL.login" type="text">
+                <label for="UsernameNOSQL">Username</label>
+              </div>
+              <div class="input-field col s6">
+                <input placeholder="" v-model="NOSQL.pwd" type="password">
+                <label for="PassWordNOSQL">PassWord</label>
+              </div>
             </div>
-            <div class="input-field col s6">
-              <input placeholder="" v-model="NOSQL.pwd" type="password">
-              <label for="PassWordNOSQL">PassWord</label>
+            <div class="row">
+              <div class="input-field col s12">
+                <input placeholder="" v-model="NOSQL.URL" type="text">
+                <label for="UrlNOSQL">URL</label>
+              </div>
             </div>
           </div>
-          <div class="row">
-            <div class="input-field col s12">
-              <input placeholder="" v-model="NOSQL.URL" type="text">
-              <label for="UrlNOSQL">URL</label>
+          <h5 class="center"> Settings for storing logs in files external to Uipath </h5>
+          <div class="switch">
+            <label>
+              Off
+              <input type="checkbox" v-model="Logs.used">
+              <span class="lever"></span>
+              On
+            </label>
+          </div>
+          <div v-show="Logs.used">
+            <div class="row">
+              <div class="input-field col s12">
+                <input placeholder="" v-model="Logs.path" type="text">
+                <label for="UrlNOSQL">URL</label>
+              </div>
             </div>
           </div>
-        </div>
-        <h5 class="center"> Settings for storing logs in files external to Uipath </h5>
-        <div class="switch">
-          <label>
-            Off
-            <input type="checkbox" v-model="Logs.used">
-            <span class="lever"></span>
-            On
-          </label>
-        </div>
-      <div v-show="Logs.used">
-        <div class="row">
-          <div class="input-field col s12">
-            <input placeholder="" v-model="Logs.path" type="text">
-            <label for="UrlNOSQL">URL</label>
-          </div>
-        </div>
-      </div>
         </div>
 
         <div v-show="state===2">
@@ -159,20 +161,55 @@
             </div>
           </div>
           <button class="btn-large waves-effect waves-light orange center" @click="AddEnv"> Add Env</button>
-          <ul class="collection" >
-            <li class="collection-item" v-for="(env, index) in envs" :key="index" > <button class="btn-large waves-effect waves-light orange center" @click="RemoveEnv(index)"> -</button> {{ env.name }} : {{ env.about }} </li>
+          <ul class="collection">
+            <li class="collection-item" v-for="(env, index) in envs" :key="index"> <button
+                class="btn-large waves-effect waves-light orange center" @click="RemoveEnv(index)"> -</button> {{
+              env.name }} : {{ env.about }} </li>
           </ul>
 
+        </div>
+        <div v-show="state===3">
+          <h5 class="center"> Emails </h5>
+          <div class="row">
+            <div class="input-field col s12">
+              <input placeholder="" v-model="paternes.emailInfoError" type="text">
+              <label for="PortSMTP">Emails Error</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input placeholder="" v-model="paternes.emailInfoRecap" type="text">
+              <label for="PortSMTP">Emails Recap</label>
+            </div>
+          </div>
+          <h5 class="center"> Other Parameters </h5>
+          <div class="row">
+            <div class="input-field col s12">
+              <input placeholder="" v-model="paternes.pathFolder" type="text">
+              <label for="PortSMTP">pathFolder </label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input placeholder="" v-model="paternes.nameQliste" type="text">
+              <label for="PortSMTP">nameQliste</label>
+            </div>
+          </div>
+        </div>
+        <div v-show="state===4">
+          <h5 class="center"> Create Orchestrator </h5>
+          <button class="center btn-large waves-effect waves-light orange" @click="CreateOrchestrator" style="width: 100%"> Create</button>
         </div>
         <div class="row">
           <div class="input-field col s6">
             <div v-show="state>0">
-              <button class="btn-large waves-effect waves-light orange center" @click="PreviousState"> Previous State</button>
+              <button class="btn-large waves-effect waves-light orange center" @click="PreviousState" style="width: 100%"> Previous
+                State</button>
             </div>
           </div>
           <div class="input-field col s6">
             <div v-show="state!=5">
-              <button class="btn-large waves-effect waves-light orange" @click="NextState"> Next State</button>
+              <button class="btn-large waves-effect waves-light orange" @click="NextState" style="width: 100%"> Next State</button>
             </div>
           </div>
         </div>
@@ -186,7 +223,7 @@
   <footer class="page-footer orange">
     <div class="footer-copyright">
       <div class="container">
-      Made by <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+        Made by <a class="orange-text text-lighten-3" href="http://materializecss.com">Materialize</a>
       </div>
     </div>
   </footer>
@@ -204,14 +241,15 @@
   <script>
     $('.chips').chips();
     $('.chips-initial').chips({
-    data: [{
-      tag: 'DEV',
-    }, {
-      tag: 'UAT',
-    }, {
-      tag: 'PROD',
-    }],
-  });
- </script>
+      data: [{
+        tag: 'DEV',
+      }, {
+        tag: 'UAT',
+      }, {
+        tag: 'PROD',
+      }],
+    });
+  </script>
 </body>
+
 </html>
