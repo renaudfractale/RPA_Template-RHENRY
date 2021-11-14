@@ -1,6 +1,6 @@
 <template>
  <nav class="light-blue lighten-1" role="navigation">
-    <div class="nav-wrapper container"><img src="./assets/logo.png" style="padding: 5px;" >
+    <div class="nav-wrapper container"><img src="./assets/logo.png" style="padding: 5px;" class="brand-logo" >
       <ul class="right hide-on-med-and-down">
         <li> <router-link :to="{ name : 'Home'}">Home</router-link></li>
        <li> <router-link :to="{ name : 'Infos'}">Infos</router-link></li>
