@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
 import Home from "../views/Home.vue"
-import About from "../views/About.vue"
+import AboutSite from "../views/AboutSite.vue"
+import AboutDev from "../views/AboutDev.vue"
 import Infos from "../views/Infos.vue"
 import Form from "../views/Form.vue"
 
@@ -16,9 +17,13 @@ const router = createRouter({
             component:Home
         },
         {
-            path : "/About",
-            name : "About",
-            component:About
+            path : "/AboutDev",
+            name : "AboutDev",
+            component:AboutDev
+        }, {
+            path : "/AboutSite",
+            name : "AboutSite",
+            component:AboutSite
         },  {
             path : "/Form",
             name : "Form",

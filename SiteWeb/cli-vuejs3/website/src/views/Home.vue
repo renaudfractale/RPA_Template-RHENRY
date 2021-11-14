@@ -7,7 +7,8 @@
         <h5 class="header col s12 light">A modern framework based on Robotic Enterprise Framework Uipath</h5>
       </div>
       <div class="row center">
-        <a href="/info.html" id="download-button" class="btn-large waves-effect waves-light orange">Get Started</a>
+          <router-link :to="{ name : 'Infos'}" id="download-button" class="btn-large waves-effect waves-light orange">Get Started </router-link>
+        
       </div>
       <br><br>
 

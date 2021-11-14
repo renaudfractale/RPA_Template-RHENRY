@@ -5,14 +5,16 @@
         <li> <router-link :to="{ name : 'Home'}">Home</router-link></li>
        <li> <router-link :to="{ name : 'Infos'}">Infos</router-link></li>
        <li> <router-link :to="{ name : 'Form'}">Form</router-link></li>
-        <li> <router-link :to="{ name : 'About'}">About Dev</router-link></li>
+        <li> <router-link :to="{ name : 'AboutDev'}">About Dev</router-link></li>
+        <li> <router-link :to="{ name : 'AboutSite'}">About Site</router-link></li>
       </ul>
 
       <ul id="nav-mobile" class="sidenav">
        <li> <router-link :to="{ name : 'Home'}">Home</router-link></li>
         <li> <router-link :to="{ name : 'Infos'}">Infos</router-link></li>
         <li> <router-link :to="{ name : 'Form'}">Form</router-link></li>
-         <li> <router-link :to="{ name : 'About'}">About Dev</router-link></li>
+        <li> <router-link :to="{ name : 'AboutDev'}">About Dev</router-link></li>
+        <li> <router-link :to="{ name : 'AboutSite'}">About Site</router-link></li>
       </ul>
       <a data-target="nav-mobile" class="sidenav-trigger"><i class="material-icons">menu</i></a>
     </div>
