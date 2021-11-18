@@ -1,0 +1,236 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="GetLastSession" this:GetLastSession.in_FolderOrchrestrator="TEST" this:GetLastSession.in_QueueName="test1" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:njl="clr-namespace:Newtonsoft.Json.Linq;assembly=Newtonsoft.Json" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:ss="clr-namespace:System.Security;assembly=mscorlib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_FolderOrchrestrator" Type="InArgument(x:String)" />
+    <x:Property Name="in_QueueName" Type="InArgument(x:String)" />
+    <x:Property Name="out_LastID" Type="OutArgument(x:Int32)" />
+  </x:Members>
+  <mva:VisualBasic.Settings>
+    <x:Null />
+  </mva:VisualBasic.Settings>
+  <sap:VirtualizedContainerService.HintSize>1208,1409</sap:VirtualizedContainerService.HintSize>
+  <sap2010:WorkflowViewState.IdRef>GetLastSession_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <scg:List x:TypeArguments="x:String" Capacity="32">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>Newtonsoft.Json.Linq</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Runtime.InteropServices</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>Newtonsoft.Json</x:String>
+      <x:String>System.Dynamic</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>System.Collections.Specialized</x:String>
+      <x:String>System.Activities.DynamicUpdate</x:String>
+      <x:String>System.Security</x:String>
+    </scg:List>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="28">
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>PresentationCore</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
+      <AssemblyReference>Newtonsoft.Json</AssemblyReference>
+      <AssemblyReference>System.Runtime.InteropServices.RuntimeInformation</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+    </scg:List>
+  </TextExpression.ReferencesForImplementation>
+  <Sequence DisplayName="GetLastSession" sap:VirtualizedContainerService.HintSize="683,1336" sap2010:WorkflowViewState.IdRef="Sequence_1">
+    <Sequence.Variables>
+      <Variable x:TypeArguments="x:String" Name="AccountLogicalName" />
+      <Variable x:TypeArguments="x:String" Name="client_id" />
+      <Variable x:TypeArguments="x:String" Name="refresh_token" />
+      <Variable x:TypeArguments="x:String" Name="TenantName" />
+      <Variable x:TypeArguments="njl:JObject" Name="Json_QITEMS" />
+    </Sequence.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="641,93" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Debut de GetLastSession&quot;]" />
+    <Sequence DisplayName="Sequence Get Assets" sap:VirtualizedContainerService.HintSize="641,68" sap2010:WorkflowViewState.IdRef="Sequence_5">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <Sequence DisplayName="Sequence AccountLogicalName" sap:VirtualizedContainerService.HintSize="326,272" sap2010:WorkflowViewState.IdRef="Sequence_2">
+        <Sequence.Variables>
+          <Variable x:TypeArguments="ss:SecureString" Name="PwdSecure" />
+        </Sequence.Variables>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <ui:GetRobotCredential TimeoutMS="{x:Null}" Username="{x:Null}" AssetName="Orchestrator_AccountLogicalName" DisplayName="Get Credential" FolderPath="CONFIG" sap:VirtualizedContainerService.HintSize="284,80" sap2010:WorkflowViewState.IdRef="GetRobotCredential_1" Password="[PwdSecure]" />
+        <Assign sap:VirtualizedContainerService.HintSize="284,60" sap2010:WorkflowViewState.IdRef="Assign_2">
+          <Assign.To>
+            <OutArgument x:TypeArguments="x:String">[AccountLogicalName]</OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="x:String">[new System.Net.NetworkCredential(string.Empty, PwdSecure).Password]</InArgument>
+          </Assign.Value>
+        </Assign>
+      </Sequence>
+      <Sequence DisplayName="Sequence client_id" sap:VirtualizedContainerService.HintSize="326,272" sap2010:WorkflowViewState.IdRef="Sequence_4">
+        <Sequence.Variables>
+          <Variable x:TypeArguments="ss:SecureString" Name="PwdSecure" />
+        </Sequence.Variables>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <ui:GetRobotCredential TimeoutMS="{x:Null}" Username="{x:Null}" AssetName="Orchestrator_client_id" DisplayName="Get Credential" FolderPath="CONFIG" sap:VirtualizedContainerService.HintSize="284,80" sap2010:WorkflowViewState.IdRef="GetRobotCredential_2" Password="[PwdSecure]" />
+        <Assign sap:VirtualizedContainerService.HintSize="284,60" sap2010:WorkflowViewState.IdRef="Assign_3">
+          <Assign.To>
+            <OutArgument x:TypeArguments="x:String">[client_id]</OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="x:String">[new System.Net.NetworkCredential(string.Empty, PwdSecure).Password]</InArgument>
+          </Assign.Value>
+        </Assign>
+      </Sequence>
+      <Sequence DisplayName="Sequence refresh_token" sap:VirtualizedContainerService.HintSize="326,272" sap2010:WorkflowViewState.IdRef="Sequence_6">
+        <Sequence.Variables>
+          <Variable x:TypeArguments="ss:SecureString" Name="PwdSecure" />
+        </Sequence.Variables>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <ui:GetRobotCredential TimeoutMS="{x:Null}" Username="{x:Null}" AssetName="Orchestrator_refresh_token" DisplayName="Get Credential" FolderPath="CONFIG" sap:VirtualizedContainerService.HintSize="284,80" sap2010:WorkflowViewState.IdRef="GetRobotCredential_4" Password="[PwdSecure]" />
+        <Assign sap:VirtualizedContainerService.HintSize="284,60" sap2010:WorkflowViewState.IdRef="Assign_5">
+          <Assign.To>
+            <OutArgument x:TypeArguments="x:String">[refresh_token]</OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="x:String">[new System.Net.NetworkCredential(string.Empty, PwdSecure).Password]</InArgument>
+          </Assign.Value>
+        </Assign>
+      </Sequence>
+      <Sequence DisplayName="Sequence TenantName" sap:VirtualizedContainerService.HintSize="326,272" sap2010:WorkflowViewState.IdRef="Sequence_7">
+        <Sequence.Variables>
+          <Variable x:TypeArguments="ss:SecureString" Name="PwdSecure" />
+        </Sequence.Variables>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsPinned">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+        <ui:GetRobotCredential TimeoutMS="{x:Null}" Username="{x:Null}" AssetName="Orchestrator_TenantName" DisplayName="Get Credential" FolderPath="CONFIG" sap:VirtualizedContainerService.HintSize="284,80" sap2010:WorkflowViewState.IdRef="GetRobotCredential_5" Password="[PwdSecure]" />
+        <Assign sap:VirtualizedContainerService.HintSize="284,60" sap2010:WorkflowViewState.IdRef="Assign_6">
+          <Assign.To>
+            <OutArgument x:TypeArguments="x:String">[TenantName]</OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="x:String">[new System.Net.NetworkCredential(string.Empty, PwdSecure).Password]</InArgument>
+          </Assign.Value>
+        </Assign>
+      </Sequence>
+    </Sequence>
+    <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke GetInfoOfQItems workflow" sap:VirtualizedContainerService.HintSize="641,113" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Librairy\Orchestrateur\NoDeSession\Libs\GetInfoOfQItems.xaml">
+      <ui:InvokeWorkflowFile.Arguments>
+        <InArgument x:TypeArguments="x:String" x:Key="in_ClientId">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="client_id" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_RefreshToken">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="refresh_token" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_TenantName">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="TenantName" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_AccountLogicalName">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="AccountLogicalName" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_FolderOrchrestrator">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_FolderOrchrestrator" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_QueueName">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_QueueName" />
+        </InArgument>
+        <OutArgument x:TypeArguments="njl:JObject" x:Key="out_JSON_ITEMS">
+          <mva:VisualBasicReference x:TypeArguments="njl:JObject" ExpressionText="Json_QITEMS" />
+        </OutArgument>
+      </ui:InvokeWorkflowFile.Arguments>
+    </ui:InvokeWorkflowFile>
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="641,93" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[&quot;Début Analyse QItems&quot;]" />
+    <If Condition="[Json_QITEMS isnot Nothing]" sap:VirtualizedContainerService.HintSize="641,324" sap2010:WorkflowViewState.IdRef="If_1">
+      <If.Then>
+        <ui:InvokeCode ContinueOnError="{x:Null}" Code="Dim index As Integer =0&#xD;&#xA;LastID  =0&#xD;&#xA;&#xD;&#xA;While  ITEMS.SelectToken(&quot;value[&quot;+index.ToString+&quot;]&quot;) IsNot Nothing&#xD;&#xA;&#x9;&#x9;Dim NoSessionObj As JToken =  ITEMS.SelectToken(&quot;value[&quot;+index.ToString+&quot;].SpecificContent.NoSession&quot;)&#xD;&#xA;&#x9;&#x9;If NoSessionObj IsNot Nothing AndAlso CInt(NoSessionObj.ToString)&gt;LastID Then&#xD;&#xA;&#x9;&#x9;&#x9;LastID = CInt(NoSessionObj.ToString)&#xD;&#xA;&#x9;&#x9;End If&#xD;&#xA;&#x9;index+=1&#xD;&#xA;End While&#xD;&#xA;&#x9;&#xD;&#xA;" DisplayName="Invoke code" sap:VirtualizedContainerService.HintSize="334,164" sap2010:WorkflowViewState.IdRef="InvokeCode_1">
+          <ui:InvokeCode.Arguments>
+            <InArgument x:TypeArguments="njl:JObject" x:Key="ITEMS">
+              <mva:VisualBasicValue x:TypeArguments="njl:JObject" ExpressionText="Json_QITEMS" />
+            </InArgument>
+            <OutArgument x:TypeArguments="x:Int32" x:Key="LastID">
+              <mva:VisualBasicReference x:TypeArguments="x:Int32" ExpressionText="out_LastID" />
+            </OutArgument>
+          </ui:InvokeCode.Arguments>
+        </ui:InvokeCode>
+      </If.Then>
+      <If.Else>
+        <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_1">
+          <Assign.To>
+            <OutArgument x:TypeArguments="x:Int32">[out_LastID]</OutArgument>
+          </Assign.To>
+          <Assign.Value>
+            <InArgument x:TypeArguments="x:Int32">-1</InArgument>
+          </Assign.Value>
+        </Assign>
+      </If.Else>
+    </If>
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="641,91" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Info" Message="[&quot;Last ID = '&quot;+out_LastID.ToString+&quot;'&quot;]" />
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="641,91" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Info" Message="[&quot;Fin Analyse QItems&quot;]" />
+    <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="641,91" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[&quot;Fin de GetLastSession&quot;]" />
+  </Sequence>
+</Activity>
