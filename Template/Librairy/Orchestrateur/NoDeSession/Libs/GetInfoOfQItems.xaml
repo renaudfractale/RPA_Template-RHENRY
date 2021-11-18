@@ -11,7 +11,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1208,1527</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1208,3394</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>GetInfoOfQItems_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="34">
@@ -52,7 +52,7 @@
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
-    <scg:List x:TypeArguments="AssemblyReference" Capacity="23">
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="46">
       <AssemblyReference>System.Activities</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
       <AssemblyReference>mscorlib</AssemblyReference>
@@ -76,9 +76,16 @@
       <AssemblyReference>System.Runtime.Serialization</AssemblyReference>
       <AssemblyReference>UiPath.Web.Activities</AssemblyReference>
       <AssemblyReference>Newtonsoft.Json</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.ServiceModel</AssemblyReference>
+      <AssemblyReference>Microsoft.Bcl.AsyncInterfaces</AssemblyReference>
+      <AssemblyReference>System.ValueTuple</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
+      <AssemblyReference>UiPath.Excel</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="GetInfoOfQItems" sap:VirtualizedContainerService.HintSize="725,1462" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="GetInfoOfQItems" sap:VirtualizedContainerService.HintSize="725,3329" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="JSON_R_GETTOKEN" />
       <Variable x:TypeArguments="njl:JObject" Name="JSON_GETTOKEN" />
@@ -93,10 +100,10 @@
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
     <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="683,91" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Info" Message="[&quot;Debut de la récupération du Token&quot;]" />
-    <Sequence DisplayName="Sequence Get Token" sap:VirtualizedContainerService.HintSize="683,66" sap2010:WorkflowViewState.IdRef="Sequence_2">
+    <Sequence DisplayName="Sequence Get Token" sap:VirtualizedContainerService.HintSize="683,314" sap2010:WorkflowViewState.IdRef="Sequence_2">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
@@ -111,15 +118,9 @@
           <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
         </ui:HttpClient.Headers>
         <ui:HttpClient.Parameters>
-          <InArgument x:TypeArguments="x:String" x:Key="grant_type">
-            <Literal x:TypeArguments="x:String">refresh_token</Literal>
-          </InArgument>
-          <InArgument x:TypeArguments="x:String" x:Key="client_id">
-            <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_ClientId" />
-          </InArgument>
-          <InArgument x:TypeArguments="x:String" x:Key="refresh_token">
-            <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_RefreshToken" />
-          </InArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="grant_type">refresh_token</InArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="client_id">[in_ClientId]</InArgument>
+          <InArgument x:TypeArguments="x:String" x:Key="refresh_token">[in_RefreshToken]</InArgument>
         </ui:HttpClient.Parameters>
         <ui:HttpClient.UrlSegments>
           <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
@@ -137,17 +138,19 @@
     </Sequence>
     <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="683,91" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Info" Message="[&quot;Fin de la récupération du Token&quot;]" />
     <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="683,91" sap2010:WorkflowViewState.IdRef="LogMessage_6" Level="Info" Message="[&quot;Debut de la récupération de l'ID de la Qlist&quot;]" />
-    <Sequence DisplayName="Sequence Gest ID QList" sap:VirtualizedContainerService.HintSize="683,66" sap2010:WorkflowViewState.IdRef="Sequence_3">
+    <Sequence DisplayName="Sequence Gest ID QList" sap:VirtualizedContainerService.HintSize="683,1685" sap2010:WorkflowViewState.IdRef="Sequence_3">
       <Sequence.Variables>
         <Variable x:TypeArguments="x:Int32" Name="index" />
       </Sequence.Variables>
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
-          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
           <x:Boolean x:Key="IsPinned">False</x:Boolean>
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
-      <ui:HttpClient Body="{x:Null}" ClientCertificate="{x:Null}" ClientCertificatePassword="{x:Null}" ConsumerKey="{x:Null}" ConsumerSecret="{x:Null}" ContinueOnError="{x:Null}" OAuth1Token="{x:Null}" OAuth1TokenSecret="{x:Null}" OAuth2Token="{x:Null}" Password="{x:Null}" ResourcePath="{x:Null}" ResponseHeaders="{x:Null}" SecureClientCertificatePassword="{x:Null}" SecurePassword="{x:Null}" StatusCode="{x:Null}" Username="{x:Null}" AcceptFormat="ANY" BodyFormat="application/xml" DisplayName="HTTP Request" EnableSSLVerification="True" EndPoint="[&quot;https://platform.uipath.com/&quot;+in_AccountLogicalName+&quot;/&quot;+in_TenantName+&quot;/odata/QueueDefinitions&quot;]" sap:VirtualizedContainerService.HintSize="562,22" sap2010:WorkflowViewState.IdRef="HttpClient_2" Method="GET" Result="[JSON_R_QListe]" TimeoutMS="6000">
+      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="562,91" sap2010:WorkflowViewState.IdRef="LogMessage_10" Level="Info" Message="[in_TenantName]" />
+      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="562,91" sap2010:WorkflowViewState.IdRef="LogMessage_16" Level="Info" Message="[&quot;https://platform.uipath.com/&quot;+in_AccountLogicalName+&quot;/&quot;+in_TenantName+&quot;/odata/QueueDefinitions&quot;]" />
+      <ui:HttpClient Body="{x:Null}" ClientCertificate="{x:Null}" ClientCertificatePassword="{x:Null}" ConsumerKey="{x:Null}" ConsumerSecret="{x:Null}" ContinueOnError="{x:Null}" OAuth1Token="{x:Null}" OAuth1TokenSecret="{x:Null}" OAuth2Token="{x:Null}" Password="{x:Null}" ResourcePath="{x:Null}" ResponseHeaders="{x:Null}" SecureClientCertificatePassword="{x:Null}" SecurePassword="{x:Null}" StatusCode="{x:Null}" Username="{x:Null}" AcceptFormat="JSON" BodyFormat="application/json" DisplayName="API Get List QList" EnableSSLVerification="True" EndPoint="[&quot;https://platform.uipath.com/&quot;+in_AccountLogicalName+&quot;/&quot;+in_TenantName+&quot;/odata/QueueDefinitions&quot;]" sap:VirtualizedContainerService.HintSize="562,22" sap2010:WorkflowViewState.IdRef="HttpClient_2" Method="GET" Result="[JSON_R_QListe]" TimeoutMS="60000">
         <ui:HttpClient.Attachments>
           <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
         </ui:HttpClient.Attachments>
@@ -156,7 +159,7 @@
         </ui:HttpClient.Cookies>
         <ui:HttpClient.Headers>
           <InArgument x:TypeArguments="x:String" x:Key="X-UIPATH-TenantName">
-            <Literal x:TypeArguments="x:String">DefaultTenant</Literal>
+            <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_TenantName" />
           </InArgument>
           <InArgument x:TypeArguments="x:String" x:Key="X-UIPATH-FolderPath">
             <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_FolderOrchrestrator" />
@@ -191,7 +194,7 @@
           <InArgument x:TypeArguments="x:Int32">0</InArgument>
         </Assign.Value>
       </Assign>
-      <ui:InterruptibleDoWhile DisplayName="Do While" sap:VirtualizedContainerService.HintSize="562,969" sap2010:WorkflowViewState.IdRef="InterruptibleDoWhile_1">
+      <ui:InterruptibleDoWhile Condition="True" DisplayName="Do While" sap:VirtualizedContainerService.HintSize="562,969" sap2010:WorkflowViewState.IdRef="InterruptibleDoWhile_1">
         <ui:InterruptibleDoWhile.Body>
           <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="526,804" sap2010:WorkflowViewState.IdRef="Sequence_4">
             <Sequence.Variables>
@@ -246,9 +249,6 @@
             </Assign>
           </Sequence>
         </ui:InterruptibleDoWhile.Body>
-        <ui:InterruptibleDoWhile.Condition>
-          <Literal x:TypeArguments="x:Boolean" Value="True" />
-        </ui:InterruptibleDoWhile.Condition>
         <sap:WorkflowViewStateService.ViewState>
           <scg:Dictionary x:TypeArguments="x:String, x:Object">
             <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -278,20 +278,12 @@
               <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />
             </ui:HttpClient.Cookies>
             <ui:HttpClient.Headers>
-              <InArgument x:TypeArguments="x:String" x:Key="X-UIPATH-TenantName">
-                <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_TenantName" />
-              </InArgument>
-              <InArgument x:TypeArguments="x:String" x:Key="X-UIPATH-FolderPath">
-                <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_FolderOrchrestrator" />
-              </InArgument>
-              <InArgument x:TypeArguments="x:String" x:Key="Authorization">
-                <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="&quot;Bearer &quot;+access_token" />
-              </InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="X-UIPATH-TenantName">[in_TenantName]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="X-UIPATH-FolderPath">[in_FolderOrchrestrator]</InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="Authorization">["Bearer "+access_token]</InArgument>
             </ui:HttpClient.Headers>
             <ui:HttpClient.Parameters>
-              <InArgument x:TypeArguments="x:String" x:Key="filter">
-                <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="&quot;QueueDefinitionId eq &quot;+ID_Q" />
-              </InArgument>
+              <InArgument x:TypeArguments="x:String" x:Key="filter">["QueueDefinitionId eq "+ID_Q]</InArgument>
             </ui:HttpClient.Parameters>
             <ui:HttpClient.UrlSegments>
               <scg:Dictionary x:TypeArguments="x:String, InArgument(x:String)" />

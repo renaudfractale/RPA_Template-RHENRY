@@ -487,9 +487,9 @@
                     </sap:WorkflowViewStateService.ViewState>
                     <Transition.Condition>[SystemException IsNot Nothing]</Transition.Condition>
                     <Transition.To>
-                      <State x:Name="__ReferenceID3" sap2010:Annotation.AnnotationText="Initialize applications used in the process." DisplayName="Initialization Apps" sap:VirtualizedContainerService.HintSize="135,121" sap2010:WorkflowViewState.IdRef="State_10">
+                      <State x:Name="__ReferenceID3" sap2010:Annotation.AnnotationText="Initialize applications used in the process." DisplayName="Initialization Apps" sap:VirtualizedContainerService.HintSize="610,1702" sap2010:WorkflowViewState.IdRef="State_10">
                         <State.Entry>
-                          <TryCatch DisplayName="Try initializing settings and applications" sap:VirtualizedContainerService.HintSize="564,980" sap2010:WorkflowViewState.IdRef="TryCatch_18">
+                          <TryCatch DisplayName="Try initializing settings and applications" sap:VirtualizedContainerService.HintSize="564,1284" sap2010:WorkflowViewState.IdRef="TryCatch_18">
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -497,7 +497,7 @@
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>
                             <TryCatch.Try>
-                              <Sequence DisplayName="Load configurations and open applications" sap:VirtualizedContainerService.HintSize="526,753" sap2010:WorkflowViewState.IdRef="Sequence_42">
+                              <Sequence DisplayName="Load configurations and open applications" sap:VirtualizedContainerService.HintSize="526,1057" sap2010:WorkflowViewState.IdRef="Sequence_42">
                                 <sap:WorkflowViewStateService.ViewState>
                                   <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                     <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -532,6 +532,16 @@
                                     <Throw DisplayName="Throw Consecutive Exceptions exceeded" Exception="[new Exception(Config(&quot;ExceptionMessage_ConsecutiveErrors&quot;).ToString + &quot; Consecutive retry number: &quot; + (ConsecutiveSystemExceptions+1).ToString)]" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Throw_3" />
                                   </If.Then>
                                 </If>
+                                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke CloseAllApplications workflow" sap:VirtualizedContainerService.HintSize="484,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_63" UnSafe="False" WorkflowFileName="Framework\CloseAllApplications.xaml">
+                                  <ui:InvokeWorkflowFile.Arguments>
+                                    <scg:Dictionary x:TypeArguments="x:String, Argument" />
+                                  </ui:InvokeWorkflowFile.Arguments>
+                                </ui:InvokeWorkflowFile>
+                                <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke KillAllProcesses workflow" sap:VirtualizedContainerService.HintSize="484,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_62" UnSafe="False" WorkflowFileName="Framework\KillAllProcesses.xaml">
+                                  <ui:InvokeWorkflowFile.Arguments>
+                                    <scg:Dictionary x:TypeArguments="x:String, Argument" />
+                                  </ui:InvokeWorkflowFile.Arguments>
+                                </ui:InvokeWorkflowFile>
                                 <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke InitiAllApplications workflow" sap:VirtualizedContainerService.HintSize="484,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_52" UnSafe="False" WorkflowFileName="Framework\02-InitAllApplications.xaml">
                                   <ui:InvokeWorkflowFile.Arguments>
                                     <InArgument x:TypeArguments="scg:Dictionary(x:String, scg:Dictionary(x:String, x:Object))" x:Key="in_Config">[Config]</InArgument>
@@ -759,15 +769,9 @@
                 <b:LogG_Info sap:VirtualizedContainerService.HintSize="338,22" sap2010:WorkflowViewState.IdRef="LogG_Info_2" in_Config="[Config]" in_Description="[&quot;The primary screen resolution is: &quot;+Screen.PrimaryScreen.Bounds.Width.ToString+&quot; x &quot;+ Screen.PrimaryScreen.Bounds.Height.ToString]" in_Niveau="Init Config" />
                 <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke InitAllSettings workflow" sap:VirtualizedContainerService.HintSize="338,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_45" UnSafe="False" WorkflowFileName="Framework\01-InitAllSettings.xaml">
                   <ui:InvokeWorkflowFile.Arguments>
-                    <InArgument x:TypeArguments="x:String" x:Key="in_ConfigFile">
-                      <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="PathConfFile" />
-                    </InArgument>
-                    <InArgument x:TypeArguments="x:String" x:Key="in_Env">
-                      <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Env" />
-                    </InArgument>
-                    <OutArgument x:TypeArguments="scg:Dictionary(x:String, scg:Dictionary(x:String, x:Object))" x:Key="out_Config">
-                      <mva:VisualBasicReference x:TypeArguments="scg:Dictionary(x:String, scg:Dictionary(x:String, x:Object))" ExpressionText="Config" />
-                    </OutArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_ConfigFile">[PathConfFile]</InArgument>
+                    <InArgument x:TypeArguments="x:String" x:Key="in_Env">[in_Env]</InArgument>
+                    <OutArgument x:TypeArguments="scg:Dictionary(x:String, scg:Dictionary(x:String, x:Object))" x:Key="out_Config">[Config]</OutArgument>
                   </ui:InvokeWorkflowFile.Arguments>
                 </ui:InvokeWorkflowFile>
                 <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke RunStart workflow" sap:VirtualizedContainerService.HintSize="338,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_47" UnSafe="False" WorkflowFileName="Implementation\01_RunStart\RunStart.xaml">
@@ -859,7 +863,7 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
             <Transition.To>
-              <State x:Name="__ReferenceID4" sap2010:Annotation.AnnotationText="Create TrasactionItems" DisplayName="Dispatcher" sap:VirtualizedContainerService.HintSize="568,934" sap2010:WorkflowViewState.IdRef="State_11">
+              <State x:Name="__ReferenceID4" sap2010:Annotation.AnnotationText="Create TrasactionItems" DisplayName="Dispatcher" sap:VirtualizedContainerService.HintSize="155,103" sap2010:WorkflowViewState.IdRef="State_11">
                 <State.Entry>
                   <TryCatch DisplayName="Try initializing settings and applications" sap:VirtualizedContainerService.HintSize="522,516" sap2010:WorkflowViewState.IdRef="TryCatch_17">
                     <sap:WorkflowViewStateService.ViewState>
@@ -873,7 +877,12 @@
                         <If.Then>
                           <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke DispatcherRoot workflow" sap:VirtualizedContainerService.HintSize="379,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_61" UnSafe="False" WorkflowFileName="Implementation\02_Dispatcher\DispatcherRoot.xaml">
                             <ui:InvokeWorkflowFile.Arguments>
-                              <InArgument x:TypeArguments="scg:Dictionary(x:String, scg:Dictionary(x:String, x:Object))" x:Key="in_Config">[Config]</InArgument>
+                              <InArgument x:TypeArguments="scg:Dictionary(x:String, scg:Dictionary(x:String, x:Object))" x:Key="in_Config">
+                                <mva:VisualBasicValue x:TypeArguments="scg:Dictionary(x:String, scg:Dictionary(x:String, x:Object))" ExpressionText="Config" />
+                              </InArgument>
+                              <InArgument x:TypeArguments="x:String" x:Key="out_NoSession">
+                                <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="NoSession" />
+                              </InArgument>
                             </ui:InvokeWorkflowFile.Arguments>
                           </ui:InvokeWorkflowFile>
                         </If.Then>
@@ -996,6 +1005,7 @@
         <Variable x:TypeArguments="x:String" sap2010:Annotation.AnnotationText="Transaction ID used for information and logging purposes. Ideally, the ID should be unique for each transaction. " Name="TransactionID" />
         <Variable x:TypeArguments="sd:DataTable" sap2010:Annotation.AnnotationText="Used in case transactions are stored in a DataTable, for example, after being retrieved from a spreadsheet." Name="dt_TransactionData" />
         <Variable x:TypeArguments="x:Int32" sap2010:Annotation.AnnotationText="Used to control the number of consecutive system exceptions." Default="0" Name="ConsecutiveSystemExceptions" />
+        <Variable x:TypeArguments="x:String" Name="NoSession" />
       </StateMachine.Variables>
     </StateMachine>
   </Sequence>
