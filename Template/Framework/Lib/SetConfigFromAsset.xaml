@@ -11,7 +11,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1208,2659</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1208,2962</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>SetConfigFromAsset_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="32">
@@ -50,7 +50,7 @@
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
-    <scg:List x:TypeArguments="AssemblyReference" Capacity="28">
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="56">
       <AssemblyReference>System.Activities</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
       <AssemblyReference>mscorlib</AssemblyReference>
@@ -79,17 +79,18 @@
       <AssemblyReference>MongoDB.Bson</AssemblyReference>
       <AssemblyReference>MongoDB.Driver</AssemblyReference>
       <AssemblyReference>Newtonsoft.Json</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="SetConfigFromAsset" sap:VirtualizedContainerService.HintSize="617,2594" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="SetConfigFromAsset" sap:VirtualizedContainerService.HintSize="996,2897" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <If Condition="[in_Rubrique IsNot Nothing AndAlso in_Rubrique.Trim.Length&gt;0 _ &#xD;&#xA;  AndAlso in_Name IsNot Nothing AndAlso in_Name.Trim.Length&gt;0 _ &#xD;&#xA;  AndAlso in_Asset IsNot Nothing AndAlso in_Asset.Trim.Length&gt;0 _ &#xD;&#xA;  AndAlso in_Type IsNot Nothing AndAlso in_Type.Trim.Length&gt;0 _ &#xD;&#xA;  AndAlso in_OrchestratorAssetFolder IsNot Nothing AndAlso in_OrchestratorAssetFolder.Trim.Length&gt;0  _&#xD;&#xA;  AndAlso in_IsPatern IsNot Nothing AndAlso in_IsPatern.Trim.Length&gt;0]" sap:VirtualizedContainerService.HintSize="575,2502" sap2010:WorkflowViewState.IdRef="If_1">
+    <If Condition="[in_Rubrique IsNot Nothing AndAlso in_Rubrique.Trim.Length&gt;0 _ &#xA;  AndAlso in_Name IsNot Nothing AndAlso in_Name.Trim.Length&gt;0 _ &#xA;  AndAlso in_Asset IsNot Nothing AndAlso in_Asset.Trim.Length&gt;0 _ &#xA;  AndAlso in_Type IsNot Nothing AndAlso in_Type.Trim.Length&gt;0 _ &#xA;  AndAlso in_OrchestratorAssetFolder IsNot Nothing AndAlso in_OrchestratorAssetFolder.Trim.Length&gt;0  _&#xA;  AndAlso in_IsPatern IsNot Nothing AndAlso in_IsPatern.Trim.Length&gt;0]" sap:VirtualizedContainerService.HintSize="954,2805" sap2010:WorkflowViewState.IdRef="If_1">
       <If.Then>
-        <Sequence DisplayName="Sequence Donnèes OK" sap:VirtualizedContainerService.HintSize="539,2321" sap2010:WorkflowViewState.IdRef="Sequence_2">
+        <Sequence DisplayName="Sequence Donnèes OK" sap:VirtualizedContainerService.HintSize="918,2624" sap2010:WorkflowViewState.IdRef="Sequence_2">
           <Sequence.Variables>
             <Variable x:TypeArguments="x:String" Name="Rubrique" />
             <Variable x:TypeArguments="x:String" Name="Name" />
@@ -108,7 +109,7 @@
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="497,255" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
+          <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="876,255" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
             <ui:MultipleAssign.AssignOperations>
               <scg:List x:TypeArguments="ui:AssignOperation" Capacity="8">
                 <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_1">
@@ -156,13 +157,30 @@
                     <OutArgument x:TypeArguments="x:String">[IsPatern]</OutArgument>
                   </ui:AssignOperation.To>
                   <ui:AssignOperation.Value>
-                    <InArgument x:TypeArguments="x:String">[IsPatern.Trim]</InArgument>
+                    <InArgument x:TypeArguments="x:String">[in_IsPatern.Trim]</InArgument>
                   </ui:AssignOperation.Value>
                 </ui:AssignOperation>
               </scg:List>
             </ui:MultipleAssign.AssignOperations>
           </ui:MultipleAssign>
-          <If Condition="[not io_Config.ContainsKey(Rubrique)]" sap:VirtualizedContainerService.HintSize="497,237" sap2010:WorkflowViewState.IdRef="If_2">
+          <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each Pather in OrchestratorAssetFolder" sap:VirtualizedContainerService.HintSize="876,184" sap2010:WorkflowViewState.IdRef="ForEach`1_2" Values="[io_Config(&quot;Core&quot;).Keys]">
+            <ui:ForEach.Body>
+              <ActivityAction x:TypeArguments="x:String">
+                <ActivityAction.Argument>
+                  <DelegateInArgument x:TypeArguments="x:String" Name="item" />
+                </ActivityAction.Argument>
+                <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_14">
+                  <Assign.To>
+                    <OutArgument x:TypeArguments="x:String">[OrchestratorAssetFolder]</OutArgument>
+                  </Assign.To>
+                  <Assign.Value>
+                    <InArgument x:TypeArguments="x:String">[OrchestratorAssetFolder.Replace("{{"+item+"}}",io_Config("Core")(item).ToString)]</InArgument>
+                  </Assign.Value>
+                </Assign>
+              </ActivityAction>
+            </ui:ForEach.Body>
+          </ui:ForEach>
+          <If Condition="[not io_Config.ContainsKey(Rubrique)]" sap:VirtualizedContainerService.HintSize="876,237" sap2010:WorkflowViewState.IdRef="If_2">
             <If.Then>
               <Assign DisplayName="Add Config key/value pair" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_1">
                 <Assign.To>
@@ -183,7 +201,7 @@
               </Sequence>
             </If.Else>
           </If>
-          <Assign sap:VirtualizedContainerService.HintSize="497,60" sap2010:WorkflowViewState.IdRef="Assign_2">
+          <Assign sap:VirtualizedContainerService.HintSize="876,60" sap2010:WorkflowViewState.IdRef="Assign_2">
             <Assign.To>
               <OutArgument x:TypeArguments="x:Object">[Value]</OutArgument>
             </Assign.To>
@@ -191,92 +209,106 @@
               <InArgument x:TypeArguments="x:Object">[Nothing]</InArgument>
             </Assign.Value>
           </Assign>
-          <Switch x:TypeArguments="x:String" DisplayName="Switch" Expression="[TypeOfAseet]" sap:VirtualizedContainerService.HintSize="497,409" sap2010:WorkflowViewState.IdRef="Switch`1_1">
-            <ui:GetRobotAsset TimeoutMS="{x:Null}" x:Key="Texte" AssetName="[Asset]" FolderPath="[OrchestratorAssetFolder]" sap:VirtualizedContainerService.HintSize="444,137" sap2010:WorkflowViewState.IdRef="GetRobotAsset_1">
-              <ui:GetRobotAsset.Value>
-                <OutArgument x:TypeArguments="x:Object">[Value]</OutArgument>
-              </ui:GetRobotAsset.Value>
-            </ui:GetRobotAsset>
-            <Sequence x:Key="Entier" DisplayName="Sequence Get Asset Entier" sap:VirtualizedContainerService.HintSize="486,329" sap2010:WorkflowViewState.IdRef="Sequence_6">
-              <Sequence.Variables>
-                <Variable x:TypeArguments="x:String" Name="ValueString" />
-              </Sequence.Variables>
-              <sap:WorkflowViewStateService.ViewState>
-                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                </scg:Dictionary>
-              </sap:WorkflowViewStateService.ViewState>
-              <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="[Asset]" DisplayName="Get Asset" FolderPath="[OrchestratorAssetFolder]" sap:VirtualizedContainerService.HintSize="444,137" sap2010:WorkflowViewState.IdRef="GetRobotAsset_2">
-                <ui:GetRobotAsset.Value>
-                  <OutArgument x:TypeArguments="x:String">[ValueString]</OutArgument>
-                </ui:GetRobotAsset.Value>
-              </ui:GetRobotAsset>
-              <Assign sap:VirtualizedContainerService.HintSize="444,60" sap2010:WorkflowViewState.IdRef="Assign_3">
-                <Assign.To>
-                  <OutArgument x:TypeArguments="x:Object">[Value]</OutArgument>
-                </Assign.To>
-                <Assign.Value>
-                  <InArgument x:TypeArguments="x:Object">[CInt(ValueString)]</InArgument>
-                </Assign.Value>
-              </Assign>
-            </Sequence>
-            <Sequence x:Key="Bool" DisplayName="Sequence Get Asset Bool" sap:VirtualizedContainerService.HintSize="486,329" sap2010:WorkflowViewState.IdRef="Sequence_7">
-              <Sequence.Variables>
-                <Variable x:TypeArguments="x:String" Name="ValueString" />
-              </Sequence.Variables>
-              <sap:WorkflowViewStateService.ViewState>
-                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                </scg:Dictionary>
-              </sap:WorkflowViewStateService.ViewState>
-              <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="[Asset]" DisplayName="Get Asset" FolderPath="[OrchestratorAssetFolder]" sap:VirtualizedContainerService.HintSize="444,137" sap2010:WorkflowViewState.IdRef="GetRobotAsset_3">
-                <ui:GetRobotAsset.Value>
-                  <OutArgument x:TypeArguments="x:String">[ValueString]</OutArgument>
-                </ui:GetRobotAsset.Value>
-              </ui:GetRobotAsset>
-              <Assign sap:VirtualizedContainerService.HintSize="444,60" sap2010:WorkflowViewState.IdRef="Assign_4">
-                <Assign.To>
-                  <OutArgument x:TypeArguments="x:Object">[Value]</OutArgument>
-                </Assign.To>
-                <Assign.Value>
-                  <InArgument x:TypeArguments="x:Object">[CBool(ValueString)]</InArgument>
-                </Assign.Value>
-              </Assign>
-            </Sequence>
-            <Sequence x:Key="Login" DisplayName="Sequence Get Asset Idendifiant" sap:VirtualizedContainerService.HintSize="326,271" sap2010:WorkflowViewState.IdRef="Sequence_8">
-              <sap:WorkflowViewStateService.ViewState>
-                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                </scg:Dictionary>
-              </sap:WorkflowViewStateService.ViewState>
-              <ui:GetRobotCredential TimeoutMS="{x:Null}" AssetName="[Asset]" DisplayName="Get Credential" FolderPath="[OrchestratorAssetFolder]" sap:VirtualizedContainerService.HintSize="284,79" sap2010:WorkflowViewState.IdRef="GetRobotCredential_1" Password="[PwdSecure]" Username="[Login]" />
-              <Assign sap:VirtualizedContainerService.HintSize="284,60" sap2010:WorkflowViewState.IdRef="Assign_7">
-                <Assign.To>
-                  <OutArgument x:TypeArguments="x:Object">[Value]</OutArgument>
-                </Assign.To>
-                <Assign.Value>
-                  <InArgument x:TypeArguments="x:Object">[Login]</InArgument>
-                </Assign.Value>
-              </Assign>
-            </Sequence>
-            <Sequence x:Key="Pwd" DisplayName="Sequence Get Asset Idendifiant" sap:VirtualizedContainerService.HintSize="326,271" sap2010:WorkflowViewState.IdRef="Sequence_13">
-              <sap:WorkflowViewStateService.ViewState>
-                <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                </scg:Dictionary>
-              </sap:WorkflowViewStateService.ViewState>
-              <ui:GetRobotCredential TimeoutMS="{x:Null}" AssetName="[Asset]" DisplayName="Get Credential" FolderPath="[OrchestratorAssetFolder]" sap:VirtualizedContainerService.HintSize="284,79" sap2010:WorkflowViewState.IdRef="GetRobotCredential_2" Password="[PwdSecure]" Username="[Login]" />
-              <Assign sap:VirtualizedContainerService.HintSize="284,60" sap2010:WorkflowViewState.IdRef="Assign_12">
-                <Assign.To>
-                  <OutArgument x:TypeArguments="x:Object">[Value]</OutArgument>
-                </Assign.To>
-                <Assign.Value>
-                  <InArgument x:TypeArguments="x:Object">[new System.Net.NetworkCredential(string.Empty, PwdSecure).Password]</InArgument>
-                </Assign.Value>
-              </Assign>
-            </Sequence>
-          </Switch>
-          <If Condition="[Value is Nothing]" DisplayName="If Value is Nothing" sap:VirtualizedContainerService.HintSize="497,237" sap2010:WorkflowViewState.IdRef="If_5">
+          <If Condition="[OrchestratorAssetFolder.Equals(&quot;*&quot;)]" DisplayName="If chemin dynamique" sap:VirtualizedContainerService.HintSize="876,488" sap2010:WorkflowViewState.IdRef="If_7">
+            <If.Then>
+              <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke GetAssetDynamique workflow" sap:VirtualizedContainerService.HintSize="334,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Framework\GetAssetDynamique.xaml">
+                <ui:InvokeWorkflowFile.Arguments>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_NameAsset">[Asset]</InArgument>
+                  <InArgument x:TypeArguments="x:String" x:Key="in_TypeAsset">[TypeOfAseet]</InArgument>
+                  <OutArgument x:TypeArguments="x:Object" x:Key="out_Value">[Value]</OutArgument>
+                  <InArgument x:TypeArguments="scg:Dictionary(x:String, scg:Dictionary(x:String, x:Object))" x:Key="in_Config">[io_Config]</InArgument>
+                </ui:InvokeWorkflowFile.Arguments>
+              </ui:InvokeWorkflowFile>
+            </If.Then>
+            <If.Else>
+              <Switch x:TypeArguments="x:String" DisplayName="Switch" Expression="[TypeOfAseet]" sap:VirtualizedContainerService.HintSize="497,330" sap2010:WorkflowViewState.IdRef="Switch`1_1">
+                <ui:GetRobotAsset TimeoutMS="{x:Null}" x:Key="Texte" AssetName="[Asset]" FolderPath="[OrchestratorAssetFolder]" sap:VirtualizedContainerService.HintSize="444,137" sap2010:WorkflowViewState.IdRef="GetRobotAsset_1">
+                  <ui:GetRobotAsset.Value>
+                    <OutArgument x:TypeArguments="x:Object">[Value]</OutArgument>
+                  </ui:GetRobotAsset.Value>
+                </ui:GetRobotAsset>
+                <Sequence x:Key="Entier" DisplayName="Sequence Get Asset Entier" sap:VirtualizedContainerService.HintSize="486,329" sap2010:WorkflowViewState.IdRef="Sequence_6">
+                  <Sequence.Variables>
+                    <Variable x:TypeArguments="x:String" Name="ValueString" />
+                  </Sequence.Variables>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="[Asset]" DisplayName="Get Asset" FolderPath="[OrchestratorAssetFolder]" sap:VirtualizedContainerService.HintSize="444,137" sap2010:WorkflowViewState.IdRef="GetRobotAsset_2">
+                    <ui:GetRobotAsset.Value>
+                      <OutArgument x:TypeArguments="x:String">[ValueString]</OutArgument>
+                    </ui:GetRobotAsset.Value>
+                  </ui:GetRobotAsset>
+                  <Assign sap:VirtualizedContainerService.HintSize="444,60" sap2010:WorkflowViewState.IdRef="Assign_3">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:Object">[Value]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:Object">[CInt(ValueString)]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                </Sequence>
+                <Sequence x:Key="Bool" DisplayName="Sequence Get Asset Bool" sap:VirtualizedContainerService.HintSize="486,329" sap2010:WorkflowViewState.IdRef="Sequence_7">
+                  <Sequence.Variables>
+                    <Variable x:TypeArguments="x:String" Name="ValueString" />
+                  </Sequence.Variables>
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:GetRobotAsset TimeoutMS="{x:Null}" AssetName="[Asset]" DisplayName="Get Asset" FolderPath="[OrchestratorAssetFolder]" sap:VirtualizedContainerService.HintSize="444,137" sap2010:WorkflowViewState.IdRef="GetRobotAsset_3">
+                    <ui:GetRobotAsset.Value>
+                      <OutArgument x:TypeArguments="x:String">[ValueString]</OutArgument>
+                    </ui:GetRobotAsset.Value>
+                  </ui:GetRobotAsset>
+                  <Assign sap:VirtualizedContainerService.HintSize="444,60" sap2010:WorkflowViewState.IdRef="Assign_4">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:Object">[Value]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:Object">[CBool(ValueString)]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                </Sequence>
+                <Sequence x:Key="Login" DisplayName="Sequence Get Asset Idendifiant" sap:VirtualizedContainerService.HintSize="326,271" sap2010:WorkflowViewState.IdRef="Sequence_8">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:GetRobotCredential TimeoutMS="{x:Null}" AssetName="[Asset]" DisplayName="Get Credential" FolderPath="[OrchestratorAssetFolder]" sap:VirtualizedContainerService.HintSize="284,79" sap2010:WorkflowViewState.IdRef="GetRobotCredential_1" Password="[PwdSecure]" Username="[Login]" />
+                  <Assign sap:VirtualizedContainerService.HintSize="284,60" sap2010:WorkflowViewState.IdRef="Assign_7">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:Object">[Value]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:Object">[Login]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                </Sequence>
+                <Sequence x:Key="Pwd" DisplayName="Sequence Get Asset Idendifiant" sap:VirtualizedContainerService.HintSize="326,271" sap2010:WorkflowViewState.IdRef="Sequence_13">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <ui:GetRobotCredential TimeoutMS="{x:Null}" AssetName="[Asset]" DisplayName="Get Credential" FolderPath="[OrchestratorAssetFolder]" sap:VirtualizedContainerService.HintSize="284,79" sap2010:WorkflowViewState.IdRef="GetRobotCredential_2" Password="[PwdSecure]" Username="[Login]" />
+                  <Assign sap:VirtualizedContainerService.HintSize="284,60" sap2010:WorkflowViewState.IdRef="Assign_12">
+                    <Assign.To>
+                      <OutArgument x:TypeArguments="x:Object">[Value]</OutArgument>
+                    </Assign.To>
+                    <Assign.Value>
+                      <InArgument x:TypeArguments="x:Object">[new System.Net.NetworkCredential(string.Empty, PwdSecure).Password]</InArgument>
+                    </Assign.Value>
+                  </Assign>
+                </Sequence>
+              </Switch>
+            </If.Else>
+          </If>
+          <If Condition="[Value is Nothing]" DisplayName="If Value is Nothing" sap:VirtualizedContainerService.HintSize="876,237" sap2010:WorkflowViewState.IdRef="If_5">
             <If.Then>
               <Throw Exception="[new SystemException(&quot;Type de l'Asset non valide&quot;)]" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Throw_1" />
             </If.Then>
@@ -290,9 +322,9 @@
               </Sequence>
             </If.Else>
           </If>
-          <If Condition="[IsPatern.Equals(&quot;1&quot;)]" DisplayName="If IsPatern" sap:VirtualizedContainerService.HintSize="497,361" sap2010:WorkflowViewState.IdRef="If_6">
+          <If Condition="[IsPatern.Equals(&quot;1&quot;)]" DisplayName="If IsPatern" sap:VirtualizedContainerService.HintSize="646,361" sap2010:WorkflowViewState.IdRef="If_6">
             <If.Then>
-              <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="434,184" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[io_Config(&quot;Core&quot;).Keys]">
+              <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each patern in Value" sap:VirtualizedContainerService.HintSize="434,184" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[io_Config(&quot;Core&quot;).Keys]">
                 <ui:ForEach.Body>
                   <ActivityAction x:TypeArguments="x:String">
                     <ActivityAction.Argument>
