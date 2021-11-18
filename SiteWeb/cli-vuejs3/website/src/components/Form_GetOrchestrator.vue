@@ -189,6 +189,32 @@ export default {
         let processes = JSON.parse(resultProcesses).value;
         folders[index].Processes = processes;
 
+        /*             QListe Transaction Item                */
+        this.tabAvancementRq = UpdateTab("Récupération des QListes",this.tabAvancementRq)
+        let rawGetQListes = JSON.stringify({
+          url:
+            "https://platform.uipath.com/" +
+            this.accountLogicalName +
+            "/" +
+            this.tenantName +
+            "/odata/QueueDefinitions",
+          methode: "GET",
+          head: [
+            "X-UIPATH-TenantName: " + this.tenantName,
+            "X-UIPATH-OrganizationUnitId: " + Id,
+            "Authorization: Bearer " + this.token,
+            "Content-Type: application/json",
+          ],
+          body: {},
+        });
+        const responseQListes = await fetch(
+          "/form1.php?rq=" + rawGetQListes,
+          requestOptions
+        );
+        const resultQListes = await responseQListes.text();
+        let qListes = JSON.parse(resultQListes).value;
+        folders[index].QListes = qListes;
+
         /*             Robots                */
         this.tabAvancementRq = UpdateTab("Récupération des Robots",this.tabAvancementRq)
         let rawGetRobots = JSON.stringify({

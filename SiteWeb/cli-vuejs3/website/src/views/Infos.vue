@@ -103,7 +103,7 @@
         récapitulatif et de lancer une procédures à la fin du robot<br />
       </p>
       <h6 class="header orange-text">
-        2.3) Structure des dossiers Modernes dans l’Orchestrateur
+        2.3) Déroulement de l'étape d'initialisation de la configuration
       </h6>
       <img src="../assets/info/Image1.png" height="500" class="center" />
 
@@ -118,19 +118,17 @@
             </div>
             <div class="col s12 m6">
               <br /><br />
-              <p>1) Phase 1 : Chargement des données primitives</p>
-              <br />
-              <p>2) Phase 2 : Construction des paternes</p>
-              <br />
               <p>
-                3) Phase 3 : Chargement de la configuration des systèmes annexes
+                Phase 1 : Chargement des données primitives
+                <br />
+                Phase 2 : Construction des paternes
+                <br />
+                Phase 3 : Chargement de la configuration des systèmes annexes
+                <br />
+                Phase 4 : Chargement de la configuration lié aux constantes et
+                l’environnement <br />
+                Phase 5 : Chargement des ressources (Assets)
               </p>
-              <br />
-              <p>
-                4) Phase 4 : Chargement de la configuration lié aux constantes
-                et l’environnement
-              </p>
-              <p>5) Phase 5 : Chargement des ressources (Assets)</p>
             </div>
           </div>
         </div>

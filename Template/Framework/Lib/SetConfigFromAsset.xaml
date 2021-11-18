@@ -6,14 +6,15 @@
     <x:Property Name="in_Type" Type="InArgument(x:String)" />
     <x:Property Name="in_OrchestratorAssetFolder" Type="InArgument(x:String)" />
     <x:Property Name="io_Config" Type="InOutArgument(scg:Dictionary(x:String, scg:Dictionary(x:String, x:Object)))" />
+    <x:Property Name="in_IsPatern" Type="InArgument(x:String)" />
   </x:Members>
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1208,2672</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1208,2659</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>SetConfigFromAsset_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
-    <scg:List x:TypeArguments="x:String" Capacity="54">
+    <scg:List x:TypeArguments="x:String" Capacity="32">
       <x:String>System.Activities</x:String>
       <x:String>System.Activities.Statements</x:String>
       <x:String>System.Activities.Expressions</x:String>
@@ -49,7 +50,7 @@
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
-    <scg:List x:TypeArguments="AssemblyReference" Capacity="50">
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="28">
       <AssemblyReference>System.Activities</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
       <AssemblyReference>mscorlib</AssemblyReference>
@@ -74,22 +75,21 @@
       <AssemblyReference>System.ValueTuple</AssemblyReference>
       <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
       <AssemblyReference>UiPath.Excel</AssemblyReference>
-      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
       <AssemblyReference>Bibliothèque_Log</AssemblyReference>
       <AssemblyReference>MongoDB.Bson</AssemblyReference>
       <AssemblyReference>MongoDB.Driver</AssemblyReference>
       <AssemblyReference>Newtonsoft.Json</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="SetConfigFromAsset" sap:VirtualizedContainerService.HintSize="731,2373" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="SetConfigFromAsset" sap:VirtualizedContainerService.HintSize="617,2594" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <sap:WorkflowViewStateService.ViewState>
       <scg:Dictionary x:TypeArguments="x:String, x:Object">
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <If Condition="[in_Rubrique IsNot Nothing AndAlso in_Rubrique.Trim.Length&gt;0 _ &#xD;&#xA;  AndAlso in_Name IsNot Nothing AndAlso in_Name.Trim.Length&gt;0 _ &#xD;&#xA;  AndAlso in_Asset IsNot Nothing AndAlso in_Asset.Trim.Length&gt;0 _ &#xD;&#xA;  AndAlso in_Type IsNot Nothing AndAlso in_Type.Trim.Length&gt;0 _ &#xD;&#xA;  AndAlso in_OrchestratorAssetFolder IsNot Nothing AndAlso in_OrchestratorAssetFolder.Trim.Length&gt;0]" sap:VirtualizedContainerService.HintSize="689,2281" sap2010:WorkflowViewState.IdRef="If_1">
+    <If Condition="[in_Rubrique IsNot Nothing AndAlso in_Rubrique.Trim.Length&gt;0 _ &#xD;&#xA;  AndAlso in_Name IsNot Nothing AndAlso in_Name.Trim.Length&gt;0 _ &#xD;&#xA;  AndAlso in_Asset IsNot Nothing AndAlso in_Asset.Trim.Length&gt;0 _ &#xD;&#xA;  AndAlso in_Type IsNot Nothing AndAlso in_Type.Trim.Length&gt;0 _ &#xD;&#xA;  AndAlso in_OrchestratorAssetFolder IsNot Nothing AndAlso in_OrchestratorAssetFolder.Trim.Length&gt;0  _&#xD;&#xA;  AndAlso in_IsPatern IsNot Nothing AndAlso in_IsPatern.Trim.Length&gt;0]" sap:VirtualizedContainerService.HintSize="575,2502" sap2010:WorkflowViewState.IdRef="If_1">
       <If.Then>
-        <Sequence DisplayName="Sequence Donnèes OK" sap:VirtualizedContainerService.HintSize="653,2100" sap2010:WorkflowViewState.IdRef="Sequence_2">
+        <Sequence DisplayName="Sequence Donnèes OK" sap:VirtualizedContainerService.HintSize="539,2321" sap2010:WorkflowViewState.IdRef="Sequence_2">
           <Sequence.Variables>
             <Variable x:TypeArguments="x:String" Name="Rubrique" />
             <Variable x:TypeArguments="x:String" Name="Name" />
@@ -101,13 +101,14 @@
             <Variable x:TypeArguments="x:String" Name="ValueString" />
             <Variable x:TypeArguments="x:String" Name="Login" />
             <Variable x:TypeArguments="x:String" Name="PwdString" />
+            <Variable x:TypeArguments="x:String" Name="IsPatern" />
           </Sequence.Variables>
           <sap:WorkflowViewStateService.ViewState>
             <scg:Dictionary x:TypeArguments="x:String, x:Object">
               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
             </scg:Dictionary>
           </sap:WorkflowViewStateService.ViewState>
-          <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="611,224" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
+          <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="497,255" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
             <ui:MultipleAssign.AssignOperations>
               <scg:List x:TypeArguments="ui:AssignOperation" Capacity="8">
                 <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_1">
@@ -150,10 +151,18 @@
                     <InArgument x:TypeArguments="x:String">[in_OrchestratorAssetFolder.Trim]</InArgument>
                   </ui:AssignOperation.Value>
                 </ui:AssignOperation>
+                <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_6">
+                  <ui:AssignOperation.To>
+                    <OutArgument x:TypeArguments="x:String">[IsPatern]</OutArgument>
+                  </ui:AssignOperation.To>
+                  <ui:AssignOperation.Value>
+                    <InArgument x:TypeArguments="x:String">[IsPatern.Trim]</InArgument>
+                  </ui:AssignOperation.Value>
+                </ui:AssignOperation>
               </scg:List>
             </ui:MultipleAssign.AssignOperations>
           </ui:MultipleAssign>
-          <If Condition="[not io_Config.ContainsKey(Rubrique)]" sap:VirtualizedContainerService.HintSize="611,237" sap2010:WorkflowViewState.IdRef="If_2">
+          <If Condition="[not io_Config.ContainsKey(Rubrique)]" sap:VirtualizedContainerService.HintSize="497,237" sap2010:WorkflowViewState.IdRef="If_2">
             <If.Then>
               <Assign DisplayName="Add Config key/value pair" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_1">
                 <Assign.To>
@@ -174,7 +183,7 @@
               </Sequence>
             </If.Else>
           </If>
-          <Assign sap:VirtualizedContainerService.HintSize="611,60" sap2010:WorkflowViewState.IdRef="Assign_2">
+          <Assign sap:VirtualizedContainerService.HintSize="497,60" sap2010:WorkflowViewState.IdRef="Assign_2">
             <Assign.To>
               <OutArgument x:TypeArguments="x:Object">[Value]</OutArgument>
             </Assign.To>
@@ -182,7 +191,7 @@
               <InArgument x:TypeArguments="x:Object">[Nothing]</InArgument>
             </Assign.Value>
           </Assign>
-          <Switch x:TypeArguments="x:String" DisplayName="Switch" Expression="[TypeOfAseet]" sap:VirtualizedContainerService.HintSize="611,387" sap2010:WorkflowViewState.IdRef="Switch`1_1">
+          <Switch x:TypeArguments="x:String" DisplayName="Switch" Expression="[TypeOfAseet]" sap:VirtualizedContainerService.HintSize="497,409" sap2010:WorkflowViewState.IdRef="Switch`1_1">
             <ui:GetRobotAsset TimeoutMS="{x:Null}" x:Key="Texte" AssetName="[Asset]" FolderPath="[OrchestratorAssetFolder]" sap:VirtualizedContainerService.HintSize="444,137" sap2010:WorkflowViewState.IdRef="GetRobotAsset_1">
               <ui:GetRobotAsset.Value>
                 <OutArgument x:TypeArguments="x:Object">[Value]</OutArgument>
@@ -234,21 +243,13 @@
                 </Assign.Value>
               </Assign>
             </Sequence>
-            <Sequence x:Key="Identifiant" DisplayName="Sequence Get Asset Idendifiant" sap:VirtualizedContainerService.HintSize="326,371" sap2010:WorkflowViewState.IdRef="Sequence_8">
+            <Sequence x:Key="Login" DisplayName="Sequence Get Asset Idendifiant" sap:VirtualizedContainerService.HintSize="326,271" sap2010:WorkflowViewState.IdRef="Sequence_8">
               <sap:WorkflowViewStateService.ViewState>
                 <scg:Dictionary x:TypeArguments="x:String, x:Object">
                   <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 </scg:Dictionary>
               </sap:WorkflowViewStateService.ViewState>
               <ui:GetRobotCredential TimeoutMS="{x:Null}" AssetName="[Asset]" DisplayName="Get Credential" FolderPath="[OrchestratorAssetFolder]" sap:VirtualizedContainerService.HintSize="284,79" sap2010:WorkflowViewState.IdRef="GetRobotCredential_1" Password="[PwdSecure]" Username="[Login]" />
-              <Assign sap:VirtualizedContainerService.HintSize="284,60" sap2010:WorkflowViewState.IdRef="Assign_6">
-                <Assign.To>
-                  <OutArgument x:TypeArguments="x:String">[PwdString]</OutArgument>
-                </Assign.To>
-                <Assign.Value>
-                  <InArgument x:TypeArguments="x:String">[new System.Net.NetworkCredential(string.Empty, PwdSecure).Password]</InArgument>
-                </Assign.Value>
-              </Assign>
               <Assign sap:VirtualizedContainerService.HintSize="284,60" sap2010:WorkflowViewState.IdRef="Assign_7">
                 <Assign.To>
                   <OutArgument x:TypeArguments="x:Object">[Value]</OutArgument>
@@ -258,8 +259,24 @@
                 </Assign.Value>
               </Assign>
             </Sequence>
+            <Sequence x:Key="Pwd" DisplayName="Sequence Get Asset Idendifiant" sap:VirtualizedContainerService.HintSize="326,271" sap2010:WorkflowViewState.IdRef="Sequence_13">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <ui:GetRobotCredential TimeoutMS="{x:Null}" AssetName="[Asset]" DisplayName="Get Credential" FolderPath="[OrchestratorAssetFolder]" sap:VirtualizedContainerService.HintSize="284,79" sap2010:WorkflowViewState.IdRef="GetRobotCredential_2" Password="[PwdSecure]" Username="[Login]" />
+              <Assign sap:VirtualizedContainerService.HintSize="284,60" sap2010:WorkflowViewState.IdRef="Assign_12">
+                <Assign.To>
+                  <OutArgument x:TypeArguments="x:Object">[Value]</OutArgument>
+                </Assign.To>
+                <Assign.Value>
+                  <InArgument x:TypeArguments="x:Object">[new System.Net.NetworkCredential(string.Empty, PwdSecure).Password]</InArgument>
+                </Assign.Value>
+              </Assign>
+            </Sequence>
           </Switch>
-          <If Condition="[Value is Nothing]" DisplayName="If Value is Nothing" sap:VirtualizedContainerService.HintSize="611,237" sap2010:WorkflowViewState.IdRef="If_5">
+          <If Condition="[Value is Nothing]" DisplayName="If Value is Nothing" sap:VirtualizedContainerService.HintSize="497,237" sap2010:WorkflowViewState.IdRef="If_5">
             <If.Then>
               <Throw Exception="[new SystemException(&quot;Type de l'Asset non valide&quot;)]" sap:VirtualizedContainerService.HintSize="200,22" sap2010:WorkflowViewState.IdRef="Throw_1" />
             </If.Then>
@@ -273,10 +290,40 @@
               </Sequence>
             </If.Else>
           </If>
-          <If Condition="[io_Config(Rubrique).ContainsKey(Name)]" DisplayName="If Donnée écrasé" sap:VirtualizedContainerService.HintSize="611,51" sap2010:WorkflowViewState.IdRef="If_3">
+          <If Condition="[IsPatern.Equals(&quot;1&quot;)]" DisplayName="If IsPatern" sap:VirtualizedContainerService.HintSize="497,361" sap2010:WorkflowViewState.IdRef="If_6">
+            <If.Then>
+              <ui:ForEach x:TypeArguments="x:String" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="434,184" sap2010:WorkflowViewState.IdRef="ForEach`1_1" Values="[io_Config(&quot;Core&quot;).Keys]">
+                <ui:ForEach.Body>
+                  <ActivityAction x:TypeArguments="x:String">
+                    <ActivityAction.Argument>
+                      <DelegateInArgument x:TypeArguments="x:String" Name="item" />
+                    </ActivityAction.Argument>
+                    <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_13">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:Object">[Value]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:Object">[Value.ToString.Replace("{{"+item+"}}",io_Config("Core")(item).ToString)]</InArgument>
+                      </Assign.Value>
+                    </Assign>
+                  </ActivityAction>
+                </ui:ForEach.Body>
+              </ui:ForEach>
+            </If.Then>
+            <If.Else>
+              <Sequence sap:VirtualizedContainerService.HintSize="242,83" sap2010:WorkflowViewState.IdRef="Sequence_14">
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </Sequence>
+            </If.Else>
+          </If>
+          <If Condition="[io_Config(Rubrique).ContainsKey(Name)]" DisplayName="If Donnée écrasé" sap:VirtualizedContainerService.HintSize="497,268" sap2010:WorkflowViewState.IdRef="If_3">
             <sap:WorkflowViewStateService.ViewState>
               <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                 <x:Boolean x:Key="IsPinned">False</x:Boolean>
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
@@ -293,52 +340,15 @@
               </Sequence>
             </If.Else>
           </If>
-          <If Condition="[TypeOfAseet.Equals(&quot;Identifiant&quot;)]" sap:VirtualizedContainerService.HintSize="611,510" sap2010:WorkflowViewState.IdRef="If_4">
-            <If.Then>
-              <Sequence sap:VirtualizedContainerService.HintSize="304,352" sap2010:WorkflowViewState.IdRef="Sequence_9">
-                <sap:WorkflowViewStateService.ViewState>
-                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
-                    <x:Boolean x:Key="IsExpanded">True</x:Boolean>
-                  </scg:Dictionary>
-                </sap:WorkflowViewStateService.ViewState>
-                <Assign DisplayName="Add Config key/value pair" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_8">
-                  <Assign.To>
-                    <OutArgument x:TypeArguments="x:Object">[io_Config(Rubrique)(Name+"_Login")]</OutArgument>
-                  </Assign.To>
-                  <Assign.Value>
-                    <InArgument x:TypeArguments="x:Object">[Login]</InArgument>
-                  </Assign.Value>
-                </Assign>
-                <Assign DisplayName="Add Config key/value pair" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_9">
-                  <Assign.To>
-                    <OutArgument x:TypeArguments="x:Object">[io_Config(Rubrique)(Name+"_PwdSecure")]</OutArgument>
-                  </Assign.To>
-                  <Assign.Value>
-                    <InArgument x:TypeArguments="x:Object">[PwdSecure]</InArgument>
-                  </Assign.Value>
-                </Assign>
-                <Assign DisplayName="Add Config key/value pair" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_10">
-                  <Assign.To>
-                    <OutArgument x:TypeArguments="x:Object">[io_Config(Rubrique)(Name+"_PwdString")]</OutArgument>
-                  </Assign.To>
-                  <Assign.Value>
-                    <InArgument x:TypeArguments="x:Object">[PwdString]</InArgument>
-                  </Assign.Value>
-                </Assign>
-              </Sequence>
-            </If.Then>
-            <If.Else>
-              <Assign DisplayName="Add Config key/value pair" sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_11">
-                <Assign.To>
-                  <OutArgument x:TypeArguments="x:Object">[io_Config(Rubrique)(Name)]</OutArgument>
-                </Assign.To>
-                <Assign.Value>
-                  <InArgument x:TypeArguments="x:Object">[Value]</InArgument>
-                </Assign.Value>
-              </Assign>
-            </If.Else>
-          </If>
-          <b:LogG_Trace sap:VirtualizedContainerService.HintSize="611,22" sap2010:WorkflowViewState.IdRef="LogG_Trace_1" in_Config="[io_Config]" in_Description="[&quot;Config(&quot;+Rubrique+&quot;)(&quot;+Name+&quot;) = '&quot;+Value.ToString+&quot;'&quot;]" in_Niveau="Init Config" />
+          <Assign DisplayName="Add Config key/value pair" sap:VirtualizedContainerService.HintSize="497,60" sap2010:WorkflowViewState.IdRef="Assign_11">
+            <Assign.To>
+              <OutArgument x:TypeArguments="x:Object">[io_Config(Rubrique)(Name)]</OutArgument>
+            </Assign.To>
+            <Assign.Value>
+              <InArgument x:TypeArguments="x:Object">[Value]</InArgument>
+            </Assign.Value>
+          </Assign>
+          <b:LogG_Trace sap:VirtualizedContainerService.HintSize="497,22" sap2010:WorkflowViewState.IdRef="LogG_Trace_1" in_Config="[io_Config]" in_Description="[&quot;Config(&quot;+Rubrique+&quot;)(&quot;+Name+&quot;) = '&quot;+Value.ToString+&quot;'&quot;]" in_Niveau="Init Config" />
         </Sequence>
       </If.Then>
       <If.Else>
