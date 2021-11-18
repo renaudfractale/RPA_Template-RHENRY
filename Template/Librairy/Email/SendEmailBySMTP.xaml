@@ -1,4 +1,4 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="SendEmailBySMTP" this:SendEmailBySMTP.in_To="renaud.henry@gmail.com" this:SendEmailBySMTP.in_Objet="toto" this:SendEmailBySMTP.in_Body="Body" this:SendEmailBySMTP.in_Port="465" this:SendEmailBySMTP.in_Serveur="ssl0.ovh.net" this:SendEmailBySMTP.in_ListeFiles="[new List( Of String)]" this:SendEmailBySMTP.in_Credential_Login="rpa001@lesclichesderenaud.com" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:ss="clr-namespace:System.Security;assembly=mscorlib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="SendEmailBySMTP" this:SendEmailBySMTP.in_To="renaud.henry@gmail.com" this:SendEmailBySMTP.in_Objet="toto" this:SendEmailBySMTP.in_Body="Body" this:SendEmailBySMTP.in_Port="465" this:SendEmailBySMTP.in_Serveur="ssl0.ovh.net" this:SendEmailBySMTP.in_ListeFiles="[new List( Of String)]" this:SendEmailBySMTP.in_Credential_Login="rpa001@lesclichesderenaud.com" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=mscorlib" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="in_To" Type="InArgument(x:String)" />
     <x:Property Name="in_Cc" Type="InArgument(x:String)" />
@@ -8,14 +8,14 @@
     <x:Property Name="in_Serveur" Type="InArgument(x:String)" />
     <x:Property Name="in_ListeFiles" Type="InArgument(scg:List(x:String))" />
     <x:Property Name="in_Credential_Login" Type="InArgument(x:String)" />
-    <x:Property Name="in_Credential_PwdSecure" Type="InArgument(ss:SecureString)" />
     <x:Property Name="in_EmailFrom" Type="InArgument(x:String)" />
     <x:Property Name="in_NameFrom" Type="InArgument(x:String)" />
+    <x:Property Name="in_Credential_Pwd" Type="InArgument(x:String)" />
   </x:Members>
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1208,827</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1208,622</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>SendEmailBySMTP_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -86,7 +86,7 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:SendMail Bcc="{x:Null}" MailMessage="{x:Null}" Password="{x:Null}" ReplyTo="{x:Null}" TimeoutMS="{x:Null}" AttachmentsCollection="[in_ListeFiles]" Body="[in_Body]" Cc="[in_Cc]" DisplayName="Send SMTP Mail Message" Email="[in_Credential_Login]" EnableSSL="True" From="[in_EmailFrom]" sap:VirtualizedContainerService.HintSize="334,148" sap2010:WorkflowViewState.IdRef="SendMail_1" IsBodyHtml="True" Name="[in_NameFrom]" Port="[in_Port]" SecureConnection="Auto" SecurePassword="[in_Credential_PwdSecure]" Server="[in_Serveur]" Subject="[in_Objet]" To="[in_To]">
+    <ui:SendMail Bcc="{x:Null}" MailMessage="{x:Null}" ReplyTo="{x:Null}" SecurePassword="{x:Null}" TimeoutMS="{x:Null}" AttachmentsCollection="[in_ListeFiles]" Body="[in_Body]" Cc="[in_Cc]" DisplayName="Send SMTP Mail Message" Email="[in_Credential_Login]" EnableSSL="True" From="[in_EmailFrom]" sap:VirtualizedContainerService.HintSize="334,148" sap2010:WorkflowViewState.IdRef="SendMail_1" IsBodyHtml="True" Name="[in_NameFrom]" Password="[in_Credential_Pwd]" Port="[in_Port]" SecureConnection="Auto" Server="[in_Serveur]" Subject="[in_Objet]" To="[in_To]">
       <ui:SendMail.Files>
         <scg:List x:TypeArguments="InArgument(x:String)" Capacity="0" />
       </ui:SendMail.Files>
