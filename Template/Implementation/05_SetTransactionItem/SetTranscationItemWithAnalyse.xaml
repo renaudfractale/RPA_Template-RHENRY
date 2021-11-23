@@ -7,7 +7,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1208,622</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1208,586</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>SetTranscationItemWithAnalyse_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -74,17 +74,11 @@
         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
       </scg:Dictionary>
     </sap:WorkflowViewStateService.ViewState>
-    <ui:SetTransactionStatus ContinueOnError="{x:Null}" Reason="{x:Null}" ServiceBaseAddress="{x:Null}" TimeoutMS="{x:Null}" DisplayName="Set transaction status (Successful)" ErrorType="Application" FolderPath="[in_Config(&quot;OrchestratorQueueFolder&quot;).ToString]" sap:VirtualizedContainerService.HintSize="284,79" sap2010:WorkflowViewState.IdRef="SetTransactionStatus_1" Status="Successful" TransactionItem="[in_TransactionItem]">
+    <ui:SetTransactionStatus ContinueOnError="{x:Null}" Reason="{x:Null}" ServiceBaseAddress="{x:Null}" TimeoutMS="{x:Null}" DisplayName="Set transaction status (Successful)" ErrorType="Application" FolderPath="[in_Config(&quot;Template&quot;)(&quot;Folder&quot;).ToString]" sap:VirtualizedContainerService.HintSize="284,79" sap2010:WorkflowViewState.IdRef="SetTransactionStatus_1" Status="Successful" TransactionItem="[in_TransactionItem]">
       <ui:SetTransactionStatus.Analytics>
-        <InArgument x:TypeArguments="x:String" x:Key="Satrt">
-          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_DicoAnalyse(&quot;Start&quot;)" />
-        </InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="End">
-          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_DicoAnalyse(&quot;End&quot;)" />
-        </InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="DurationInSecondes">
-          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_DicoAnalyse(&quot;Duration&quot;)" />
-        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="Satrt">[in_DicoAnalyse("Start")]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="End">[in_DicoAnalyse("End")]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="DurationInSecondes">[in_DicoAnalyse("Duration")]</InArgument>
       </ui:SetTransactionStatus.Analytics>
       <ui:SetTransactionStatus.Output>
         <scg:Dictionary x:TypeArguments="x:String, InArgument" />

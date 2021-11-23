@@ -8,7 +8,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1208,1033</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>898,1153</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>GetTransactionData_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <sco:Collection x:TypeArguments="x:String">
@@ -89,7 +89,7 @@
     </sap:WorkflowViewStateService.ViewState>
     <b:LogG_Info sap:VirtualizedContainerService.HintSize="480,22" sap2010:WorkflowViewState.IdRef="LogG_Info_1" in_Config="[in_Config]" in_Description="Get the transaction item" in_Niveau="Get Data" />
     <ui:LogMessage DisplayName="Log Message Get Transaction Item" sap:VirtualizedContainerService.HintSize="480,91" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[&quot;Get the transaction item&quot;]" />
-    <ui:RetryScope DisplayName="Retry Get transaction item" sap:VirtualizedContainerService.HintSize="480,461" sap2010:WorkflowViewState.IdRef="RetryScope_2" NumberOfRetries="[Cint(in_Config(&quot;TryErrors&quot;)(&quot;RetryNumberGetTransactionItem&quot;))]">
+    <ui:RetryScope DisplayName="Retry Get transaction item" sap:VirtualizedContainerService.HintSize="480,461" sap2010:WorkflowViewState.IdRef="RetryScope_2" NumberOfRetries="[Cint(in_Config(&quot;Transaction&quot;)(&quot;RetryNumberGetTransactionItem&quot;))]">
       <ui:RetryScope.ActivityBody>
         <ActivityAction>
           <TryCatch DisplayName="Try Catch Get transaction item" sap:VirtualizedContainerService.HintSize="438,287" sap2010:WorkflowViewState.IdRef="TryCatch_2">
