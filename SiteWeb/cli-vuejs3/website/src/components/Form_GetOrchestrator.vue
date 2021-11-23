@@ -1,4 +1,9 @@
 <template>
+  <div style="margin: 50px;">
+<h1 class="header center orange-text"> {{ message[currentLocale].form.backup.title }}</h1>
+      <div class="row center">
+        <h5 class="header col s12 light">{{ message[currentLocale].form.backup.explication }}</h5>
+      </div>
   <div class="row">
     <div class="input-field col s6">
       <input placeholder="" v-model="accountLogicalName" type="text" />
@@ -46,6 +51,7 @@
       </button>
       <p v-for="(line, index) in tabAvancementRq" :key="index">{{ line }}</p>
     </div>
+  </div>
   </div>
 </template>
 
@@ -375,6 +381,10 @@ export default {
       }
     }
   },
+  props: {
+    message: Object,
+    currentLocale : String
+  }
 
 };
 </script>

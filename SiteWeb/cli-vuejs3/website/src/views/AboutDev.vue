@@ -2,9 +2,9 @@
   <div class="section no-pad-bot" id="index-banner">
     <div class="container">
       <br><br>
-      <h1 class="header center orange-text">About Dev</h1>
+      <h1 class="header center orange-text">{{ message[currentLocale].menus.aboutdev }}</h1>
       <div class="row center">
-        <h5 class="header col s12 light">RPA Uipath developer by profession, I am passionate about process automation. I created this website to share my passion and my work. In particular the Robotic Enterprise Framework Customed.</h5>
+        <h5 class="header col s12 light">{{ message[currentLocale].aboutdev.txt }}</h5>
       </div>
        </div>
   </div>
@@ -32,6 +32,10 @@
 <script>
 export default {
   name: 'AboutDev',
+  props: {
+    message: Object,
+    currentLocale : String
+  }
 }
 </script>
 

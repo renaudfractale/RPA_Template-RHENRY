@@ -1,5 +1,5 @@
 <template>
-   <formgetorchestrator></formgetorchestrator>
+   <formgetorchestrator :message="message" :currentLocale="currentLocale"></formgetorchestrator>
   
 </template>
 
@@ -9,10 +9,11 @@ export default {
   name: 'Form',
   components : {
     formgetorchestrator: Form_GetOrchestrator
-    }/*
+    },
   props: {
-    msg: String
-  }*/
+    message: Object,
+    currentLocale : String
+  }
 }
 </script>
 
