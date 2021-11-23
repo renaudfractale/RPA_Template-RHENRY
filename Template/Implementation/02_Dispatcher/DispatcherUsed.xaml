@@ -1,10 +1,9 @@
-<Activity mc:Ignorable="sap sap2010" x:Class="DispatcherUsed" this:DispatcherUsed.in_RAZ="True" this:DispatcherUsed.in_QueueName="test" this:DispatcherUsed.in_QueuePath="TEST" this:DispatcherUsed.in_SiteWeb="https://github.com/renaudfractale?tab=repositories" this:DispatcherUsed.in_NbDepot="0" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:b="clr-namespace:Bibliothèque_Log;assembly=Bibliothèque_Log" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+<Activity mc:Ignorable="sap sap2010" x:Class="DispatcherUsed" this:DispatcherUsed.in_RAZ="True" this:DispatcherUsed.in_QueueName="test" this:DispatcherUsed.in_QueuePath="TEST" this:DispatcherUsed.in_SiteWeb="https://github.com/renaudfractale?tab=repositories" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:b="clr-namespace:Bibliothèque_Log;assembly=Bibliothèque_Log" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:mva="clr-namespace:Microsoft.VisualBasic.Activities;assembly=System.Activities" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=mscorlib" xmlns:sd="clr-namespace:System.Data;assembly=System.Data" xmlns:this="clr-namespace:" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   <x:Members>
     <x:Property Name="in_RAZ" Type="InArgument(x:String)" />
     <x:Property Name="in_QueueName" Type="InArgument(x:String)" />
     <x:Property Name="in_QueuePath" Type="InArgument(x:String)" />
     <x:Property Name="in_SiteWeb" Type="InArgument(x:String)" />
-    <x:Property Name="in_NbDepot" Type="InArgument(x:String)" />
     <x:Property Name="in_Config" Type="InArgument(scg:Dictionary(x:String, scg:Dictionary(x:String, x:Object)))" />
     <x:Property Name="out_NoSession" Type="OutArgument(x:String)" />
   </x:Members>
@@ -80,7 +79,6 @@
       <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
       <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
       <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
-      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
   <Sequence DisplayName="DispatcherUsed" sap:VirtualizedContainerService.HintSize="509,1494" sap2010:WorkflowViewState.IdRef="Sequence_1">
@@ -171,15 +169,9 @@
     </If>
     <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke GetLastSession workflow" sap:VirtualizedContainerService.HintSize="467,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Librairy\Orchestrateur\NoDeSession\Libs\GetLastSession.xaml">
       <ui:InvokeWorkflowFile.Arguments>
-        <InArgument x:TypeArguments="x:String" x:Key="in_FolderOrchrestrator">
-          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_QueuePath" />
-        </InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_QueueName">
-          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_QueueName" />
-        </InArgument>
-        <OutArgument x:TypeArguments="x:Int32" x:Key="out_LastID">
-          <mva:VisualBasicReference x:TypeArguments="x:Int32" ExpressionText="LastId" />
-        </OutArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_FolderOrchrestrator">[in_QueuePath]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_QueueName">[in_QueueName]</InArgument>
+        <OutArgument x:TypeArguments="x:Int32" x:Key="out_LastID">[LastId]</OutArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
     <Assign sap:VirtualizedContainerService.HintSize="467,60" sap2010:WorkflowViewState.IdRef="Assign_1">
@@ -252,18 +244,10 @@
             <b:LogG_Info sap:VirtualizedContainerService.HintSize="262,22" sap2010:WorkflowViewState.IdRef="LogG_Info_1" in_Config="[in_Config]" in_Description="[&quot;Debut de l'alimentation du QueueItem : &quot;+NameReference]" in_Niveau="Dispatcher" />
             <ui:AddQueueItem ServiceBaseAddress="{x:Null}" TimeoutMS="{x:Null}" DisplayName="Add Queue Item" FolderPath="[in_QueuePath]" sap:VirtualizedContainerService.HintSize="262,22" sap2010:WorkflowViewState.IdRef="AddQueueItem_1" Priority="Normal" QueueType="[in_QueueName]" Reference="[NameReference]">
               <ui:AddQueueItem.ItemInformation>
-                <InArgument x:TypeArguments="x:String" x:Key="Nom">
-                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="CurrentRow(&quot;Titre&quot;).ToString" />
-                </InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="NoSession">
-                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="ID.ToString" />
-                </InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="DateTimeSession">
-                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="DateTimeSession" />
-                </InArgument>
-                <InArgument x:TypeArguments="x:String" x:Key="SiteWeb">
-                  <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="CurrentRow(&quot;Url&quot;).ToString" />
-                </InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="Nom">[CurrentRow("Titre").ToString]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="NoSession">[ID.ToString]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="DateTimeSession">[DateTimeSession]</InArgument>
+                <InArgument x:TypeArguments="x:String" x:Key="SiteWeb">[CurrentRow("Url").ToString]</InArgument>
               </ui:AddQueueItem.ItemInformation>
             </ui:AddQueueItem>
             <b:LogG_Info sap:VirtualizedContainerService.HintSize="262,22" sap2010:WorkflowViewState.IdRef="LogG_Info_2" in_Config="[in_Config]" in_Description="[&quot;Fin de l'alimentation du QueueItem : &quot;+NameReference]" in_Niveau="Dispatcher" />
