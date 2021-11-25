@@ -1,0 +1,415 @@
+var data={
+     "Framework/01-InitAllSettings.xaml": {
+          "args": {
+               "in": {
+                    "in_ConfigFile": "String",
+                    "in_Env": "String"
+               },
+               "out": {
+                    "out_Config": "Dictionary(String, Dictionary(String, Object))"
+               }
+          },
+          "InvokeWorkflowFile": {
+               "Framework/Lib/ReadSheetExcelSettings.xaml": 2,
+               "Framework/Lib/ReadSheetExcelAssets.xaml": 2
+          }
+     },
+     "Framework/GetTransactionData.xaml": {
+          "args": {
+               "in": {
+                    "in_TransactionNumber": "Int32",
+                    "in_Config": "Dictionary(String, Dictionary(String, Object))"
+               },
+               "out": {
+                    "out_TransactionItem": "QueueItem"
+               },
+               "inout": {
+                    "io_dt_TransactionData": "DataTable"
+               }
+          },
+          "InvokeWorkflowFile": {}
+     },
+     "Framework/Lib/GetAssetDynamique.xaml": {
+          "args": {
+               "in": {
+                    "in_NameAsset": "String",
+                    "in_TypeAsset": "String",
+                    "in_Config": "Dictionary(String, Dictionary(String, Object))"
+               },
+               "out": {
+                    "out_Value": "Object"
+               }
+          },
+          "InvokeWorkflowFile": {}
+     },
+     "Framework/Lib/ReadSheetExcelAssets.xaml": {
+          "args": {
+               "in": {
+                    "in_ConfigFile": "String",
+                    "in_SheetName": "String",
+                    "in_IsLogAdvanced": "Boolean"
+               },
+               "inout": {
+                    "io_Config": "Dictionary(String, Dictionary(String, Object))"
+               }
+          },
+          "InvokeWorkflowFile": {
+               "Framework/Lib/SetConfigFromAsset.xaml": 1
+          }
+     },
+     "Framework/Lib/ReadSheetExcelSettings.xaml": {
+          "args": {
+               "in": {
+                    "in_SheetName": "String",
+                    "in_ConfigFile": "String",
+                    "in_IsLogAdvanced": "Boolean"
+               },
+               "inout": {
+                    "io_Config": "Dictionary(String, Dictionary(String, Object))"
+               }
+          },
+          "InvokeWorkflowFile": {
+               "Framework/Lib/SetConfigFromExcel.xaml": 1
+          }
+     },
+     "Framework/Lib/SetConfigFromAsset.xaml": {
+          "args": {
+               "in": {
+                    "in_Name": "String",
+                    "in_Rubrique": "String",
+                    "in_Asset": "String",
+                    "in_Type": "String",
+                    "in_OrchestratorAssetFolder": "String",
+                    "in_IsPatern": "String"
+               },
+               "inout": {
+                    "io_Config": "Dictionary(String, Dictionary(String, Object))"
+               }
+          },
+          "InvokeWorkflowFile": {
+               "Framework/Lib/GetAssetDynamique.xaml": 1
+          }
+     },
+     "Framework/Lib/SetConfigFromExcel.xaml": {
+          "args": {
+               "in": {
+                    "in_Rubrique": "String",
+                    "in_Name": "String",
+                    "in_Value": "String",
+                    "in_IsPaterne": "String",
+                    "in_IsLogAdvanced": "Boolean"
+               },
+               "inout": {
+                    "io_Config": "Dictionary(String, Dictionary(String, Object))"
+               }
+          },
+          "InvokeWorkflowFile": {}
+     },
+     "Framework/ReacapAll.xaml": {
+          "args": {
+               "in": {
+                    "in_NoSessions": "String",
+                    "in_Config": "Dictionary(String, Dictionary(String, Object))"
+               }
+          },
+          "InvokeWorkflowFile": {
+               "Librairy/Orchestrateur/NoDeSession/Libs/GetInfoOfSession.xaml": 1,
+               "Librairy/Email/SendEmailBySMTP.xaml": 1
+          }
+     },
+     "Framework/RetryCurrentTransaction.xaml": {
+          "args": {
+               "in": {
+                    "in_Config": "Dictionary(String, Dictionary(String, Object))",
+                    "in_SystemException": "Exception",
+                    "in_QueueRetry": "Boolean"
+               },
+               "inout": {
+                    "io_RetryNumber": "Int32",
+                    "io_TransactionNumber": "Int32"
+               }
+          },
+          "InvokeWorkflowFile": {}
+     },
+     "Framework/SetTransactionStatus.xaml": {
+          "args": {
+               "in": {
+                    "in_BusinessException": "BusinessRuleException",
+                    "in_TransactionField1": "String",
+                    "in_TransactionField2": "String",
+                    "in_TransactionID": "String",
+                    "in_SystemException": "Exception",
+                    "in_Config": "Dictionary(String, Dictionary(String, Object))",
+                    "in_TransactionItem": "QueueItem",
+                    "in_DicoAnalyse": "Dictionary(String, String)",
+                    "in_DicoOutput": "Dictionary(String, String)"
+               },
+               "inout": {
+                    "io_RetryNumber": "Int32",
+                    "io_TransactionNumber": "Int32",
+                    "io_ConsecutiveSystemExceptions": "Int32"
+               }
+          },
+          "InvokeWorkflowFile": {
+               "Implementation/05_SetTransactionItem/SetTranscationItemWithAnalyse.xaml": 1,
+               "Framework/TakeScreenshot.xaml": 1,
+               "Framework/RetryCurrentTransaction.xaml": 1,
+               "Implementation/00-Framework/CloseAllApplications.xaml": 1,
+               "Implementation/00-Framework/KillAllProcesses.xaml": 1
+          }
+     },
+     "Framework/TakeScreenshot.xaml": {
+          "args": {
+               "in": {
+                    "in_Folder": "String"
+               },
+               "out": {
+                    "io_FilePath": "String"
+               }
+          },
+          "InvokeWorkflowFile": {}
+     },
+     "Implementation/00-Framework/CloseAllApplications.xaml": {
+          "args": {
+               "in": {
+                    "in_Config": "Dictionary(String, Dictionary(String, Object))"
+               }
+          },
+          "InvokeWorkflowFile": {}
+     },
+     "Implementation/00-Framework/KillAllProcesses.xaml": {
+          "args": {
+               "in": {
+                    "in_Config": "Dictionary(String, Dictionary(String, Object))"
+               }
+          },
+          "InvokeWorkflowFile": {}
+     },
+     "Implementation/01_RunStart/RunStart.xaml": {
+          "args": {
+               "in": {
+                    "in_Config": "Dictionary(String, Dictionary(String, Object))"
+               }
+          },
+          "InvokeWorkflowFile": {}
+     },
+     "Implementation/02_Dispatcher/DispatcherRoot.xaml": {
+          "args": {
+               "in": {
+                    "in_Config": "Dictionary(String, Dictionary(String, Object))",
+                    "out_NoSession": "String"
+               }
+          },
+          "InvokeWorkflowFile": {
+               "Implementation/02_Dispatcher/DispatcherUsed.xaml": 1
+          }
+     },
+     "Implementation/02_Dispatcher/DispatcherUsed.xaml": {
+          "args": {
+               "in": {
+                    "in_RAZ": "String",
+                    "in_QueueName": "String",
+                    "in_QueuePath": "String",
+                    "in_SiteWeb": "String",
+                    "in_Config": "Dictionary(String, Dictionary(String, Object))"
+               },
+               "out": {
+                    "out_NoSession": "String"
+               }
+          },
+          "InvokeWorkflowFile": {
+               "Librairy/Orchestrateur/NoDeSession/Libs/GetLastSession.xaml": 1
+          }
+     },
+     "Implementation/03_InitApps/InitAllApplications.xaml": {
+          "args": {
+               "in": {
+                    "in_Config": "Dictionary(String, Dictionary(String, Object))"
+               }
+          },
+          "InvokeWorkflowFile": {}
+     },
+     "Implementation/04_Process/Process.xaml": {
+          "args": {
+               "in": {
+                    "in_TransactionItem": "QueueItem",
+                    "in_Config": "Dictionary(String, Dictionary(String, Object))"
+               },
+               "out": {
+                    "out_DicoAnalyse": "Dictionary(String, String)",
+                    "out_DicoOutput": "Dictionary(String, String)"
+               }
+          },
+          "InvokeWorkflowFile": {
+               "Implementation/04_Process/Workflow_Main.xaml": 1,
+               "Librairy/Errors/SendEmailError.xaml": 2
+          }
+     },
+     "Implementation/04_Process/Workflow_Main.xaml": {
+          "args": {
+               "in": {
+                    "in_Nom": "String",
+                    "in_SiteWeb": "String",
+                    "in_Config": "Dictionary(String, Dictionary(String, Object))",
+                    "in_FolderWotking": "String"
+               },
+               "inout": {
+                    "io_DicoAnalyse": "Dictionary(String, String)"
+               }
+          },
+          "InvokeWorkflowFile": {
+               "Implementation/00-Framework/CloseAllApplications.xaml": 1,
+               "Implementation/00-Framework/KillAllProcesses.xaml": 1
+          }
+     },
+     "Implementation/05_SetTransactionItem/SetTranscationItemWithAnalyse.xaml": {
+          "args": {
+               "in": {
+                    "in_Config": "Dictionary(String, Dictionary(String, Object))",
+                    "in_TransactionItem": "QueueItem",
+                    "in_DicoAnalyse": "Dictionary(String, String)"
+               }
+          },
+          "InvokeWorkflowFile": {}
+     },
+     "Implementation/06_RunEnd/RunEnd.xaml": {
+          "args": {
+               "in": {
+                    "in_Config": "Dictionary(String, Dictionary(String, Object))"
+               }
+          },
+          "InvokeWorkflowFile": {}
+     },
+     "Librairy/Email/SendEmailBySMTP.xaml": {
+          "args": {
+               "in": {
+                    "in_To": "String",
+                    "in_Cc": "String",
+                    "in_Objet": "String",
+                    "in_Body": "String",
+                    "in_Port": "Int32",
+                    "in_Serveur": "String",
+                    "in_ListeFiles": "List(String)",
+                    "in_Credential_Login": "String",
+                    "in_EmailFrom": "String",
+                    "in_NameFrom": "String",
+                    "in_Credential_Pwd": "String"
+               }
+          },
+          "InvokeWorkflowFile": {}
+     },
+     "Librairy/Errors/Monkey.xaml": {
+          "args": {
+               "in": {
+                    "in_Config": "Dictionary(String, Dictionary(String, Object))",
+                    "in_StringChance": "String",
+                    "in_Actived": "String",
+                    "in_Exception": "Exception"
+               },
+               "out": {
+                    "out_WithErrors": "Boolean"
+               }
+          },
+          "InvokeWorkflowFile": {}
+     },
+     "Librairy/Errors/SendEmailError.xaml": {
+          "args": {
+               "in": {
+                    "in_Config": "Dictionary(String, Dictionary(String, Object))",
+                    "in_SystemeException": "Exception",
+                    "in_BusinessException": "BusinessRuleException"
+               }
+          },
+          "InvokeWorkflowFile": {
+               "Framework/TakeScreenshot.xaml": 1,
+               "Librairy/Email/SendEmailBySMTP.xaml": 2
+          }
+     },
+     "Librairy/Orchestrateur/NoDeSession/Libs/GetInfoOfQItems.xaml": {
+          "args": {
+               "in": {
+                    "in_ClientId": "String",
+                    "in_RefreshToken": "String",
+                    "in_TenantName": "String",
+                    "in_AccountLogicalName": "String",
+                    "in_FolderOrchrestrator": "String",
+                    "in_QueueName": "String"
+               },
+               "out": {
+                    "out_JSON_ITEMS": "JObject"
+               }
+          },
+          "InvokeWorkflowFile": {}
+     },
+     "Librairy/Orchestrateur/NoDeSession/Libs/GetInfoOfSession.xaml": {
+          "args": {
+               "in": {
+                    "in_FolderOrchrestrator": "String",
+                    "in_QueueName": "String",
+                    "in_NoSession": "String",
+                    "in_FolderRecap": "String"
+               },
+               "out": {
+                    "out_PathExcel": "String",
+                    "out_DT": "DataTable",
+                    "out_Rouges": "String",
+                    "out_Verts": "String",
+                    "out_Oranges": "String"
+               }
+          },
+          "InvokeWorkflowFile": {
+               "Librairy/Orchestrateur/NoDeSession/Libs/GetInfoOfQItems.xaml": 1
+          }
+     },
+     "Librairy/Orchestrateur/NoDeSession/Libs/GetLastSession.xaml": {
+          "args": {
+               "in": {
+                    "in_FolderOrchrestrator": "String",
+                    "in_QueueName": "String"
+               },
+               "out": {
+                    "out_LastID": "Int32"
+               }
+          },
+          "InvokeWorkflowFile": {
+               "Librairy/Orchestrateur/NoDeSession/Libs/GetInfoOfQItems.xaml": 1
+          }
+     },
+     "Main_REFC.xaml": {
+          "args": {
+               "in": {
+                    "in_Env": "String"
+               }
+          },
+          "InvokeWorkflowFile": {
+               "Framework/GetTransactionData.xaml": 1,
+               "Librairy/Errors/SendEmailError.xaml": 4,
+               "Implementation/04_Process/Process.xaml": 1,
+               "Framework/SetTransactionStatus.xaml": 3,
+               "Implementation/00-Framework/CloseAllApplications.xaml": 2,
+               "Implementation/00-Framework/KillAllProcesses.xaml": 2,
+               "Implementation/03_InitApps/InitAllApplications.xaml": 1,
+               "Implementation/06_RunEnd/RunEnd.xaml": 1,
+               "Framework/ReacapAll.xaml": 1,
+               "Framework/01-InitAllSettings.xaml": 1,
+               "Implementation/01_RunStart/RunStart.xaml": 1,
+               "Implementation/02_Dispatcher/DispatcherRoot.xaml": 1
+          }
+     },
+     "Tests/Séquence-Etape1.xaml": {
+          "args": {
+               "out": {
+                    "Config": "Dictionary(String, Dictionary(String, Object))"
+               }
+          },
+          "InvokeWorkflowFile": {
+               "Framework/01-InitAllSettings.xaml": 1,
+               "Implementation/01_RunStart/RunStart.xaml": 1
+          }
+     },
+     "Tests/Test-EmailSMTP.xaml": {
+          "InvokeWorkflowFile": {
+               "Librairy/Email/SendEmailBySMTP.xaml": 1
+          }
+     }
+}
