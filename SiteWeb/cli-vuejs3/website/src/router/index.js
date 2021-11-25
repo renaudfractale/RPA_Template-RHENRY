@@ -4,7 +4,7 @@ import AboutSite from "../views/AboutSite.vue"
 import AboutDev from "../views/AboutDev.vue"
 import Infos from "../views/Infos.vue"
 import Form from "../views/Form.vue"
-
+import Graph from "../views/Graph.vue"
 import ErrorPageNotFound from "../views/ErrorPageNotFound.vue"
 
 
@@ -32,6 +32,10 @@ const router = createRouter({
             path : "/Infos",
             name : "Infos",
             component:Infos
+        }, {
+            path : "/Graph",
+            name : "Graph",
+            component:Graph
         },
         {
             path : '/:catchAll(.*)',
