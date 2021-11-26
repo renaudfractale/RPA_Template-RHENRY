@@ -1,5 +1,7 @@
 <template>
+<info-xaml :xamlobjet="dataOk['Framework/01-InitAllSettings.xaml']"></info-xaml>
   <div id="mynetwork"></div>
+  
 </template>
 
 <script>
@@ -7,18 +9,23 @@ import { DataSet } from "vis-data/peer";
 import "vis-network/styles/vis-network.css";
 import { Network } from "vis-network/peer";
 import dataOk from "../dataOk.json";
-
+import InfoXaml from "../components/InfoXaml.vue"  
 export default {
   mixins: [Network, dataOk, DataSet],
+  props: {
+    message: Object,
+    currentLocale : String
+  },
   name: "Graph",
   components: {
-    //
+    InfoXaml
   },
   data() {
     return {
       options: {},
       nodes: [],
       edges: [],
+      dataOk : dataOk
     };
   },
   mounted() {
