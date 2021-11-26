@@ -3,7 +3,7 @@ const { readdir } = require('fs').promises;
 const fs = require('fs');
 const convert = require('xml-js');
 
-
+/* Function recursive de recherche de fichiers  */
 async function* getFiles(dir) {
   const dirents = await readdir(dir, { withFileTypes: true });
   for (const dirent of dirents) {
@@ -15,6 +15,7 @@ async function* getFiles(dir) {
     }
   }
 }
+/* Function recursive de recherche de InvokeWorkflowFile dans un fichier XAML  */
 function* Get_InvokeWorkflowFile(el){
     if(Array.isArray(el.elements)){
        for (let index = 0; index < el.elements.length; index++) {
@@ -31,7 +32,7 @@ function* Get_InvokeWorkflowFile(el){
     }
 
 }
-
+/* Function de simplification des types  */
 function filtreArgs(txt){
     let matchs = txt.match(/[A-z,\d]+\:[A-z,\d]+/g)
     //console.log(matchs)
@@ -40,12 +41,13 @@ function filtreArgs(txt){
         while (txt.match(match)) {
             txt=txt.replace(match,typeOk) 
         }
-        
     });
     return txt
 }
+/* Function Main qui réalise le travail  */
 ;(async () => {
     let files = {}
+    /* Récupération de chemine d'accès au fichier  */
     let rootpath = resolve('../Template/')
     //console.log(rootpath)
     for await (const f of getFiles('../Template')) {
