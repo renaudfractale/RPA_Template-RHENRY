@@ -1,5 +1,5 @@
 <template>
-<info-xaml :xamlobjet="dataOk['Framework/01-InitAllSettings.xaml']"></info-xaml>
+<info-xaml ></info-xaml>
   <div id="mynetwork"></div>
   
 </template>
