@@ -13,7 +13,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1394,11924</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1394,12024</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>GetLastSession_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="38">
@@ -58,7 +58,7 @@
     </scg:List>
   </TextExpression.NamespacesForImplementation>
   <TextExpression.ReferencesForImplementation>
-    <scg:List x:TypeArguments="AssemblyReference" Capacity="33">
+    <scg:List x:TypeArguments="AssemblyReference" Capacity="66">
       <AssemblyReference>System.Activities</AssemblyReference>
       <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
       <AssemblyReference>mscorlib</AssemblyReference>
@@ -92,9 +92,10 @@
       <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
       <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
       <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
+      <AssemblyReference>System.Data.Entity</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="Sequence MAIN" sap:VirtualizedContainerService.HintSize="1404,11859" sap2010:WorkflowViewState.IdRef="Sequence_2">
+  <Sequence DisplayName="Sequence MAIN" sap:VirtualizedContainerService.HintSize="1404,11959" sap2010:WorkflowViewState.IdRef="Sequence_2">
     <Sequence.Variables>
       <Variable x:TypeArguments="njl:JObject" Name="JSON_ITEMS" />
       <Variable x:TypeArguments="sd:DataTable" Name="DT_RecapRAW" />
@@ -199,31 +200,17 @@
     </Sequence>
     <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke GetInfoOfQItems - Uipath workflow" sap:VirtualizedContainerService.HintSize="1362,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_5" LogEntry="No" LogExit="No" UnSafe="False" WorkflowFileName="Librairy\Orchestrateur\NoDeSession\Libs\GetInfoOfQItems.xaml">
       <ui:InvokeWorkflowFile.Arguments>
-        <InArgument x:TypeArguments="x:String" x:Key="in_ClientId">
-          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="client_id" />
-        </InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_RefreshToken">
-          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="refresh_token" />
-        </InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_TenantName">
-          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="TenantName" />
-        </InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_AccountLogicalName">
-          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="AccountLogicalName" />
-        </InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_FolderOrchrestrator">
-          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_FolderOrchrestrator" />
-        </InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_QueueName">
-          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_QueueName" />
-        </InArgument>
-        <OutArgument x:TypeArguments="njl:JObject" x:Key="out_JSON_ITEMS">
-          <mva:VisualBasicReference x:TypeArguments="njl:JObject" ExpressionText="JSON_ITEMS" />
-        </OutArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_ClientId">[client_id]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_RefreshToken">[refresh_token]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_TenantName">[TenantName]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_AccountLogicalName">[AccountLogicalName]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_FolderOrchrestrator">[in_FolderOrchrestrator]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_QueueName">[in_QueueName]</InArgument>
+        <OutArgument x:TypeArguments="njl:JObject" x:Key="out_JSON_ITEMS">[JSON_ITEMS]</OutArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
     <ui:BuildDataTable DataTable="[DT_RecapRAW]" DisplayName="Build Data Table" sap:VirtualizedContainerService.HintSize="1362,59" sap2010:WorkflowViewState.IdRef="BuildDataTable_1" TableInfo="&lt;NewDataSet&gt;&#xA;  &lt;xs:schema id=&quot;NewDataSet&quot; xmlns=&quot;&quot; xmlns:xs=&quot;http://www.w3.org/2001/XMLSchema&quot; xmlns:msdata=&quot;urn:schemas-microsoft-com:xml-msdata&quot;&gt;&#xA;    &lt;xs:element name=&quot;NewDataSet&quot; msdata:IsDataSet=&quot;true&quot; msdata:MainDataTable=&quot;TableName&quot; msdata:UseCurrentLocale=&quot;true&quot;&gt;&#xA;      &lt;xs:complexType&gt;&#xA;        &lt;xs:choice minOccurs=&quot;0&quot; maxOccurs=&quot;unbounded&quot;&gt;&#xA;          &lt;xs:element name=&quot;TableName&quot;&gt;&#xA;            &lt;xs:complexType&gt;&#xA;              &lt;xs:sequence&gt;&#xA;                &lt;xs:element name=&quot;Input&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Output&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Analyse&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Reference&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Status&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;                &lt;xs:element name=&quot;Exception&quot; msdata:Caption=&quot;&quot; type=&quot;xs:string&quot; minOccurs=&quot;0&quot; /&gt;&#xA;              &lt;/xs:sequence&gt;&#xA;            &lt;/xs:complexType&gt;&#xA;          &lt;/xs:element&gt;&#xA;        &lt;/xs:choice&gt;&#xA;      &lt;/xs:complexType&gt;&#xA;    &lt;/xs:element&gt;&#xA;  &lt;/xs:schema&gt;&#xA;&lt;/NewDataSet&gt;" />
-    <If Condition="[JSON_ITEMS isnot Nothing]" DisplayName="If JSON_ITEMS isnot Nothing" sap:VirtualizedContainerService.HintSize="1362,10049" sap2010:WorkflowViewState.IdRef="If_3">
+    <If Condition="[JSON_ITEMS isnot Nothing]" DisplayName="If JSON_ITEMS isnot Nothing" sap:VirtualizedContainerService.HintSize="1362,10149" sap2010:WorkflowViewState.IdRef="If_3">
       <sap:WorkflowViewStateService.ViewState>
         <scg:Dictionary x:TypeArguments="x:String, x:Object">
           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
@@ -231,7 +218,7 @@
         </scg:Dictionary>
       </sap:WorkflowViewStateService.ViewState>
       <If.Then>
-        <Sequence DisplayName="Sequence JSON_ITEMS isnot Nothing" sap:VirtualizedContainerService.HintSize="1326,9872" sap2010:WorkflowViewState.IdRef="Sequence_4">
+        <Sequence DisplayName="Sequence JSON_ITEMS isnot Nothing" sap:VirtualizedContainerService.HintSize="1326,9972" sap2010:WorkflowViewState.IdRef="Sequence_4">
           <Sequence.Variables>
             <Variable x:TypeArguments="x:Int32" Name="index" />
             <Variable x:TypeArguments="scg:Dictionary(x:String, scg:Dictionary(x:String, x:Object))" Name="ColumsIndex" />
@@ -570,13 +557,13 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
           </ui:ForEach>
-          <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="[indexMaster]" DataTable="[DT_RecapRAW]" DisplayName=" (Working in progresse)" sap:VirtualizedContainerService.HintSize="1284,1976.66666666667" sap2010:WorkflowViewState.IdRef="ForEachRow_2">
+          <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="[indexMaster]" DataTable="[DT_RecapRAW]" DisplayName=" (Working in progresse)" sap:VirtualizedContainerService.HintSize="1284,2089" sap2010:WorkflowViewState.IdRef="ForEachRow_2">
             <ui:ForEachRow.Body>
               <ActivityAction x:TypeArguments="sd:DataRow">
                 <ActivityAction.Argument>
                   <DelegateInArgument x:TypeArguments="sd:DataRow" Name="row" />
                 </ActivityAction.Argument>
-                <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="1250,1854" sap2010:WorkflowViewState.IdRef="Sequence_13">
+                <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="1247,1969" sap2010:WorkflowViewState.IdRef="Sequence_13">
                   <Sequence.Variables>
                     <Variable x:TypeArguments="x:Int32" Name="indexSub" />
                   </Sequence.Variables>
@@ -585,14 +572,14 @@
                       <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                     </scg:Dictionary>
                   </sap:WorkflowViewStateService.ViewState>
-                  <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{}]" DataTable="[DT_Recap]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="1208,22" sap2010:WorkflowViewState.IdRef="AddDataRow_2" />
-                  <ui:ForEach x:TypeArguments="sd:DataColumn" CurrentIndex="[indexSub]" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="1208,1700" sap2010:WorkflowViewState.IdRef="ForEach`1_8" Values="[DT_Recap.Columns]">
+                  <ui:AddDataRow DataRow="{x:Null}" ArrayRow="[{}]" DataTable="[DT_Recap]" DisplayName="Add Data Row" sap:VirtualizedContainerService.HintSize="1205,185" sap2010:WorkflowViewState.IdRef="AddDataRow_2" />
+                  <ui:ForEach x:TypeArguments="sd:DataColumn" CurrentIndex="[indexSub]" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="1205,1652" sap2010:WorkflowViewState.IdRef="ForEach`1_8" Values="[DT_Recap.Columns]">
                     <ui:ForEach.Body>
                       <ActivityAction x:TypeArguments="sd:DataColumn">
                         <ActivityAction.Argument>
                           <DelegateInArgument x:TypeArguments="sd:DataColumn" Name="colum" />
                         </ActivityAction.Argument>
-                        <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="1171.33333333333,1562.66666666667" sap2010:WorkflowViewState.IdRef="Sequence_14">
+                        <Sequence DisplayName="Body" sap:VirtualizedContainerService.HintSize="1169,1528" sap2010:WorkflowViewState.IdRef="Sequence_14">
                           <Sequence.Variables>
                             <Variable x:TypeArguments="x:String" Name="ColumnName" />
                             <Variable x:TypeArguments="x:String" Name="ColumnNameRoot" />
@@ -603,7 +590,7 @@
                               <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                             </scg:Dictionary>
                           </sap:WorkflowViewStateService.ViewState>
-                          <Assign sap:VirtualizedContainerService.HintSize="1129.33333333333,61.3333333333333" sap2010:WorkflowViewState.IdRef="Assign_33">
+                          <Assign sap:VirtualizedContainerService.HintSize="1127,60" sap2010:WorkflowViewState.IdRef="Assign_33">
                             <Assign.To>
                               <OutArgument x:TypeArguments="x:String">[ColumnName]</OutArgument>
                             </Assign.To>
@@ -611,7 +598,7 @@
                               <InArgument x:TypeArguments="x:String">[colum.ColumnName]</InArgument>
                             </Assign.Value>
                           </Assign>
-                          <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="1129.33333333333,128" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
+                          <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="1127,131" sap2010:WorkflowViewState.IdRef="MultipleAssign_1">
                             <ui:MultipleAssign.AssignOperations>
                               <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
                                 <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_1">
@@ -635,9 +622,9 @@
                               </scg:List>
                             </ui:MultipleAssign.AssignOperations>
                           </ui:MultipleAssign>
-                          <If Condition="[ColumnName.split(&quot;.&quot;c).ToList.Count &gt;1]" sap:VirtualizedContainerService.HintSize="1129.33333333333,243.333333333333" sap2010:WorkflowViewState.IdRef="If_8">
+                          <If Condition="[ColumnName.split(&quot;.&quot;c).ToList.Count &gt;1]" sap:VirtualizedContainerService.HintSize="1127,237" sap2010:WorkflowViewState.IdRef="If_8">
                             <If.Then>
-                              <Assign sap:VirtualizedContainerService.HintSize="262,61.3333333333333" sap2010:WorkflowViewState.IdRef="Assign_34">
+                              <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_34">
                                 <Assign.To>
                                   <OutArgument x:TypeArguments="x:String">[ColumnNameSub]</OutArgument>
                                 </Assign.To>
@@ -647,11 +634,11 @@
                               </Assign>
                             </If.Then>
                           </If>
-                          <If Condition="[ColumnNameSub.Length=0]" sap:VirtualizedContainerService.HintSize="1129.33333333333,918" sap2010:WorkflowViewState.IdRef="If_10">
+                          <If Condition="[ColumnNameSub.Length=0]" sap:VirtualizedContainerService.HintSize="1127,888" sap2010:WorkflowViewState.IdRef="If_10">
                             <If.Then>
-                              <If Condition="[indexSub&gt;0]" sap:VirtualizedContainerService.HintSize="484,243.333333333333" sap2010:WorkflowViewState.IdRef="If_9">
+                              <If Condition="[indexSub&gt;0]" sap:VirtualizedContainerService.HintSize="484,237" sap2010:WorkflowViewState.IdRef="If_9">
                                 <If.Then>
-                                  <Assign sap:VirtualizedContainerService.HintSize="262,61.3333333333333" sap2010:WorkflowViewState.IdRef="Assign_35">
+                                  <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_35">
                                     <Assign.To>
                                       <OutArgument x:TypeArguments="x:Object">[DT_Recap.Rows(indexMaster)(ColumnNameRoot)]</OutArgument>
                                     </Assign.To>
@@ -663,9 +650,9 @@
                               </If>
                             </If.Then>
                             <If.Else>
-                              <If Condition="[row(ColumnNameRoot).ToString.Length&gt;0]" sap:VirtualizedContainerService.HintSize="599.333333333333,756" sap2010:WorkflowViewState.IdRef="If_11">
+                              <If Condition="[row(ColumnNameRoot).ToString.Length&gt;0]" sap:VirtualizedContainerService.HintSize="598,730" sap2010:WorkflowViewState.IdRef="If_11">
                                 <If.Then>
-                                  <Sequence sap:VirtualizedContainerService.HintSize="562.666666666667,574" sap2010:WorkflowViewState.IdRef="Sequence_15">
+                                  <Sequence sap:VirtualizedContainerService.HintSize="562,553" sap2010:WorkflowViewState.IdRef="Sequence_15">
                                     <Sequence.Variables>
                                       <Variable x:TypeArguments="njl:JObject" Name="jsonTemp" />
                                     </Sequence.Variables>
@@ -674,16 +661,16 @@
                                         <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                                       </scg:Dictionary>
                                     </sap:WorkflowViewStateService.ViewState>
-                                    <ui:DeserializeJson x:TypeArguments="njl:JObject" DisplayName="Deserialize JSON" sap:VirtualizedContainerService.HintSize="520.666666666667,61.3333333333333" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_3" JsonObject="[jsonTemp]" JsonString="[row(ColumnNameRoot).ToString]" />
-                                    <ui:ForEach x:TypeArguments="njl:JProperty" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="520.666666666667,380.666666666667" sap2010:WorkflowViewState.IdRef="ForEach`1_9" Values="[jsonTemp.Properties]">
+                                    <ui:DeserializeJson x:TypeArguments="njl:JObject" DisplayName="Deserialize JSON" sap:VirtualizedContainerService.HintSize="520,60" sap2010:WorkflowViewState.IdRef="DeserializeJson`1_3" JsonObject="[jsonTemp]" JsonString="[row(ColumnNameRoot).ToString]" />
+                                    <ui:ForEach x:TypeArguments="njl:JProperty" CurrentIndex="{x:Null}" DisplayName="For Each" sap:VirtualizedContainerService.HintSize="520,361" sap2010:WorkflowViewState.IdRef="ForEach`1_9" Values="[jsonTemp.Properties]">
                                       <ui:ForEach.Body>
                                         <ActivityAction x:TypeArguments="njl:JProperty">
                                           <ActivityAction.Argument>
                                             <DelegateInArgument x:TypeArguments="njl:JProperty" Name="itemJson" />
                                           </ActivityAction.Argument>
-                                          <If Condition="[itemJson.Name = ColumnNameSub]" sap:VirtualizedContainerService.HintSize="484,243.333333333333" sap2010:WorkflowViewState.IdRef="If_12">
+                                          <If Condition="[itemJson.Name = ColumnNameSub]" sap:VirtualizedContainerService.HintSize="484,237" sap2010:WorkflowViewState.IdRef="If_12">
                                             <If.Then>
-                                              <Assign sap:VirtualizedContainerService.HintSize="262,61.3333333333333" sap2010:WorkflowViewState.IdRef="Assign_36">
+                                              <Assign sap:VirtualizedContainerService.HintSize="262,60" sap2010:WorkflowViewState.IdRef="Assign_36">
                                                 <Assign.To>
                                                   <OutArgument x:TypeArguments="x:Object">[DT_Recap.Rows(indexMaster)(ColumnName)]</OutArgument>
                                                 </Assign.To>
@@ -721,7 +708,7 @@
               </scg:Dictionary>
             </sap:WorkflowViewStateService.ViewState>
           </ui:ForEachRow>
-          <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="1284,158.666666666667" sap2010:WorkflowViewState.IdRef="MultipleAssign_2">
+          <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="1284,162" sap2010:WorkflowViewState.IdRef="MultipleAssign_2">
             <ui:MultipleAssign.AssignOperations>
               <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
                 <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_3">
@@ -751,29 +738,29 @@
               </scg:List>
             </ui:MultipleAssign.AssignOperations>
           </ui:MultipleAssign>
-          <If Condition="[ColumsIndex.ContainsKey(&quot;Analyse&quot;) AndAlso ColumsIndex(&quot;Analyse&quot;) .ContainsKey(&quot;%Reussite&quot;)]" sap:VirtualizedContainerService.HintSize="1284,1894.66666666667" sap2010:WorkflowViewState.IdRef="If_14">
+          <If Condition="[ColumsIndex.ContainsKey(&quot;Output&quot;) AndAlso ColumsIndex(&quot;Output&quot;) .ContainsKey(&quot;%Success&quot;)]" sap:VirtualizedContainerService.HintSize="1284,1880" sap2010:WorkflowViewState.IdRef="If_14">
             <If.Then>
-              <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[DT_Recap]" DisplayName="For Each Row" sap:VirtualizedContainerService.HintSize="560,1712.66666666667" sap2010:WorkflowViewState.IdRef="ForEachRow_3">
+              <ui:ForEachRow ColumnNames="{x:Null}" CurrentIndex="{x:Null}" DataTable="[DT_Recap]" DisplayName="For Each Row" sap:VirtualizedContainerService.HintSize="585,1703" sap2010:WorkflowViewState.IdRef="ForEachRow_3">
                 <ui:ForEachRow.Body>
                   <ActivityAction x:TypeArguments="sd:DataRow">
                     <ActivityAction.Argument>
                       <DelegateInArgument x:TypeArguments="sd:DataRow" Name="row" />
                     </ActivityAction.Argument>
-                    <Sequence sap:VirtualizedContainerService.HintSize="526,1590" sap2010:WorkflowViewState.IdRef="Sequence_18">
+                    <Sequence sap:VirtualizedContainerService.HintSize="551,1583" sap2010:WorkflowViewState.IdRef="Sequence_18">
                       <sap:WorkflowViewStateService.ViewState>
                         <scg:Dictionary x:TypeArguments="x:String, x:Object">
                           <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                         </scg:Dictionary>
                       </sap:WorkflowViewStateService.ViewState>
-                      <If Condition="[row(&quot;Status&quot;).ToString =&quot;Successful&quot; AndAlso row(&quot;Analyse.%Reussite&quot;).ToString =&quot;100&quot;]" sap:VirtualizedContainerService.HintSize="484,472.666666666667" sap2010:WorkflowViewState.IdRef="If_13">
+                      <If Condition="[row(&quot;Status&quot;).ToString =&quot;Successful&quot; AndAlso row(&quot;Output.%Success&quot;).ToString =&quot;100&quot;]" sap:VirtualizedContainerService.HintSize="509,469" sap2010:WorkflowViewState.IdRef="If_13">
                         <If.Then>
-                          <Sequence sap:VirtualizedContainerService.HintSize="376,290.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_19">
+                          <Sequence sap:VirtualizedContainerService.HintSize="473,292" sap2010:WorkflowViewState.IdRef="Sequence_19">
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>
-                            <Assign sap:VirtualizedContainerService.HintSize="334,61.3333333333333" sap2010:WorkflowViewState.IdRef="Assign_37">
+                            <Assign sap:VirtualizedContainerService.HintSize="431,60" sap2010:WorkflowViewState.IdRef="Assign_37">
                               <Assign.To>
                                 <OutArgument x:TypeArguments="x:Object">[row("Etat")]</OutArgument>
                               </Assign.To>
@@ -781,7 +768,7 @@
                                 <InArgument x:TypeArguments="x:Object">["vert"]</InArgument>
                               </Assign.Value>
                             </Assign>
-                            <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="334,97.3333333333333" sap2010:WorkflowViewState.IdRef="MultipleAssign_3">
+                            <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="431,100" sap2010:WorkflowViewState.IdRef="MultipleAssign_3">
                               <ui:MultipleAssign.AssignOperations>
                                 <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
                                   <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_6">
@@ -798,15 +785,15 @@
                           </Sequence>
                         </If.Then>
                       </If>
-                      <If Condition="[row(&quot;Status&quot;).ToString =&quot;Successful&quot; AndAlso row(&quot;Analyse.%Reussite&quot;).ToString &lt;&gt;&quot;100&quot;]" sap:VirtualizedContainerService.HintSize="484,472.666666666667" sap2010:WorkflowViewState.IdRef="If_15">
+                      <If Condition="[row(&quot;Status&quot;).ToString =&quot;Successful&quot; AndAlso row(&quot;Output.%Success&quot;).ToString &lt;&gt;&quot;100&quot;]" sap:VirtualizedContainerService.HintSize="509,469" sap2010:WorkflowViewState.IdRef="If_15">
                         <If.Then>
-                          <Sequence sap:VirtualizedContainerService.HintSize="376,290.666666666667" sap2010:WorkflowViewState.IdRef="Sequence_20">
+                          <Sequence sap:VirtualizedContainerService.HintSize="473,292" sap2010:WorkflowViewState.IdRef="Sequence_20">
                             <sap:WorkflowViewStateService.ViewState>
                               <scg:Dictionary x:TypeArguments="x:String, x:Object">
                                 <x:Boolean x:Key="IsExpanded">True</x:Boolean>
                               </scg:Dictionary>
                             </sap:WorkflowViewStateService.ViewState>
-                            <Assign sap:VirtualizedContainerService.HintSize="334,61.3333333333333" sap2010:WorkflowViewState.IdRef="Assign_38">
+                            <Assign sap:VirtualizedContainerService.HintSize="431,60" sap2010:WorkflowViewState.IdRef="Assign_38">
                               <Assign.To>
                                 <OutArgument x:TypeArguments="x:Object">[row("Etat")]</OutArgument>
                               </Assign.To>
@@ -814,7 +801,7 @@
                                 <InArgument x:TypeArguments="x:Object">["orange"]</InArgument>
                               </Assign.Value>
                             </Assign>
-                            <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="334,97.3333333333333" sap2010:WorkflowViewState.IdRef="MultipleAssign_4">
+                            <ui:MultipleAssign DisplayName="Multiple Assign" sap:VirtualizedContainerService.HintSize="431,100" sap2010:WorkflowViewState.IdRef="MultipleAssign_4">
                               <ui:MultipleAssign.AssignOperations>
                                 <scg:List x:TypeArguments="ui:AssignOperation" Capacity="4">
                                   <ui:AssignOperation sap2010:WorkflowViewState.IdRef="AssignOperation_9">
