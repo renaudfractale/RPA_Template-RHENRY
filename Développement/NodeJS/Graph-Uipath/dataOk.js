@@ -306,10 +306,10 @@ var data={
           },
           "Activitys": {
                "Activity": 1,
-               "Sequence": 2,
+               "Sequence": 3,
                "Sequence.Variables": 1,
                "Variable": 8,
-               "sap:WorkflowViewStateService.ViewState": 2,
+               "sap:WorkflowViewStateService.ViewState": 3,
                "b:LogG_Info": 10,
                "ui:MultipleAssign": 2,
                "ui:MultipleAssign.AssignOperations": 2,
@@ -340,7 +340,8 @@ var data={
                "umabh:HtmlContentArgument.ValueMappings": 1,
                "umabh:HtmlTextValueMapping": 7,
                "umabh:HtmlTableValueMapping": 1,
-               "AddToCollection": 1
+               "AddToCollection": 1,
+               "ui:LogMessage": 9
           }
      },
      "Framework/RetryCurrentTransaction.xaml": {
@@ -544,10 +545,11 @@ var data={
      "Implementation/02_Dispatcher/DispatcherRoot.xaml": {
           "args": {
                "in": {
-                    "in_Config": "Dictionary(String, Dictionary(String, Object))",
+                    "in_Config": "Dictionary(String, Dictionary(String, Object))"
+               },
+               "out": {
                     "out_NoSession": "String"
                },
-               "out": {},
                "inout": {}
           },
           "InvokeWorkflowFile": {
@@ -646,6 +648,7 @@ var data={
                "inout": {}
           },
           "InvokeWorkflowFile": {
+               "Librairy/Errors/Monkey.xaml": 2,
                "Implementation/04_Process/Workflow_Main.xaml": 1,
                "Librairy/Errors/SendEmailError.xaml": 2
           },
@@ -670,8 +673,8 @@ var data={
                "ui:Delete": 1,
                "TryCatch": 2,
                "TryCatch.Try": 2,
-               "ui:InvokeWorkflowFile": 3,
-               "ui:InvokeWorkflowFile.Arguments": 3,
+               "ui:InvokeWorkflowFile": 5,
+               "ui:InvokeWorkflowFile.Arguments": 5,
                "TryCatch.Catches": 2,
                "Catch": 3,
                "ActivityAction": 3,
@@ -753,7 +756,8 @@ var data={
                "in": {
                     "in_Config": "Dictionary(String, Dictionary(String, Object))",
                     "in_TransactionItem": "QueueItem",
-                    "in_DicoAnalyse": "Dictionary(String, String)"
+                    "in_DicoAnalyse": "Dictionary(String, String)",
+                    "in_DicoOutput": "Dictionary(String, String)"
                },
                "out": {},
                "inout": {}
@@ -857,14 +861,14 @@ var data={
           "Activitys": {
                "Activity": 1,
                "Sequence": 5,
-               "Sequence.Variables": 2,
-               "Variable": 4,
+               "Sequence.Variables": 3,
+               "Variable": 6,
                "sap:WorkflowViewStateService.ViewState": 5,
                "ui:InvokeWorkflowFile": 3,
                "ui:InvokeWorkflowFile.Arguments": 3,
-               "Assign": 1,
-               "Assign.To": 1,
-               "Assign.Value": 1,
+               "Assign": 3,
+               "Assign.To": 3,
+               "Assign.Value": 3,
                "AddToCollection": 1,
                "If": 2,
                "If.Then": 2,
@@ -873,7 +877,7 @@ var data={
                "umabh:HtmlContentArgument": 2,
                "umabh:HtmlContentArgument.RuntimeImages": 2,
                "umabh:HtmlContentArgument.ValueMappings": 2,
-               "umabh:HtmlTextValueMapping": 16,
+               "umabh:HtmlTextValueMapping": 17,
                "If.Else": 2
           }
      },
@@ -944,7 +948,7 @@ var data={
                "Sequence": 21,
                "Sequence.Variables": 12,
                "Variable": 38,
-               "sap:WorkflowViewStateService.ViewState": 27,
+               "sap:WorkflowViewStateService.ViewState": 28,
                "ui:LogMessage": 2,
                "ui:GetRobotCredential": 4,
                "Assign": 33,

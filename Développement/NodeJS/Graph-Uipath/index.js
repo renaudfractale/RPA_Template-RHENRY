@@ -64,7 +64,7 @@ function filtreArgs(txt) {
 ; (async () => {
     let files = {}
     /* Récupération de chemine d'accès au fichier  */
-    let rootpath = resolve('../Template/')
+    let rootpath = resolve('../../UIPATH/Template')
     /* Recherche des fichiers XAML */
     for await (const f of getFiles(rootpath)) {
         /* Si le fichier est un *.xaml */
