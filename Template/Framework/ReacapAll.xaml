@@ -6,7 +6,7 @@
   <mva:VisualBasic.Settings>
     <x:Null />
   </mva:VisualBasic.Settings>
-  <sap:VirtualizedContainerService.HintSize>1208,2754</sap:VirtualizedContainerService.HintSize>
+  <sap:VirtualizedContainerService.HintSize>1087,2860</sap:VirtualizedContainerService.HintSize>
   <sap2010:WorkflowViewState.IdRef>ReacapAll_1</sap2010:WorkflowViewState.IdRef>
   <TextExpression.NamespacesForImplementation>
     <scg:List x:TypeArguments="x:String" Capacity="60">
@@ -72,12 +72,12 @@
       <AssemblyReference>System.ValueTuple</AssemblyReference>
       <AssemblyReference>System.ComponentModel.Composition</AssemblyReference>
       <AssemblyReference>UiPath.Excel</AssemblyReference>
-      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
       <AssemblyReference>System.Data.Entity</AssemblyReference>
       <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>System.Runtime.WindowsRuntime</AssemblyReference>
     </scg:List>
   </TextExpression.ReferencesForImplementation>
-  <Sequence DisplayName="ReacapAll" sap:VirtualizedContainerService.HintSize="755,2689" sap2010:WorkflowViewState.IdRef="Sequence_1">
+  <Sequence DisplayName="ReacapAll" sap:VirtualizedContainerService.HintSize="755,2795" sap2010:WorkflowViewState.IdRef="Sequence_1">
     <Sequence.Variables>
       <Variable x:TypeArguments="x:String" Name="FolderRecap" />
       <Variable x:TypeArguments="x:String" Name="FileXLSX" />
@@ -145,33 +145,15 @@
     <b:LogG_Info sap:VirtualizedContainerService.HintSize="713,22" sap2010:WorkflowViewState.IdRef="LogG_Info_4" in_Config="[in_Config]" in_Description="Start Get Info Sessions" in_Niveau="ReacapAll" />
     <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke GetInfoOfSession workflow" sap:VirtualizedContainerService.HintSize="713,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_1" UnSafe="False" WorkflowFileName="Librairy\Orchestrateur\NoDeSession\Libs\GetInfoOfSession.xaml">
       <ui:InvokeWorkflowFile.Arguments>
-        <InArgument x:TypeArguments="x:String" x:Key="in_FolderOrchrestrator">
-          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;Template&quot;)(&quot;Folder&quot;).ToString" />
-        </InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_QueueName">
-          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;Template&quot;)(&quot;QListe&quot;).ToString" />
-        </InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_NoSession">
-          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_NoSessions" />
-        </InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_FolderRecap">
-          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="FolderRecap" />
-        </InArgument>
-        <OutArgument x:TypeArguments="x:String" x:Key="out_PathExcel">
-          <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="FileXLSX" />
-        </OutArgument>
-        <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_DT">
-          <mva:VisualBasicReference x:TypeArguments="sd:DataTable" ExpressionText="DT_Recap" />
-        </OutArgument>
-        <OutArgument x:TypeArguments="x:String" x:Key="out_Rouges">
-          <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="Rouges" />
-        </OutArgument>
-        <OutArgument x:TypeArguments="x:String" x:Key="out_Verts">
-          <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="Verts" />
-        </OutArgument>
-        <OutArgument x:TypeArguments="x:String" x:Key="out_Oranges">
-          <mva:VisualBasicReference x:TypeArguments="x:String" ExpressionText="Oranges" />
-        </OutArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_FolderOrchrestrator">[in_Config("Template")("Folder").ToString]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_QueueName">[in_Config("Template")("QListe").ToString]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_NoSession">[in_NoSessions]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_FolderRecap">[FolderRecap]</InArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="out_PathExcel">[FileXLSX]</OutArgument>
+        <OutArgument x:TypeArguments="sd:DataTable" x:Key="out_DT">[DT_Recap]</OutArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="out_Rouges">[Rouges]</OutArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="out_Verts">[Verts]</OutArgument>
+        <OutArgument x:TypeArguments="x:String" x:Key="out_Oranges">[Oranges]</OutArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
     <b:LogG_Info sap:VirtualizedContainerService.HintSize="713,22" sap2010:WorkflowViewState.IdRef="LogG_Info_5" in_Config="[in_Config]" in_Description="End Get Info Sessions" in_Niveau="ReacapAll" />
@@ -237,19 +219,58 @@
       </Assign.Value>
     </Assign>
     <AddToCollection x:TypeArguments="x:String" Collection="[ListeFilesPJs]" DisplayName="Add To Collection" sap:VirtualizedContainerService.HintSize="713,22" sap2010:WorkflowViewState.IdRef="AddToCollection`1_1" Item="[FileXLSX]" />
+    <Sequence sap:VirtualizedContainerService.HintSize="713,66" sap2010:WorkflowViewState.IdRef="Sequence_3">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">False</x:Boolean>
+          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[in_Config(&quot;Email&quot;)(&quot;DestinataireEmailRecap&quot;).ToString]" />
+      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_2" Level="Info" Message="[in_Config(&quot;Email&quot;)(&quot;CCEmailRecap&quot;).ToString]" />
+      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_3" Level="Info" Message="[in_Config(&quot;Core&quot;)(&quot;Env&quot;).ToString]" />
+      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_4" Level="Info" Message="[Cint(in_Config(&quot;Email&quot;)(&quot;Port&quot;).ToString)]" />
+      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_5" Level="Info" Message="[in_Config(&quot;Email&quot;)(&quot;ServerSMTP&quot;).ToString]" />
+      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_6" Level="Info" Message="[in_Config(&quot;Email&quot;)(&quot;Credential_Login&quot;).ToString]" />
+      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_7" Level="Info" Message="[in_Config(&quot;Email&quot;)(&quot;EmailRecap&quot;).ToString]" />
+      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_8" Level="Info" Message="[in_Config(&quot;Email&quot;)(&quot;NameRecap&quot;).ToString]" />
+      <ui:LogMessage DisplayName="Log Message" sap:VirtualizedContainerService.HintSize="334,91" sap2010:WorkflowViewState.IdRef="LogMessage_9" Level="Info" Message="[in_Config(&quot;Email&quot;)(&quot;Credential_Pwd&quot;).ToString]" />
+    </Sequence>
     <ui:InvokeWorkflowFile ArgumentsVariable="{x:Null}" ContinueOnError="{x:Null}" DisplayName="Invoke SendEmailBySMTP workflow" sap:VirtualizedContainerService.HintSize="713,112" sap2010:WorkflowViewState.IdRef="InvokeWorkflowFile_2" UnSafe="False" WorkflowFileName="Librairy\Email\SendEmailBySMTP.xaml">
       <ui:InvokeWorkflowFile.Arguments>
-        <InArgument x:TypeArguments="x:String" x:Key="in_To">[in_Config("Email")("DestinataireEmailRecap").ToString]</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_Cc">[in_Config("Email")("CCEmailRecap").ToString]</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_Objet">["SystemeException In "+in_Config("Core")("Env").ToString]</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_Body">[HTML]</InArgument>
-        <InArgument x:TypeArguments="x:Int32" x:Key="in_Port">[Cint(in_Config("Email")("Port").ToString)]</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_Serveur">[in_Config("Email")("ServeurSMTP").ToString]</InArgument>
-        <InArgument x:TypeArguments="scg:List(x:String)" x:Key="in_ListeFiles">[ListeFilesPJs]</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_Credential_Login">[in_Config("Email")("Credential_Login").ToString]</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_EmailFrom">[in_Config("Email")("EmaiRecap").ToString]</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_NameFrom">[in_Config("Email")("NameRecap").ToString]</InArgument>
-        <InArgument x:TypeArguments="x:String" x:Key="in_Credential_Pwd">[in_Config("Email")("Credential_Pwd").ToString]</InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_To">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;Email&quot;)(&quot;DestinataireEmailRecap&quot;).ToString" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Cc">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;Email&quot;)(&quot;CCEmailRecap&quot;).ToString" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Objet">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="&quot;Recap  &quot;+in_Config(&quot;Core&quot;)(&quot;Processus&quot;).ToString+&quot; &quot;+in_Config(&quot;Core&quot;)(&quot;Env&quot;).ToString" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Body">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="HTML" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:Int32" x:Key="in_Port">
+          <mva:VisualBasicValue x:TypeArguments="x:Int32" ExpressionText="Cint(in_Config(&quot;Email&quot;)(&quot;Port&quot;).ToString)" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Serveur">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;Email&quot;)(&quot;ServerSMTP&quot;).ToString" />
+        </InArgument>
+        <InArgument x:TypeArguments="scg:List(x:String)" x:Key="in_ListeFiles">
+          <mva:VisualBasicValue x:TypeArguments="scg:List(x:String)" ExpressionText="ListeFilesPJs" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Credential_Login">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;Email&quot;)(&quot;Credential_Login&quot;).ToString" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_EmailFrom">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;Email&quot;)(&quot;EmailRecap&quot;).ToString" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_NameFrom">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;Email&quot;)(&quot;NameRecap&quot;).ToString" />
+        </InArgument>
+        <InArgument x:TypeArguments="x:String" x:Key="in_Credential_Pwd">
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_Config(&quot;Email&quot;)(&quot;Credential_Pwd&quot;).ToString" />
+        </InArgument>
       </ui:InvokeWorkflowFile.Arguments>
     </ui:InvokeWorkflowFile>
     <b:LogG_Info sap:VirtualizedContainerService.HintSize="713,22" sap2010:WorkflowViewState.IdRef="LogG_Info_9" in_Config="[in_Config]" in_Description="Start Send Email" in_Niveau="RecapAll" />

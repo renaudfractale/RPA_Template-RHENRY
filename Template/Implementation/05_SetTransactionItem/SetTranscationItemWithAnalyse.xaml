@@ -3,7 +3,7 @@
     <x:Property Name="in_Config" Type="InArgument(scg:Dictionary(x:String, scg:Dictionary(x:String, x:Object)))" />
     <x:Property Name="in_TransactionItem" Type="InArgument(ui:QueueItem)" />
     <x:Property Name="in_DicoAnalyse" Type="InArgument(scg:Dictionary(x:String, x:String))" />
-    <x:Property Name="DicoOutput" Type="InArgument(scg:Dictionary(x:String, x:String))" />
+    <x:Property Name="in_DicoOutput" Type="InArgument(scg:Dictionary(x:String, x:String))" />
   </x:Members>
   <mva:VisualBasic.Settings>
     <x:Null />
@@ -83,7 +83,7 @@
       </ui:SetTransactionStatus.Analytics>
       <ui:SetTransactionStatus.Output>
         <InArgument x:TypeArguments="x:String" x:Key="%Success">
-          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="DicoOutput(&quot;%Success&quot;)" />
+          <mva:VisualBasicValue x:TypeArguments="x:String" ExpressionText="in_DicoOutput(&quot;%Success&quot;)" />
         </InArgument>
       </ui:SetTransactionStatus.Output>
     </ui:SetTransactionStatus>
