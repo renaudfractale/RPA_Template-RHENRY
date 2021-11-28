@@ -3,7 +3,7 @@
   "description": "Infrastructure d'entreprise robotique de renaud HENRY",
   "main": "Main_REFC.xaml",
   "dependencies": {
-    "Bibliothèque_Log": "[1.0.2]",
+    "Bibliothèque_Log": "[1.0.3]",
     "MongoDB.Bson": "[2.13.2]",
     "MongoDB.Driver": "[2.13.2]",
     "MongoDB.Driver.Core": "[2.13.2]",
