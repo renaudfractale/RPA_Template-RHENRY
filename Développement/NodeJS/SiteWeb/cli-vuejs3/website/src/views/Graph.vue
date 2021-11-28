@@ -6,7 +6,7 @@
 
 <script>
 import { DataSet } from "vis-data/peer";
-import "vis-network/styles/vis-network.css";
+//import "vis-network/styles/vis-network.css";
 import { Network } from "vis-network/peer";
 import dataOk from "../dataOk.json";
 import InfoXaml from "../components/InfoXaml.vue"  
