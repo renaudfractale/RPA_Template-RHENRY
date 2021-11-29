@@ -135,7 +135,19 @@ export default {
               title: "Backup Orchestrator",
               explication:
                 "This form allows you to export the Json of your orchestrator configuration.",
+              AccountLogicalName : "Account Logical Name",
+              UserKey : "User Key / Refresh Token",
+              TenantName : "TenantName",
+              ClientId :  "Client Id"
             },
+            installConfig :{
+              title : "Custom REF installer",
+              explication :  "This form allows you to create the CONFIG folder with the indispensable Assets of the customised REF",
+              AccountLogicalName : "Account Logical Name",
+              UserKey : "User Key / Refresh Token",
+              TenantName : "TenantName",
+              ClientId :  "Client Id"
+            }
           },
         },
         fr: {
@@ -171,7 +183,19 @@ export default {
               title: "Sauvegarde de votre Orchestrator",
               explication:
                 "Ce formulaire permet d’exporter le Json de la configuration de votre orchestrator.",
+              AccountLogicalName : "Nom logique du compte",
+              UserKey : "Clé d’utilisateur/ Refresh Token",
+              TenantName : "Nom de locataire",
+              ClientId :  "ID du client"
             },
+            installConfig :{
+              title : "Installateur du REF personnalisé", //Custom REF installer
+              explication :  "Ce formulaire permet de créer le dossier CONFIG avec les ressources indispensables du REF personnalisé", // This form allows you to create the CONFIG folder with the indispensable resources of the customised REF
+              AccountLogicalName : "Nom logique du compte",
+              UserKey : "Clé d’utilisateur/ Refresh Token",
+              TenantName : "Nom de locataire",
+              ClientId :  "ID du client"
+            }
           },
         },
       },

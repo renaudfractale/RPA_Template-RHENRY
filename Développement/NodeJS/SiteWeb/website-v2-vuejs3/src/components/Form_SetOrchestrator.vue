@@ -1,27 +1,27 @@
 <template>
   <div style="margin: 50px;">
-<h1 class="header center orange-text"> {{ message[currentLocale].form.backup.title }}</h1>
+<h1 class="header center orange-text"> {{ message[currentLocale].form.installConfig.title }}</h1>
       <div class="row center">
-        <h5 class="header col s12 light">{{ message[currentLocale].form.backup.explication }}</h5>
+        <h5 class="header col s12 light">{{ message[currentLocale].form.installConfig.explication }}</h5>
       </div>
   <div class="row">
     <div class="input-field col s6">
       <input placeholder="" v-model="accountLogicalName" type="text" />
-      <label for="AccountLogicalName">{{ message[currentLocale].form.backup.AccountLogicalName }}</label>
+      <label for="AccountLogicalName">{{ message[currentLocale].form.installConfig.AccountLogicalName }}</label>
     </div>
     <div class="input-field col s6">
       <input placeholder="" v-model="clientId" type="text" />
-      <label for="ClientId">{{ message[currentLocale].form.backup.ClientId }}</label>
+      <label for="ClientId">{{ message[currentLocale].form.installConfig.ClientId }}</label>
     </div>
   </div>
   <div class="row">
     <div class="input-field col s6">
       <input placeholder="" v-model="userKey" type="text" />
-      <label for="UserKey_RefreshToken">{{ message[currentLocale].form.backup.UserKey }}</label>
+      <label for="UserKey_RefreshToken">{{ message[currentLocale].form.installConfig.UserKey }}</label>
     </div>
     <div class="input-field col s6">
       <input placeholder="" v-model="tenantName" type="text" />
-      <label for="TenantName">{{ message[currentLocale].form.backup.TenantName }}</label>
+      <label for="TenantName">{{ message[currentLocale].form.installConfig.TenantName }}</label>
     </div>
   </div>
   <div class="row">
@@ -61,7 +61,7 @@
 var FileSaver = require('file-saver');
 const { DateTime } = require("luxon");
 export default {
-  name: "Form_SetOrchestrator",
+  name: "Form_GetOrchestrator",
   data() {
     return {
       token: "",
