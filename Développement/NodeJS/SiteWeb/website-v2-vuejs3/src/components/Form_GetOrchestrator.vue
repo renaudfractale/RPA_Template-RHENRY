@@ -61,7 +61,7 @@
 var FileSaver = require('file-saver');
 const { DateTime } = require("luxon");
 export default {
-  name: "Form_SetOrchestrator",
+  name: "Form_GetOrchestrator",
   data() {
     return {
       token: "",

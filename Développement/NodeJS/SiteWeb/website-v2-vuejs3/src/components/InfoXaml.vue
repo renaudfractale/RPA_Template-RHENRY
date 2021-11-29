@@ -84,7 +84,7 @@ export default {
 
   created() {
     this.xamlobjets = dataOk;
-    this.filexaml = "";
+    this.filexaml = ".";
 
     this.$nextTick(function () {});
   },

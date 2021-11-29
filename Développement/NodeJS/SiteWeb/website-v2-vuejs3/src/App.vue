@@ -135,19 +135,58 @@ export default {
               title: "Backup Orchestrator",
               explication:
                 "This form allows you to export the Json of your orchestrator configuration.",
-              AccountLogicalName : "Account Logical Name",
-              UserKey : "User Key / Refresh Token",
-              TenantName : "TenantName",
-              ClientId :  "Client Id"
+              AccountLogicalName: "Account Logical Name",
+              UserKey: "User Key / Refresh Token",
+              TenantName: "TenantName",
+              ClientId: "Client Id",
             },
-            installConfig :{
-              title : "Custom REF installer",
-              explication :  "This form allows you to create the CONFIG folder with the indispensable Assets of the customised REF",
-              AccountLogicalName : "Account Logical Name",
-              UserKey : "User Key / Refresh Token",
-              TenantName : "TenantName",
-              ClientId :  "Client Id"
-            }
+            installConfig: {
+              title: "Custom REF installer",
+              explication:
+                "This form allows you to create the CONFIG folder with the indispensable Assets of the customised REF",
+
+              Step01: "Connection to orchestrator",
+
+              AccountLogicalName: "Account Logical Name",
+              UserKey: "User Key / Refresh Token",
+              TenantName: "TenantName",
+              ClientId: "Client Id",
+
+              Step02: "Connection to Email (SMTP)",
+
+              Email_CredentialSMTP_Login: "login",
+              Email_CredentialSMTP_Pwd: "Password",
+              Email_SMTP_Serveur: "URL of server SMTP",
+              Email_SMTP_Port: "Port of server SMTP",
+
+              Step03: "Email config Base",
+
+              CCEmailError: "Copy email(s) of the error message",
+              CCEmailRecap: "Copy email(s) of the summary message",
+              DestinataireEmailError:                "Email(s) of the recipient of the error message",
+              DestinataireEmailRecap:                "Email(s) of the recipient of the summary message",
+              Email_EmailError: "Email(s) of the sender of the error message",
+              Email_EmailRecap: "Email(s) of the sender of the summary message",
+              Email_NameError: "Name of the sender of the error message",
+              Email_NameRecap: "Name of the sender of the summary message",
+
+              Step04: "NoSql config",
+
+              LogDB_NOSQL_Actif: "Use of NoSQL logs",
+              LogDB_NOSQL_Info_Txt:"Free hosting is offered by Atlas (mongodb)",
+              LogDB_NOSQL_Info_Url: "https://www.mongodb.com/pricing",
+              LogDB_NOSQL_Credential_Login: "User's name",
+              LogDB_NOSQL_Credential_Pwd: "User's password",
+              LogDB_NOSQL_URL: "Url of the database",
+
+              Step05: "Log Files config",
+
+               LogFile_Actif : "Use of logs Text external to UIPATH",
+              LogFile_Path : "Network or local log path",
+
+              Step06: "Installation",
+              
+            },
           },
         },
         fr: {
@@ -183,19 +222,61 @@ export default {
               title: "Sauvegarde de votre Orchestrator",
               explication:
                 "Ce formulaire permet d’exporter le Json de la configuration de votre orchestrator.",
-              AccountLogicalName : "Nom logique du compte",
-              UserKey : "Clé d’utilisateur/ Refresh Token",
-              TenantName : "Nom de locataire",
-              ClientId :  "ID du client"
+              AccountLogicalName: "Nom logique du compte",
+              UserKey: "Clé d’utilisateur/ Refresh Token",
+              TenantName: "Nom de locataire",
+              ClientId: "ID du client",
             },
-            installConfig :{
-              title : "Installateur du REF personnalisé", //Custom REF installer
-              explication :  "Ce formulaire permet de créer le dossier CONFIG avec les ressources indispensables du REF personnalisé", // This form allows you to create the CONFIG folder with the indispensable resources of the customised REF
-              AccountLogicalName : "Nom logique du compte",
-              UserKey : "Clé d’utilisateur/ Refresh Token",
-              TenantName : "Nom de locataire",
-              ClientId :  "ID du client"
-            }
+            installConfig: {
+              title: "Installateur du REF personnalisé", //Custom REF installer
+              explication:
+                "Ce formulaire permet de créer le dossier CONFIG avec les ressources indispensables du REF personnalisé", // This form allows you to create the CONFIG folder with the indispensable resources of the customised REF
+
+              Step01: "Connexion à orchestrateur",
+
+              AccountLogicalName: "Nom logique du compte",
+              UserKey: "Clé d’utilisateur/ Refresh Token",
+              TenantName: "Nom de locataire",
+              ClientId: "ID du client",
+
+              Step02: "Connexion au serveur Email (SMTP)",
+
+              Email_CredentialSMTP_Login: "Nom d'utilisateur",
+              Email_CredentialSMTP_Pwd: "mots de passe d'utilisateur",
+              Email_SMTP_Serveur: "URL du serveur",
+              Email_SMTP_Port: "Port du serveur",
+
+              Step03: "Email config Base",
+
+              CCEmailError: "Email(s) en copie du message d'erreur",
+              CCEmailRecap: "Email(s) en copie du message du récapitulatif",
+              DestinataireEmailError:
+                "Email(s) du destinataire du message d'erreur",
+              DestinataireEmailRecap:
+                "Email(s) du destinataire du message du récapitulatif",
+              Email_EmailError: "Email(s) de l'émetteur  du message d'erreur",
+              Email_EmailRecap:
+                "Email(s) de l'émetteur  du message du récapitulatif",
+              Email_NameError: "Nom de l'émetteur  du message d'erreur",
+              Email_NameRecap: "Nom de l'émetteur  du message du récapitulatif",
+
+              Step04: "Configuration du NoSql",
+
+              LogDB_NOSQL_Actif: "Utilisation des logs NoSQL",
+              LogDB_NOSQL_Info_Txt:
+                "Un hebergement gratuit est proposé par Atlas de mongodb",
+              LogDB_NOSQL_Info_Url: "https://www.mongodb.com/pricing",
+              LogDB_NOSQL_Credential_Login: "Nom de l'utilisateur",
+              LogDB_NOSQL_Credential_Pwd: "Mot de passe de l'utilisateur",
+              LogDB_NOSQL_URL: "Url de la base de données",
+
+              Step05: "Log Files config",
+
+              LogFile_Actif : "Utilisation des logs Texte externe à UIPATH",
+              LogFile_Path : "Chemin Réseaux ou local du log",
+
+               Step06: "Installation",
+            },
           },
         },
       },
