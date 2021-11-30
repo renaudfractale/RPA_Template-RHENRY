@@ -65,10 +65,10 @@ export default {
   data() {
     return {
       token: "",
-      accountLogicalName: "",
-      clientId: "",
-      userKey: "",
-      tenantName: "",
+      accountLogicalName: "MyCompagny",
+      clientId: "8DEv1AMNXczW3y4U15LL3jYXXXXXXX",
+      userKey: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
+      tenantName: "DefaultTenant",
       txtGetToken: "",
       txtGetTokenError: "",
       txtGetFolders: "",

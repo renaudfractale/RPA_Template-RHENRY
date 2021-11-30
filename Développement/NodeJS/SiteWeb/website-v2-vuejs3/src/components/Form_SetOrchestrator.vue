@@ -8,6 +8,11 @@
         {{ message[currentLocale].form.installConfig.explication }}
       </h5>
     </div>
+       <div class="row center" v-if="timestamp.length>0">
+      <h5 class="header col s12 light">
+      Last Installation : {{ timestamp }}
+      </h5>
+    </div>
     <div class="collection">
       <a @click="GotoStep(1)" class="collection-item center">{{
         message[currentLocale].form.installConfig.Step01
@@ -15,7 +20,11 @@
       <div v-if="NoStepCurrent == 1">
         <div class="row">
           <div class="input-field col s6">
-            <input v-model="accountLogicalName" type="text" />
+            <input
+              :placeholder="accountLogicalName"
+              v-model="accountLogicalName"
+              type="text"
+            />
             <label for="AccountLogicalName">{{
               message[currentLocale].form.installConfig.AccountLogicalName
             }}</label>
@@ -317,202 +326,675 @@
         message[currentLocale].form.installConfig.Step06
       }}</a>
       <div v-if="NoStepCurrent == 6">
+         <div class="row">
+          <div class="input-field col s12">
+            <input v-model="Template_Folder" type="text" />
+            <label for="Template_Folder">{{
+              message[currentLocale].form.installConfig.Template_Folder
+            }}</label>
+          </div>
+        </div>
         <div class="row">
+          <div class="input-field col s12">
+            <input v-model="Template_QListe" type="text" />
+            <label for="Template_QListe">{{
+              message[currentLocale].form.installConfig.Template_QListe
+            }}</label>
+          </div>
+        </div>
+        <p v-for="(txt, id) in msgError" :key="'msgError'+id">{{ txt }}</p>
+        <div class="row">
+          <div class="input-field col s6">
+            <button
+              class="btn-large waves-effect waves-light orange col s12"
+              @click="PreviousPage()"
+            >
+              Previous
+            </button>
+          </div>
+          <div class="input-field col s6">
+            <button
+              class="btn-large waves-effect waves-light orange col s12"
+              @click="CheckTemplate()"
+            >
+              Next
+            </button>
+          </div>
+        </div>
+      </div>
+
+       <a @click="GotoStep(7)" class="collection-item center">{{
+        message[currentLocale].form.installConfig.Step07
+      }}</a>
+      <div v-if="NoStepCurrent == 7">
+<h5 class="center"> List of Env in Uipath </h5>
+          <div class="row">
+            <div class="input-field col s6">
+              <input placeholder="" v-model="Env_tempName" type="text">
+              <label for="PortSMTP">{{ message[currentLocale].form.installConfig.NameEnv }} </label>
+            </div>
+            <div class="input-field col s6">
+              <input placeholder="" v-model="Env_tempDescription" type="text">
+              <label for="ServeurSMTP">{{ message[currentLocale].form.installConfig.NameDesc }}</label>
+            </div>
+          </div>
+          <button class="btn-large waves-effect waves-light orange center" @click="AddEnv"
+          v-if="Env_tempName.length != 0 && Env_tempDescription.length != 0"
+          > Add Env</button>
+          <ul class="collection">
+            <li class="collection-item" v-for="(env, index) in envs" :key="'envs-'+index"> <button
+                class="btn-large waves-effect waves-light orange center" @click="RemoveEnv(index)"> -</button> {{
+              env.name }} : {{ env.about }} </li>
+          </ul>
+<div class="row">
+          <div class="input-field col s6">
+            <button
+              class="btn-large waves-effect waves-light orange col s12"
+              @click="PreviousPage()"
+            >
+              Previous
+            </button>
+          </div>
+          <div class="input-field col s6">
+            <button
+              class="btn-large waves-effect waves-light orange col s12"
+              @click="NextPage()"
+            >
+              Next
+            </button>
+          </div>
+        </div>
+      </div>
+      <a @click="GotoStep(8)" class="collection-item center">{{
+        message[currentLocale].form.installConfig.Step08
+      }}</a>
+      <div v-if="NoStepCurrent == 8">
+        <div class="row" v-if="isNotInstall">
           <a
             class="btn-large waves-effect waves-light orange col s12"
             @click="installation"
-            >Run</a
+            >Run installation</a
           >
         </div>
       </div>
     </div>
   </div>
+!<!--  <p v-for="(txt, id) in errortxt" :key="id">{{ txt }}</p> -->
 </template>
 
 
 
 <script>
-//const { DateTime } = require("luxon");
+const { DateTime } = require("luxon");
 export default {
   name: "Form_SetOrchestrator",
   data() {
     return {
+      isNotInstall :  true,
       token: "",
-      accountLogicalName: "lesclichesderenaudcom001",
-      clientId: "8DEv1AMNXczW3y4U15LL3jYf62jK93n5",
-      userKey: "5v7uI6e8ME3BThR9QLJt2glbNo33QVpBbTasNiw12J6QJ",
+      accountLogicalName:"MyCompagny",
+      clientId:"8DEv1AMNXczW3y4U15LL3jYXXXXXXX",
+      userKey: "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx",
       tenantName: "DefaultTenant",
       txtGetToken: "",
       txtGetTokenError: "",
       txtGetFolders: "",
       txtGetFoldersError: "",
       ApiOk: false,
-      NoStepCurrent: 4,
+      NoStepCurrent: 1,
       NoStepMax: 1,
 
-      Email_CredentialSMTP_Login: "rpa001@lesclichesderenaud.com",
-      Email_CredentialSMTP_Pwd: "Vbxsc7cGuRb9bW6",
-      Email_SMTP_Serveur: "ssl0.ovh.net",
-      Email_SMTP_Port: 465,
+      Email_CredentialSMTP_Login:  "rpa@ldomaine.com",
+      Email_CredentialSMTP_Pwd:  "PasswordEmail",
+      Email_SMTP_Serveur:  "ssl0.ovh.net",
+      Email_SMTP_Port:  465,
 
-      CCEmailError: "renaud.henry@gmail.com",
-      CCEmailRecap: "renaud.henry@gmail.com",
-      DestinataireEmailError: "renaud.henry@gmail.com",
-      DestinataireEmailRecap: "renaud.henry@gmail.com",
-      Email_EmailError: "bot-error@lesclichesderenaud.com",
-      Email_EmailRecap: "bot-recap@lesclichesderenaud.com",
-      Email_NameError: "BOT ERROR",
-      Email_NameRecap: "BOT RECAP",
+      CCEmailError:  "renaud.henry@domaine.com",
+      CCEmailRecap:  "renaud.henry@domaine.com",
+      DestinataireEmailError:  "renaud.henry@domaine.com",
+      DestinataireEmailRecap:  "renaud.henry@domaine.com",
+      Email_EmailError:  "bot-error@ldomaine.com",
+      Email_EmailRecap:  "bot-recap@ldomaine.com",
+      Email_NameError:  "BOT ERROR",
+      Email_NameRecap:  "BOT RECAP",
 
       LogDB_NOSQL_Actif: true,
-      LogDB_NOSQL_Credential_Login: "User",
-      LogDB_NOSQL_Credential_Pwd: "74z7iUmQbx3HS4a",
-      LogDB_NOSQL_URL: "loguipath.qx6bj.mongodb.net",
+      LogDB_NOSQL_Credential_Login:  "UserUipath",
+      LogDB_NOSQL_Credential_Pwd:  "PasswordNoSQL",
+      LogDB_NOSQL_URL:  "loguipath.xxxxx.mongodb.net",
 
       LogFile_Actif: true,
-      LogFile_Path: "C:\\Logs",
-    };
+      LogFile_Path:  "C:\\Logs",
+
+      Template_Folder : "{{Unite}}/{{Pays}}/{{Projet}}/{{Processus}}/{{Env}}",
+      Template_QListe : "QList-{{Projet}}-{{Processus}}-{{Env}}",
+      
+      msgError : [],
+      errortxt: [],
+      timestamp: "",
+      Env_tempName : "",
+      Env_tempDescription:"",
+      envs: [
+        { name: "DEV", about: "Test Unitaire" },
+        { name: "UAT", about: "Test Integration" },
+        { name: "PROD", about: "Programme stable" },
+      ],
+          };
   },
   methods: {
-    async installation() {
-       async function GetToken() {
-          let raw = JSON.stringify({
-            url: "https://account.uipath.com/oauth/token",
-            methode: "POST",
-            head: [
-              "X-UIPATH-TenantName : " + this.tenantName,
-              "Content-Type: application/json",
-            ],
-            body: {
-              grant_type: "refresh_token",
-              client_id: this.clientId,
-              refresh_token: this.userKey,
-            },
-          });
-
-          let requestOptions = {
-            method: "get",
-            headers: {},
-            redirect: "follow",
-          };
-          //console.log("requestOptions",requestOptions)
-
-          const response = await fetch("/form1.php?rq=" + raw, requestOptions);
-          const result = await response.text();
-          try {
-            return JSON.parse(result).access_token;
-          } catch {
-            return undefined;
+    AddEnv() {
+      if (this.Env_tempName.length != 0 && this.Env_tempDescription.length != 0) {
+        let isexist = false
+        this.envs.forEach(element => {
+          if (element.name.toLowerCase() == this.Env_tempName.toLowerCase()) {
+            isexist = true;
           }
+        });
+        if (isexist == false) {
+          this.envs.push({
+            name: this.Env_tempName.toUpperCase(),
+            about: this.Env_tempDescription
+          })
         }
-
-        async function MkdirFolder(name, token) {
-          let body = {
-            DisplayName: name,
-            Description: "Folder Of Configuration",
-            ProvisionType: "Automatic",
-            PermissionModel: "FineGrained",
-            ParentId: null,
-          };
-          let raw = JSON.stringify({
-            url:
-              "https://platform.uipath.com/" +
-              this.accountLogicalName +
-              "/" +
-              this.tenantName +
-              "/odata/folders",
-            methode: "POST",
-            head: [
-              "X-UIPATH-TenantName: " + this.tenantName,
-              "Authorization: Bearer " + token,
-              "Content-Type: application/json",
-            ],
-            body: body,
-          });
-            let requestOptions2 = {
-          method: "get",
-          headers: {},
-          redirect: "follow",
-        };
-          const response2 = await fetch(
-            "/form2.php?rq=" + raw,
-            requestOptions2
-          );
-          const result2 = await response2.text();
-          try {
-            let res = JSON.parse(result2);
-             console.log(res)
-            return true;
-          } catch (error) {
-            return false;
-          }
-        }
-
-        async function CreateCredential(title,login, pwd, token) {
-          let body = {
-            Name: title,
-            ValueScope: "Global",
-            ValueType: "Credential",
-            StringValue: "",
-            CredentialUsername: login,
-            CredentialPassword: pwd,
-          };
-          let raw = JSON.stringify({
-            url:
-              "https://platform.uipath.com/" +
-              this.accountLogicalName +
-              "/" +
-              this.tenantName +
-              "/odata/Assets",
-            methode: "POST",
-            head: [
-              "X-UIPATH-TenantName: " + this.tenantName,
-              "Authorization: Bearer " + token,
-              "Content-Type: application/json",
-            ],
-            body: body,
-          });
-            let requestOptions2 = {
-          method: "get",
-          headers: {},
-          redirect: "follow",
-        };
-          const response2 = await fetch(
-            "/form2.php?rq=" + raw,
-            requestOptions2
-          );
-          const result2 = await response2.text();
-          try {
-            let res = JSON.parse(result2);
-            console.log(res)
-            return true;
-          } catch (error) {
-            return false;
-          }
-        }
-
-      this.NoStepCurrent = 1;
-      this.checkOrchestrator();
-      if (this.NoStepCurrent != 2) {
-        return
+      }
+    },
+    RemoveEnv(index) {
+      this.envs.splice(index, 1);
+    },
+    CheckTemplate(){
+      let elements = [ "{{Unite}}","{{Pays}}","{{Projet}}","{{Processus}}","{{Env}}","{{RégionDuMonde}}"]
+       let folder = this.Template_Folder
+      elements.forEach(element => {
+        folder=folder.replace(element,"")
+      });
+       let qlist = this.Template_QListe
+      elements.forEach(element => {
+        qlist=qlist.replace(element,"")
+      });
+      let msgError = []
+      if(folder.match(/\}/gi) || folder.match(/\{/gi))
+      {
+        msgError.push(" Folder => Erreur durant la simplification : '"+folder+"'")
+      }
+      if(qlist.match(/\}/gi) || qlist.match(/\{/gi))
+      {
+        msgError.push(" Qlist => Erreur durant la simplification : '"+qlist+"'")
+      }
+      if(msgError.length==0){
+        this.NextPage()
+        this.msgError= []
       } else {
-       
+        this.msgError=msgError
+      }
+    },
+    async GetToken() {
+      let raw = JSON.stringify({
+        url: "https://account.uipath.com/oauth/token",
+        methode: "POST",
 
-        let token = await GetToken();
-        if (token == undefined) return;
-        let stateFolder = await MkdirFolder("CONFIG", token);
-        if (stateFolder == false) return;
-        let stateAccountLogicalName = CreateCredential("Orchestrator_AccountLogicalName","AccountLogicalName", this.accountLogicalName,token);
-        let stateClientId = CreateCredential("Orchestrator_client_id","client_id", this.clientId,token);
-        let stateRefresh_token = CreateCredential("Orchestrator_refresh_token","refresh_token", this.refresh_token,token);
-        let stateTenantName = CreateCredential("Orchestrator_TenantName","TenantName", this.tenantName,token);
-        let stateNOSQL_Credential= CreateCredential("LogDB_NOSQL_Credential",this.LogDB_NOSQL_Credential_Login, this.LogDB_NOSQL_Credential_Pwd,token);
-        let stateSMTP_Credential= CreateCredential("Email_CredentialSMTP",this.Email_CredentialSMTP_Login, this.Email_CredentialSMTP_Pwd,token);
-        if(stateAccountLogicalName && stateClientId && stateRefresh_token && stateTenantName && stateNOSQL_Credential && stateSMTP_Credential )
-        {
-          return true
+        head: [
+          "X-UIPATH-TenantName : " + this.tenantName,
+          "Content-Type: application/json",
+        ],
+        body: {
+          grant_type: "refresh_token",
+          client_id: this.clientId,
+          refresh_token: this.userKey,
+        },
+      });
+
+      let requestOptions = {
+        method: "get",
+        headers: {},
+        redirect: "follow",
+      };
+      //console.log("requestOptions",requestOptions)
+
+      const response = await fetch("/form1.php?rq=" + raw, requestOptions);
+      const result = await response.text();
+      try {
+        this.AddTxt(result);
+        return JSON.parse(result).access_token;
+      } catch {
+        return undefined;
+      }
+    },
+
+    async MkdirFolder(name, token) {
+      let body = {
+        DisplayName: name,
+        Description: "Folder Of Configuration",
+        ProvisionType: "Automatic",
+        PermissionModel: "FineGrained",
+        ParentId: null,
+      };
+      let raw = JSON.stringify({
+        url:
+          "https://platform.uipath.com/" +
+          this.accountLogicalName +
+          "/" +
+          this.tenantName +
+          "/odata/folders",
+        methode: "POST",
+        head: [
+          "X-UIPATH-TenantName: " + this.tenantName,
+          "Authorization: Bearer " + token,
+          "Content-Type: application/json",
+        ],
+        body: body,
+      });
+      let requestOptions2 = {
+        method: "get",
+        headers: {},
+        redirect: "follow",
+      };
+      const response2 = await fetch("/form2.php?rq=" + raw, requestOptions2);
+      const result2 = await response2.text();
+      this.AddTxt(result2);
+      try {
+        let res = JSON.parse(result2);
+        console.log(res);
+        return res.Id;
+      } catch (error) {
+        return undefined;
+      }
+    },
+    async CreateCredential(title, login, pwd, token, idFolder) {
+      this.AddTxt("login:=" + login);
+      this.AddTxt("pwd:=" + pwd);
+
+      let body = {
+        Name: title,
+        ValueScope: "Global",
+        ValueType: "Credential",
+        StringValue: "",
+        CredentialUsername: login,
+        CredentialPassword: pwd,
+      };
+      let raw = JSON.stringify({
+        url:
+          "https://platform.uipath.com/" +
+          this.accountLogicalName +
+          "/" +
+          this.tenantName +
+          "/odata/Assets",
+        methode: "POST",
+        head: [
+          "X-UIPATH-OrganizationUnitId: " + idFolder,
+          "X-UIPATH-TenantName: " + this.tenantName,
+          "Authorization: Bearer " + token,
+          "Content-Type: application/json",
+        ],
+        body: body,
+      });
+      let requestOptions2 = {
+        method: "get",
+        headers: {},
+        redirect: "follow",
+      };
+      const response2 = await fetch("/form2.php?rq=" + raw, requestOptions2);
+      const result2 = await response2.text();
+      this.AddTxt(result2);
+      try {
+        let res = JSON.parse(result2);
+        console.log(res);
+        return true;
+      } catch (error) {
+        return false;
+      }
+    },
+    async CreateAssetTexte(title, txt, token, idFolder) {
+      this.AddTxt("title:=" + title);
+      this.AddTxt("txt:=" + txt);
+
+      let body = {
+        Name: title,
+        ValueScope: "Global",
+        ValueType: "Text",
+        StringValue: txt,
+        Value: txt,
+      };
+      let raw = JSON.stringify({
+        url:
+          "https://platform.uipath.com/" +
+          this.accountLogicalName +
+          "/" +
+          this.tenantName +
+          "/odata/Assets",
+        methode: "POST",
+        head: [
+          "X-UIPATH-OrganizationUnitId: " + idFolder,
+          "X-UIPATH-TenantName: " + this.tenantName,
+          "Authorization: Bearer " + token,
+          "Content-Type: application/json",
+        ],
+        body: body,
+      });
+      let requestOptions2 = {
+        method: "get",
+        headers: {},
+        redirect: "follow",
+      };
+      const response2 = await fetch("/form2.php?rq=" + raw, requestOptions2);
+      const result2 = await response2.text();
+      this.AddTxt(result2);
+      try {
+        let res = JSON.parse(result2);
+        console.log(res);
+        return true;
+      } catch (error) {
+        return false;
+      }
+    },
+    async CreateAssetInteger(title, nb, token, idFolder) {
+      this.AddTxt("title:=" + title);
+      this.AddTxt("nb:=" + nb);
+
+      let body = {
+        Name: title,
+        ValueScope: "Global",
+        ValueType: "Integer",
+        IntValue: nb,
+      };
+      let raw = JSON.stringify({
+        url:
+          "https://platform.uipath.com/" +
+          this.accountLogicalName +
+          "/" +
+          this.tenantName +
+          "/odata/Assets",
+        methode: "POST",
+        head: [
+          "X-UIPATH-OrganizationUnitId: " + idFolder,
+          "X-UIPATH-TenantName: " + this.tenantName,
+          "Authorization: Bearer " + token,
+          "Content-Type: application/json",
+        ],
+        body: body,
+      });
+      let requestOptions2 = {
+        method: "get",
+        headers: {},
+        redirect: "follow",
+      };
+      const response2 = await fetch("/form2.php?rq=" + raw, requestOptions2);
+      const result2 = await response2.text();
+      this.AddTxt(result2);
+      try {
+        let res = JSON.parse(result2);
+        console.log(res);
+        return true;
+      } catch (error) {
+        return false;
+      }
+    },
+    async CreateAssetBool(title, bool, token, idFolder) {
+      this.AddTxt("title:=" + title);
+      this.AddTxt("bool:=" + bool);
+
+      let body = {
+        Name: title,
+        ValueScope: "Global",
+        ValueType: "Bool",
+        BoolValue: bool,
+      };
+      let raw = JSON.stringify({
+        url:
+          "https://platform.uipath.com/" +
+          this.accountLogicalName +
+          "/" +
+          this.tenantName +
+          "/odata/Assets",
+        methode: "POST",
+        head: [
+          "X-UIPATH-OrganizationUnitId: " + idFolder,
+          "X-UIPATH-TenantName: " + this.tenantName,
+          "Authorization: Bearer " + token,
+          "Content-Type: application/json",
+        ],
+        body: body,
+      });
+      let requestOptions2 = {
+        method: "get",
+        headers: {},
+        redirect: "follow",
+      };
+      const response2 = await fetch("/form2.php?rq=" + raw, requestOptions2);
+      const result2 = await response2.text();
+      this.AddTxt(result2);
+      try {
+        let res = JSON.parse(result2);
+        console.log(res);
+        return true;
+      } catch (error) {
+        return false;
+      }
+    },
+    AddTxt(txt) {
+      this.errortxt.push(txt);
+    },
+    async installation() {
+      this.timestamp=""
+      this.isNotInstall=false
+      this.NoStepCurrent = 1;
+      await this.checkOrchestrator();
+      this.AddTxt("this.NoStepCurrent:=" + this.NoStepCurrent);
+      if (this.NoStepCurrent != 2) {
+        this.isNotInstall=true
+        return;
+      } else {
+        this.AddTxt("token??");
+        let token = await this.GetToken();
+        this.AddTxt("token:=" + token);
+        if (token == undefined) {
+          this.isNotInstall=true
+          return
         }
+        let idFolder = await this.MkdirFolder("CONFIG", token);
+        this.AddTxt("idFolder:=" + idFolder);
+        if (idFolder == undefined){
+          this.isNotInstall=true
+          return
+        } 
+        let stateAccountLogicalName = await this.CreateCredential(
+          "Orchestrator_AccountLogicalName",
+          "AccountLogicalName",
+          this.accountLogicalName,
+          token,
+          idFolder
+        );
+        let stateClientId = await this.CreateCredential(
+          "Orchestrator_client_id",
+          "client_id",
+          this.clientId,
+          token,
+          idFolder
+        );
+        let stateRefresh_token = await this.CreateCredential(
+          "Orchestrator_refresh_token",
+          "refresh_token",
+          this.userKey,
+          token,
+          idFolder
+        );
+        let stateTenantName = await this.CreateCredential(
+          "Orchestrator_TenantName",
+          "TenantName",
+          this.tenantName,
+          token,
+          idFolder
+        );
+        let stateNOSQL_Credential = await this.CreateCredential(
+          "LogDB_NOSQL_Credential",
+          this.LogDB_NOSQL_Credential_Login,
+          this.LogDB_NOSQL_Credential_Pwd,
+          token,
+          idFolder
+        );
+        let stateSMTP_Credential = await this.CreateCredential(
+          "Email_CredentialSMTP",
+          this.Email_CredentialSMTP_Login,
+          this.Email_CredentialSMTP_Pwd,
+          token,
+          idFolder
+        );
+        if (
+          !(
+            stateAccountLogicalName &&
+            stateClientId &&
+            stateRefresh_token &&
+            stateTenantName &&
+            stateNOSQL_Credential &&
+            stateSMTP_Credential
+          )
+        ) {
+          this.isNotInstall=true
+          return true;
+        }
+        let stateEnvs = await this.CreateAssetTexte(
+          "Envs_JSON",
+          JSON.stringify(this.envs),
+          token,
+          idFolder
+        );
+        let stateCCEmailError = await this.CreateAssetTexte(
+          "CCEmailError",
+          this.CCEmailError,
+          token,
+          idFolder
+        );
+        let stateCCEmailRecap = await this.CreateAssetTexte(
+          "CCEmailRecap",
+          this.CCEmailRecap,
+          token,
+          idFolder
+        );
+        let stateDestinataireEmailError = await this.CreateAssetTexte(
+          "DestinataireEmailError",
+          this.DestinataireEmailError,
+          token,
+          idFolder
+        );
+        let stateDestinataireEmailRecap = await this.CreateAssetTexte(
+          "DestinataireEmailRecap",
+          this.DestinataireEmailRecap,
+          token,
+          idFolder
+        );
+        let stateEmail_EmailError = await this.CreateAssetTexte(
+          "Email_EmailError",
+          this.Email_EmailError,
+          token,
+          idFolder
+        );
+        let stateEmail_EmailRecap = await this.CreateAssetTexte(
+          "Email_EmailRecap",
+          this.Email_EmailRecap,
+          token,
+          idFolder
+        );
+        let stateEmail_NameError = await this.CreateAssetTexte(
+          "Email_NameError",
+          this.Email_NameError,
+          token,
+          idFolder
+        );
+        let stateEmail_NameRecap = await this.CreateAssetTexte(
+          "Email_NameRecap",
+          this.Email_NameRecap,
+          token,
+          idFolder
+        );
+        let stateEmail_ServeurSMTP = await this.CreateAssetTexte(
+          "Email_ServeurSMTP",
+          this.Email_SMTP_Serveur,
+          token,
+          idFolder
+        );
+        let stateEnvironnement = await this.CreateAssetTexte(
+          "Environnement",
+          "DEV",
+          token,
+          idFolder
+        );
+        let stateLogDB_NOSQL_URL = await this.CreateAssetTexte(
+          "LogDB_NOSQL_URL",
+          this.LogDB_NOSQL_URL,
+          token,
+          idFolder
+        );
+        let stateLogTxt_PathFolderBase = await this.CreateAssetTexte(
+          "LogTxt_PathFolderBase",
+          this.LogFile_Path,
+          token,
+          idFolder
+        );
+        let stateTemplateFolder = await this.CreateAssetTexte(
+          "TemplateFolder",
+          this.Template_Folder,
+          token,
+          idFolder
+        );
+        let stateLogTxt_TemplateQlist = await this.CreateAssetTexte(
+          "TemplateQlist",
+          this.Template_QListe,
+          token,
+          idFolder
+        );
         
+        if (
+          !(
+            stateLogTxt_TemplateQlist&& 
+            stateTemplateFolder && 
+            stateLogTxt_PathFolderBase &&
+            stateLogDB_NOSQL_URL &&
+            stateEnvironnement &&
+            stateEmail_ServeurSMTP &&
+            stateEmail_NameRecap &&
+            stateEmail_NameError &&
+            stateEmail_EmailRecap &&
+            stateEmail_EmailError &&
+            stateDestinataireEmailRecap &&
+            stateDestinataireEmailError &&
+            stateCCEmailError &&
+            stateCCEmailRecap && 
+            stateEnvs
+          )
+        ) {
+          this.isNotInstall=true
+          return true;
+        }
+        let stateLogEmail_Port = await this.CreateAssetInteger(
+          "Email_Port",
+          this.Email_SMTP_Port,
+          token,
+          idFolder
+        );
+        let stateLogLogTxt_Actif = await this.CreateAssetBool(
+          "LogTxt_Actif",
+          this.LogFile_Actif,
+          token,
+          idFolder
+        );
+        let stateLogDB_NOSQL_Actif = await this.CreateAssetBool(
+          "LogDB_NOSQL_Actif",
+          this.LogDB_NOSQL_Actif,
+          token,
+          idFolder
+        );
+        if (
+          !(stateLogEmail_Port &&
+          stateLogLogTxt_Actif &&
+          stateLogDB_NOSQL_Actif)
+        ){
+          this.isNotInstall=true
+          return true;
+        }
+          
+
+          let now = DateTime.now()
+          this.timestamp = now.toISODate()+" at "+now.toISOTime()
+          this.isNotInstall=true
       }
     },
     PreviousPage() {
@@ -598,6 +1080,7 @@ export default {
               state = false;
             }
           });
+          this.AddTxt("state:=" + state);
           if (state) {
             this.NoStepCurrent = 2;
             this.NoStepMax = Math.max(this.NoStepMax, this.NoStepCurrent);

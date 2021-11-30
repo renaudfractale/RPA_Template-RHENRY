@@ -139,6 +139,14 @@ export default {
               UserKey: "User Key / Refresh Token",
               TenantName: "TenantName",
               ClientId: "Client Id",
+            },   projet: {
+              title: "Creation of project files",
+              explication:
+                "This form allows the creation of the Project tree in the orchestrator.",
+                            AccountLogicalName: "Account Logical Name",
+              UserKey: "User Key / Refresh Token",
+              TenantName: "TenantName",
+              ClientId: "Client Id",
             },
             installConfig: {
               title: "Custom REF installer",
@@ -163,8 +171,10 @@ export default {
 
               CCEmailError: "Copy email(s) of the error message",
               CCEmailRecap: "Copy email(s) of the summary message",
-              DestinataireEmailError:                "Email(s) of the recipient of the error message",
-              DestinataireEmailRecap:                "Email(s) of the recipient of the summary message",
+              DestinataireEmailError:
+                "Email(s) of the recipient of the error message",
+              DestinataireEmailRecap:
+                "Email(s) of the recipient of the summary message",
               Email_EmailError: "Email(s) of the sender of the error message",
               Email_EmailRecap: "Email(s) of the sender of the summary message",
               Email_NameError: "Name of the sender of the error message",
@@ -173,7 +183,8 @@ export default {
               Step04: "NoSql config",
 
               LogDB_NOSQL_Actif: "Use of NoSQL logs",
-              LogDB_NOSQL_Info_Txt:"Free hosting is offered by Atlas (mongodb)",
+              LogDB_NOSQL_Info_Txt:
+                "Free hosting is offered by Atlas (mongodb)",
               LogDB_NOSQL_Info_Url: "https://www.mongodb.com/pricing",
               LogDB_NOSQL_Credential_Login: "User's name",
               LogDB_NOSQL_Credential_Pwd: "User's password",
@@ -181,11 +192,20 @@ export default {
 
               Step05: "Log Files config",
 
-               LogFile_Actif : "Use of logs Text external to UIPATH",
-              LogFile_Path : "Network or local log path",
+              LogFile_Actif: "Use of logs Text external to UIPATH",
+              LogFile_Path: "Network or local log path",
 
-              Step06: "Installation",
-              
+              Step06: "Template",
+
+              Template_Folder: "Folder path model",
+              Template_QListe: "QItems model",
+
+  Step07: "Definition of environments",
+
+NameEnv : "Names of the environment ",
+NameDesc : "Description of the environment",
+
+              Step08: "Installation",
             },
           },
         },
@@ -222,6 +242,15 @@ export default {
               title: "Sauvegarde de votre Orchestrator",
               explication:
                 "Ce formulaire permet d’exporter le Json de la configuration de votre orchestrator.",
+              AccountLogicalName: "Nom logique du compte",
+              UserKey: "Clé d’utilisateur/ Refresh Token",
+              TenantName: "Nom de locataire",
+              ClientId: "ID du client",
+            },
+             projet: {
+              title: "Création des dossiers Projet",
+              explication:
+                "Ce formulaire permet la création de l'arborescence Projet dans l'orchestrator.",
               AccountLogicalName: "Nom logique du compte",
               UserKey: "Clé d’utilisateur/ Refresh Token",
               TenantName: "Nom de locataire",
@@ -272,10 +301,20 @@ export default {
 
               Step05: "Log Files config",
 
-              LogFile_Actif : "Utilisation des logs Texte externe à UIPATH",
-              LogFile_Path : "Chemin Réseaux ou local du log",
+              LogFile_Actif: "Utilisation des logs Texte externe à UIPATH",
+              LogFile_Path: "Chemin Réseaux ou local du log",
 
-               Step06: "Installation",
+              Step06: "Template",
+
+              Template_Folder: "modèle du chemin des dossiers",
+              Template_QListe: "modèle du noms de la QListe",
+
+ Step07: "Définition des environnements ",
+
+NameEnv : "Noms de l'environnement",
+NameDesc : "Description de l'environnement ",
+
+              Step08: "Installation",
             },
           },
         },
