@@ -135,13 +135,13 @@
       <div v-if="NoStepCurrent == 3">
         <div class="row">
           <div class="input-field col s6">
-            <input v-model="DestinataireEmailError" type="text" />
+            <input v-model="DestinataireEmailError" type="email" />
             <label for="DestinataireEmailError">{{
               message[currentLocale].form.installConfig.DestinataireEmailError
             }}</label>
           </div>
           <div class="input-field col s6">
-            <input v-model="CCEmailError" type="text" />
+            <input v-model="CCEmailError" type="email" />
             <label for="CCEmailError">{{
               message[currentLocale].form.installConfig.CCEmailError
             }}</label>
@@ -149,7 +149,7 @@
         </div>
         <div class="row">
           <div class="input-field col s6">
-            <input v-model="Email_EmailError" type="text" />
+            <input v-model="Email_EmailError" type="email" />
             <label for="Email_EmailError">{{
               message[currentLocale].form.installConfig.Email_EmailError
             }}</label>
@@ -163,13 +163,13 @@
         </div>
         <div class="row">
           <div class="input-field col s6">
-            <input v-model="DestinataireEmailRecap" type="text" />
+            <input v-model="DestinataireEmailRecap" type="email" />
             <label for="DestinataireEmailRecap">{{
               message[currentLocale].form.installConfig.DestinataireEmailRecap
             }}</label>
           </div>
           <div class="input-field col s6">
-            <input v-model="CCEmailRecap" type="text" />
+            <input v-model="CCEmailRecap" type="email" />
             <label for="CCEmailRecap">{{
               message[currentLocale].form.installConfig.CCEmailRecap
             }}</label>
@@ -177,7 +177,7 @@
         </div>
         <div class="row">
           <div class="input-field col s6">
-            <input v-model="Email_EmailRecap" type="text" />
+            <input v-model="Email_EmailRecap" type="email" />
             <label for="Email_EmailRecap">{{
               message[currentLocale].form.installConfig.Email_EmailRecap
             }}</label>
