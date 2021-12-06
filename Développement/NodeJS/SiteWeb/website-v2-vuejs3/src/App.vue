@@ -131,6 +131,7 @@ export default {
             txt: "RPA Uipath developer by profession, I am passionate about process automation. I created this website to share my passion and my work. In particular the Robotic Enterprise Framework Customed.",
           },
           form: {
+            tuto: "Tutorial of ",
             backup: {
               title: "Backup Orchestrator",
               explication:
@@ -139,11 +140,12 @@ export default {
               UserKey: "User Key / Refresh Token",
               TenantName: "TenantName",
               ClientId: "Client Id",
-            },   projet: {
+            },
+            projet: {
               title: "Creation of project files",
               explication:
                 "This form allows the creation of the Project tree in the orchestrator.",
-                            AccountLogicalName: "Account Logical Name",
+              AccountLogicalName: "Account Logical Name",
               UserKey: "User Key / Refresh Token",
               TenantName: "TenantName",
               ClientId: "Client Id",
@@ -200,10 +202,10 @@ export default {
               Template_Folder: "Folder path model",
               Template_QListe: "QItems model",
 
-  Step07: "Definition of environments",
+              Step07: "Definition of environments",
 
-NameEnv : "Names of the environment ",
-NameDesc : "Description of the environment",
+              NameEnv: "Names of the environment ",
+              NameDesc: "Description of the environment",
 
               Step08: "Installation",
             },
@@ -238,6 +240,7 @@ NameDesc : "Description of the environment",
             txt: "Développeur RPA Uipath de profession, je suis passionné par l'automatisation des processus. J'ai créé ce site pour partager ma passion et mon travail. En particulier le Robotic Enterprise Framework Customed.",
           },
           form: {
+            tuto: "Tutoriel du",
             backup: {
               title: "Sauvegarde de votre Orchestrator",
               explication:
@@ -247,7 +250,7 @@ NameDesc : "Description of the environment",
               TenantName: "Nom de locataire",
               ClientId: "ID du client",
             },
-             projet: {
+            projet: {
               title: "Création des dossiers Projet",
               explication:
                 "Ce formulaire permet la création de l'arborescence Projet dans l'orchestrator.",
@@ -309,10 +312,10 @@ NameDesc : "Description of the environment",
               Template_Folder: "modèle du chemin des dossiers",
               Template_QListe: "modèle du noms de la QListe",
 
- Step07: "Définition des environnements ",
+              Step07: "Définition des environnements ",
 
-NameEnv : "Noms de l'environnement",
-NameDesc : "Description de l'environnement ",
+              NameEnv: "Noms de l'environnement",
+              NameDesc: "Description de l'environnement ",
 
               Step08: "Installation",
             },
